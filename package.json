@@ -70,8 +70,6 @@
         "ionicons": "3.0.0",
         "jquery": "^3.4.1",
         "npm": "^6.11.3",
-        "phonegap-plugin-multidex": "^1.0.0",
-        "phonegap-plugin-push": "^2.3.0",
         "popper.js": "^1.14.3",
         "rxjs": "5.5.11",
         "sw-toolbox": "3.6.0",
@@ -97,7 +95,9 @@
             "cordova-sqlite-storage": {},
             "com-badrit-base64": {},
             "cordova-plugin-crop": {},
-            "cordova-plugin-camera": {},
+            "cordova-plugin-camera": {
+                "ANDROID_SUPPORT_V4_VERSION": "27.+"
+            },
             "cordova-android-support-gradle-release": {
                 "ANDROID_SUPPORT_VERSION": "27.+"
             },
@@ -105,8 +105,12 @@
                 "OKHTTP_VERSION": "3.10.0"
             },
             "cordova-plugin-whitelist": {},
-            "phonegap-plugin-push": {},
-            "cordova-plugin-fcm-with-dependecy-updated": {}
+            "cordova-plugin-fcm-with-dependecy-updated": {
+                "FCM_CORE_VERSION": "16.0.9",
+                "FCM_VERSION": "18.0.0",
+                "GRADLE_TOOLS_VERSION": "3.5.0",
+                "GOOGLE_SERVICES_VERSION": "4.2.0"
+            }
         },
         "platforms": [
             "ios",
