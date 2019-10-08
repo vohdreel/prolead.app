@@ -1,0 +1,127 @@
+<ion-header>
+
+    <ion-navbar>
+        <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+        <ion-title>Configurações</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+    <div id="ConfiguracoesPrincipais" [hidden]="ativo != 'gerais'">
+        <ion-list>
+            <ion-list-header class="font-20px">Notificações</ion-list-header>
+            <!-- <ion-item class="border-bottom border-sublinha">
+        <ion-label>Alertas por email</ion-label>
+        <ion-toggle [(ngModel)]="RecebeEmail" (ionChange)="SalvarConfiguracoes()"></ion-toggle>
+      </ion-item> -->
+            <ion-item>
+                <ion-label>Alertas por push</ion-label>
+                <ion-toggle color="green" [(ngModel)]="RecebePush" (ionChange)="SalvarConfiguracoes()"></ion-toggle>
+            </ion-item>
+        </ion-list>
+        <ion-list class="mb-0">
+            <ion-list-header class="font-20px" style="margin-bottom: 20px">Perfil</ion-list-header>
+            <ion-item class="remove-mb-lable center-content">
+                <button ion-button full class="height-50 r-50 w-70 orange-grad font-15px pl-0 mt-0" (click)="ativo = 'foto'">Alterar Foto</button>
+            </ion-item>
+            <ion-item class="remove-mtb-lable center-content">
+                <button ion-button full class="height-50 r-50 w-70 orange-grad font-15px pl-0 mt-0" (click)="ativo = 'senha'">Alterar Senha</button>
+            </ion-item>
+        </ion-list>
+        <ion-item class="center-content">
+            <button ion-button full class="height-50 r-50 w-70 font-15px text-branco" (click)="Inicio()" color="verde">
+        <ion-icon name="md-checkmark"></ion-icon>  Concluir
+      </button>
+        </ion-item>
+    </div>
+
+
+    <div id="AlterarFoto" [hidden]="ativo != 'foto'">
+        <ion-list>
+            <ion-list-header class="font-20px">Alterar Foto</ion-list-header>
+            <ion-item>
+                <img class="w-available circle" id="PerfilColab" [src]="fotoColab" />
+            </ion-item>
+            <!-- Menu Antigo
+      <ion-item>
+        <ion-row>
+          <ion-col col-4 class="pl-0">
+            <button ion-button full class="height-50 r-50  font-15px" (click)="Carregar()">
+              <ion-icon name="md-cloud-upload"></ion-icon>  Carregar
+            </button>
+          </ion-col>
+          <ion-col col-4>
+            <button ion-button full class="height-50 r-5 font-15px text-branco" (click)="SalvarFoto()" color="verde">
+              <ion-icon name="md-checkmark"></ion-icon>  Salvar
+            </button>
+          </ion-col>
+          <ion-col col-4 class="pr-0">
+            <button ion-button full class="height-50 r-5 font-15px text-branco" (click)="ativo = 'gerais'"
+              color="vermelho">
+              <ion-icon name="md-close"></ion-icon>  Cancelar
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-item>-->
+            <ion-row>
+                <ion-col class="center-content">
+                    <div class="center-content inline-block settings-icon-container padding-top w-90">
+                        <button ion-button full class="height-50 r-50 orange-grad font-15px" (click)="Carregar()">
+              <ion-icon name="md-cloud-upload"></ion-icon>  Carregar
+            </button>
+                    </div>
+                </ion-col>
+                <ion-col class="center-content">
+                    <div class="center-content inline-block settings-icon-container padding-top w-90">
+                        <button ion-button full class="height-50 r-50 font-15px text-branco" (click)="SalvarFoto()" color="verde">
+              <ion-icon name="md-checkmark"></ion-icon>  Salvar
+            </button>
+                    </div>
+                </ion-col>
+                <ion-col class="center-content">
+                    <div class="center-content inline-block settings-icon-container padding-top w-90">
+                        <button ion-button full class="height-50 r-50 font-15px text-branco" (click)="ativo = 'gerais'" color="vermelho">
+              <ion-icon name="md-close"></ion-icon>  Cancelar
+            </button>
+                    </div>
+                </ion-col>
+            </ion-row>
+        </ion-list>
+    </div>
+
+    <div id="AlterarSenha" [hidden]="ativo != 'senha'">
+        <ion-list>
+            <ion-list-header class="font-20px">Alterar Senha</ion-list-header>
+            <ion-item>
+                <ion-label floating>Senha Atual</ion-label>
+                <ion-input type="password" name="senhaAntiga" [(ngModel)]="senhaAntiga" (keyup)="SenhaConfere()" class="border-bottom border-sublinha"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Nova Senha</ion-label>
+                <ion-input type="password" name="senhaNova" [(ngModel)]="senhaNova" (keyup)="VerificarSenha()" class="border-bottom border-sublinha"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Confirmar Senha</ion-label>
+                <ion-input type="password" name="confirmarSenha" [(ngModel)]="confirmarSenha" (keyup)="SenhaConfere()" class="border-bottom border-sublinha"></ion-input>
+            </ion-item>
+            <p class="prl-16 text-vermelho text-center">{{requisitos}}</p>
+            <ion-row class="mt-10">
+                <ion-col col-6 class="pl-0 center-content">
+                    <button ion-button full class="height-50 r-50 w-80 font-15px text-branco" [disabled]="!salvar" (click)="SalvarSenha()" color="verde">
+            <ion-icon name="md-checkmark"></ion-icon>  Salvar
+          </button>
+                </ion-col>
+                <ion-col col-6 class="pr-0 center-content">
+                    <button ion-button full class="height-50 r-50 w-80 font-15px text-branco" (click)="ativo = 'gerais'" color="vermelho">
+            <ion-icon name="md-close"></ion-icon>  Cancelar
+          </button>
+                </ion-col>
+            </ion-row>
+        </ion-list>
+    </div>
+</ion-content>

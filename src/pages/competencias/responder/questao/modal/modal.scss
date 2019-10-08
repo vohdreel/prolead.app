@@ -1,0 +1,29 @@
+page-modal {
+    div.toolbar-background {
+        background-color: color($colors, diario2);
+    }
+    div.toolbar-title {
+        color: white;
+    }
+
+    p, h2{
+        font-size: 1.6rem !important;
+    }
+
+    .ion-avatar img{
+        width: 40px;
+        height: 40px;
+    }
+
+    .ion-md-thumbs-up{
+        color: color($colors, verde);
+    }
+
+    .ion-md-thumbs-down{
+        color: color($colors, vermelho);
+    }
+
+    .ion-md-custom-thumbs-mid{
+        color: color($colors, amarelo);
+    }
+}

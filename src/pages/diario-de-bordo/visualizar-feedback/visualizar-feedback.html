@@ -1,0 +1,263 @@
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>{{titulo}}</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+    <div class="big-container space-around">
+        <div class="fdb-header w-90 flex row-wrap">
+            <div class="flex-portlet-vf big-container space-around">
+                <div class="w-50 flex">
+                    <div class="w-40 h-100 center-content flex">
+                        <img src="{{feedback.FotoAvaliador}}" class="circle foto-avaliado">
+                    </div>
+                    <div class="w-60 h-100 center-content flex" style="font-size: 10px">{{feedback.NomeAvaliador}}</div>
+                </div>
+
+                <div class="w-20 center-content">
+                    <ion-icon name="custom-prolead-next" class="double-arrow"></ion-icon>
+                </div>
+                <div class="w-50 flex">
+                    <div class="w-40 h-100 center-content flex">
+                        <img src="{{feedback.FotoAvaliado}}" class="circle foto-avaliado">
+                    </div>
+                    <div class="w-60 h-100 center-content flex " style="font-size: 10px">{{feedback.NomeAvaliado}}</div>
+                </div>
+
+            </div>
+            <div class="hr"></div>
+            <div class="flex-portlet-vf big-container space-around">
+                <div class="w-20">
+                    <ion-icon name="{{getIconeResultadoAvaliacao(avaliacao?.ValorInteiro)}}" class="fill" [ngClass]="getIconeColor(avaliacao?.ValorInteiro)"></ion-icon>
+                </div>
+                <div class="w-90" style="padding-top: 5px">
+                    <div class="label-competencia fit-text">
+                        <div> {{feedback?.CompetenciaAvaliada}} </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="chat">
+        <div class="chat-portlet sender avaliador">
+            <div class="message">
+                {{observacao?.ValorTexto}}
+            </div>
+        </div>
+        <div class="chat-portlet receiver avaliado" *ngIf="observacao?.Replica != null">
+            <div class="message">
+                {{observacao?.Replica}}
+            </div>
+        </div>
+        <div class="chat-portlet sender avaliador" *ngIf="observacao?.Treplica != null">
+            <div class="message">
+                {{observacao?.Treplica}}
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- <ion-card class="m-0 w-100 mb-0 mt-10 rt-5">
+        <ion-card-content class="p-0 border border-diario2 bg-diario4-opacity">
+            <ion-card-title class="degrade-diario2-diario3-diario1 logo2 text-center rem2 mtb-0">
+                <ion-row>
+                    <ion-col col-8 class="mtb-auto align-left">
+                        <ion-row>
+                            <ion-col col-2>
+                                <ion-avatar item-start>
+                                    <img src="{{feedback.FotoAvaliador}}" class="circle" />
+                                </ion-avatar>
+                            </ion-col>
+                            <ion-col col-10 class="ellipsis font-14px mtb-auto">{{feedback.NomeAvaliador}}</ion-col>
+                            <ion-row [hidden]="feedback.IdAvaliador == feedback.IdAvaliado">
+                                <ion-col col-2 offset-1>
+                                    <ion-avatar item-start>
+                                        <img src="{{feedback.FotoAvaliado}}" class="circle" />
+                                    </ion-avatar>
+                                </ion-col>
+                                <ion-col col-9 class="ellipsis font-14px mtb-auto">{{feedback.NomeAvaliado}}</ion-col>
+                            </ion-row>
+                        </ion-row>
+                    </ion-col>
+                    <ion-col col-4 class="mtb-auto">
+                        <ion-row>
+                            <ion-col class="pull-right font-12px">
+                                <ion-icon name="md-calendar"></ion-icon>
+                                {{feedback.Data}}
+                            </ion-col>
+                        </ion-row>
+                        <ion-row>
+                            <ion-col class="font-12px ellipsis">
+                                {{feedback.CompetenciaAvaliada}}
+                            </ion-col>
+                        </ion-row>
+                    </ion-col>
+                </ion-row>
+            </ion-card-title>
+
+
+
+            <div *ngFor="let j of feedback.FeedBack" class="mb-20 prl-8">
+
+                <ion-row>
+                    <ion-col col-1 *ngIf="feedback.IdAvaliador == IdColaborador"></ion-col>
+                    <ion-col col-11>
+                        <div class="prl-10 bg-diario2 r-5">
+
+                            <ion-icon name="md-arrow-dropright" class="triangle-right20 diario2" *ngIf="feedback.IdAvaliador == Colaborador.id"></ion-icon>
+                            <ion-icon name="md-arrow-dropleft" class="triangle-left20 diario2" *ngIf="feedback.IdAvaliador != Colaborador.id && feedback.IdAvaliado == Colaborador.id"></ion-icon>
+                            <ion-icon name="md-arrow-dropleft" class="triangle-left20 diario2" *ngIf="feedback.IdAvaliador != Colaborador.id && feedback.IdAvaliado != Colaborador.id"></ion-icon>
+
+                            <div *ngIf="j.TipoPergunta == 1">
+                                <ion-label class="mtb-0 pt-5">{{j.QuestaoFormulario}}:</ion-label>
+                                <div class="pl-20 pr-10">{{j.ValorTexto}}</div>
+                            </div>
+
+                            <div *ngIf="j.TipoPergunta == 2">
+                                <ion-label class="mtb-0 pt-5">{{j.QuestaoFormulario}}:</ion-label>
+                                <div class="pl-20 pr-10">{{j.ValorTexto}}</div>
+                            </div>
+
+                            <div *ngIf="j.TipoPergunta == 3">
+                                <ion-label class="mtb-0 pt-5">{{j.QuestaoFormulario}}:</ion-label>
+                                <div *ngFor="let k of j.PerguntaFormulario.AlternativaDaPerguntaFormulario"><input type="radio" class="mb-5" [checked]="j.IdAlternativaPerguntaFormulario == k.Id" name="{{j.Id}}" value="{{j.Id}}-{{k.Id}}" id="{{j.Id}}-{{k.Id}}" disabled> {{k.Descricao}} </div>
+                            </div>
+
+                            <div *ngIf="j.TipoPergunta == 4">
+                                <ion-label class="mtb-0 pt-5">{{j.QuestaoFormulario}}:</ion-label>
+                                <div *ngFor="let k of j.PerguntaFormulario.AlternativaDaPerguntaFormulario">
+                                    <input type="checkbox" [checked]="verificarChecked(j.IdAlternativaPerguntaFormulario, k.Id)" class="mb-5" name="{{j.Id}}-{{k.Id}}" id="{{j.Id}}-{{k.Id}}" disabled>{{k.Descricao}}
+                                </div>
+                            </div>
+
+                            <div *ngIf="j.TipoPergunta == 7" class="prl-10 mr-35 bg-diario2 r-5">
+                                <ion-label class="pt-5">{{j.QuestaoFormulario}}:</ion-label>
+
+                                <div class="pb-10 pr-20 pl-10">
+                                    <i class="far fa-smile font-30px" *ngIf="j.ValorInteiro == 1"></i>
+
+                                    <i class="far fa-meh font-30px" *ngIf="j.ValorInteiro == 2"></i>
+
+                                    <i class="far fa-frown font-30px" *ngIf="j.ValorInteiro == 3"></i>
+                                </div>
+
+                            </div>
+                        </div>
+                    </ion-col>
+                </ion-row>
+
+                <div *ngIf="UtilizaReplica && feedback.IdAvaliador != feedback.IdAvaliado && ultimaQuestao == j" class="mt-5">
+                    <ion-row *ngIf="j.DataReplicaFormat != '01/01/0001'">
+                        <ion-col col-1 *ngIf="feedback.IdAvaliado == IdColaborador"></ion-col>
+                        <ion-col col-11>
+                            <div class="bg-diario3 ptb-5 r-5">
+                                <ion-icon name="md-arrow-dropleft" class="triangle-left diario3" *ngIf="feedback.IdAvaliador == Colaborador.id"></ion-icon>
+                                <ion-icon name="md-arrow-dropright" class="triangle-right diario3" *ngIf="feedback.IdAvaliador != Colaborador.id && feedback.IdAvaliado == Colaborador.id"></ion-icon>
+                                <ion-icon name="md-arrow-dropleft" class="triangle-left diario3" *ngIf="feedback.IdAvaliador != Colaborador.id && feedback.IdAvaliado != Colaborador.id"></ion-icon>
+                                <ion-item class="Avaliado pl-10" class="bg-diario3">
+                                    <ion-avatar item-start>
+                                        <img class="p-0" src="{{feedback.FotoAvaliado}}">
+                                    </ion-avatar>
+                                    <ion-row>
+                                        <ion-col>
+                                            <h2 class="ellipsis">{{feedback.NomeAvaliado}}</h2>
+                                            <p>Dia: {{j.DataReplicaFormat}}</p>
+                                        </ion-col>
+                                    </ion-row>
+                                </ion-item>
+                                <div class="pl-20 pr-10">{{j.Replica}}</div>
+                            </div>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row *ngIf="j.DataTreplicaFormat != '01/01/0001'">
+                        <ion-col col-1 *ngIf="feedback.IdAvaliador == IdColaborador"></ion-col>
+                        <ion-col col-11>
+                            <div class="ptb-5 mt-5 prl-10 bg-diario2 r-5">
+                                <ion-icon name="md-arrow-dropright" class="triangle-right20 diario2" *ngIf="feedback.IdAvaliador == Colaborador.id"></ion-icon>
+                                <ion-icon name="md-arrow-dropleft" class="triangle-left20 diario2" *ngIf="feedback.IdAvaliador != Colaborador.id && feedback.IdAvaliado == Colaborador.id"></ion-icon>
+                                <ion-icon name="md-arrow-dropleft" class="triangle-left20 diario2" *ngIf="feedback.IdAvaliador != Colaborador.id && feedback.IdAvaliado != Colaborador.id"></ion-icon>
+                                <ion-item class="Avaliador pl-10 bg-diario2">
+                                    <ion-avatar item-start>
+                                        <img class="p-0" src="{{feedback.FotoAvaliador}}">
+                                    </ion-avatar>
+                                    <ion-row>
+                                        <ion-col>
+                                            <h2 class="ellipsis">{{feedback.NomeAvaliador}}</h2>
+                                            <p>Dia: {{j.DataTreplicaFormat}}</p>
+                                        </ion-col>
+                                    </ion-row>
+                                </ion-item>
+                                <div class="pl-20 pr-10">{{j.Treplica}}</div>
+                            </div>
+                        </ion-col>
+                    </ion-row>
+                </div>
+            </div>
+            <ion-row [hidden]="feedback.DataLido == ''">
+                <ion-col col-12 class="text-right">Lido em: {{feedback.DataLido}}</ion-col>
+            </ion-row>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-row [hidden]="(ultimaQuestao.DataReplicaFormat != '01/01/0001' || feedback.IdAvaliado != IdColaborador) && (ultimaQuestao.DataTreplicaFormat == '01/01/0001' || feedback.IdAvaliador != IdColaborador || ultimaQuestao.DataReplicaFormat == '01/01/0001')"
+        class="bg-diario4-opacity border border-diario2 p-0 rb-5">
+        <ion-col col-12 class="p-0">
+            <div *ngIf="ultimaQuestao.DataReplicaFormat == '01/01/0001' && feedback.IdAvaliado == IdColaborador">
+                <ion-row>
+                    <ion-col col-11><textarea type="text" class="w-available p-0 border-none no-resize bg-transparente" maxlength="8000" placeholder="Enviar uma Réplica" [(ngModel)]="ultimaQuestao.Replica"></textarea>
+                    </ion-col>
+                    <ion-col col-1 class="p-0 center text-center border-left border-diario2">
+                        <ion-icon name="send" class="item-center" (click)="SalvarReplica(ultimaQuestao, feedback.Id)"></ion-icon>
+                    </ion-col>
+                </ion-row>
+            </div>
+            <div *ngIf="ultimaQuestao.DataTreplicaFormat == '01/01/0001' && feedback.IdAvaliador == IdColaborador && ultimaQuestao.DataReplicaFormat != '01/01/0001'">
+                <ion-row>
+                    <ion-col col-11><textarea type="text" class="w-available p-0 border-none no-resize bg-transparente" maxlength="8000" placeholder="Enviar uma Tréplica" [(ngModel)]="ultimaQuestao.Treplica"></textarea>
+                    </ion-col>
+                    <ion-col col-1 class="p-5 center text-center border-left border-diario2">
+                        <ion-icon name="send" class="item-center" (click)="SalvarTreplica(ultimaQuestao, feedback.Id)"></ion-icon>
+                    </ion-col>
+                </ion-row>
+            </div>
+        </ion-col>
+    </ion-row> -->
+</ion-content>
+
+<ion-footer>
+    <div class="flex padding-message">
+        <div class="w-80 center-content">
+            <textarea style="resize: none" maxRows="4" class="w-100 r-50" *ngIf="stringTipoResposta == 'replica'" [(ngModel)]="ultimaQuestao.Replica" [disabled]="!PodeResponder"></textarea>
+            <textarea style="resize: none" maxRows="4" class="w-100 r-50" *ngIf="stringTipoResposta == 'treplica'" [(ngModel)]="ultimaQuestao.Treplica" [disabled]="!PodeResponder"></textarea>
+        </div>
+        <div class="w-20 center-content">
+            <button class="send-button" [disabled]="ultimaQuestao.Replica || ultimaQuestao.Replica == ''" *ngIf="stringTipoResposta == 'replica'" class="item-center" (click)="SalvarReplica(ultimaQuestao, feedback.Id)">
+                    <ion-icon name="custom-prolead-sendMessage"></ion-icon>
+            </button>
+            <button class="send-button" [disabled]="!ultimaQuestao.Treplica || ultimaQuestao.Treplica == ''" *ngIf="stringTipoResposta == 'treplica'" (click)="SalvarTreplica(ultimaQuestao, feedback.Id)">
+                    <ion-icon name="custom-prolead-sendMessage" ></ion-icon>
+            </button>
+        </div>
+    </div>
+</ion-footer>

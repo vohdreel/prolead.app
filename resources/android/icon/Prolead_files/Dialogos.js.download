@@ -1,0 +1,430 @@
+﻿$.Dialogo = function () {
+    return {
+        showMessage: function (cabecalho, texto, botoes) {
+            $('#modalMensagem #tituloModalMensagem').html('');
+            $('#modalMensagem .modal-body').html('');
+            $('#modalMensagem .modal-footer').html('');
+            var buttons = '';
+            for (var i = 0; i < botoes.length; i++) {
+                for (var f in botoes[i]) {
+                    buttons += '<button id="btn-' + f + '" class="btn default">' + f + '</button>';
+                    $('#modalMensagem').off('click', '#btn-' + f);
+                    $('#modalMensagem').on('click', '#btn-' + f, botoes[i][f]);
+                }
+            }
+            $('#modalMensagem #tituloModalMensagem').html(cabecalho);
+            $('#modalMensagem .modal-body').html(texto);
+            $('#modalMensagem .modal-footer').html(buttons);
+
+            $('#modalMensagem button.close').on('click', function (e) {
+                e.stopPropagation();
+                e.preventDefault();
+            });
+
+            $('#modalMensagem').modal('show');
+        },
+        hideMessage: function () {
+            $('#modalMensagem').modal('hide');
+        },
+        aviso: function (cabecalho, texto, urlRedirecionamento) {
+            var div = $('#container-fluid');
+
+            var modal = $('<div id="modalAviso" class="modal fade" role="basic" data-backdrop="static" aria-hidden="true" tab-index="-1" style="display: none">' +
+                '<div class="modal-dialog">' +
+                '<div class="modal-content">' +
+                '<div class="modal-header">' +
+                '<button aria-hidden="true" data-dismiss="modal" class="close" type="button"></button>' +
+                '<h3 class="modal-title">' + cabecalho + '</h3>' +
+                '</div>' +
+                '<div class="modal-body" style="overflow:hidden;height:auto">' + texto + '</div>' +
+                '<div class="modal-footer">' +
+                '<button class="btn blue" data-dismiss="modal" id="btnOk">OK</button>' +
+                '</div>' +
+                '</div>' +
+                '</div>' +
+                '</div>');
+
+            $(div).append(modal);
+            var button = $('#btnOk', modal);
+            if (urlRedirecionamento) {
+                if (jQuery.isFunction(urlRedirecionamento)) {
+                    $(button).on('click', function () {
+                        $(modal).modal('hide');
+                        setTimeout(function () {
+                            $(modal).remove();
+                        }, 1100);
+                        urlRedirecionamento();
+                    });
+                    $('#modalAviso button.close', modal).on('click', function () {
+                        $(modal).modal('hide');
+                        setTimeout(function () {
+                            $(modal).remove();
+                        }, 1100);
+                        urlRedirecionamento();
+                    });
+                } else {
+                    $(button).on('click', function () {
+                        $(modal).modal('hide');
+                        setTimeout(function () {
+                            $(modal).remove();
+                        }, 1100);
+                        $('#container-fluid').load(urlRedirecionamento, function () {
+                            if (urlRedirecionamento != window.location) {
+                                window.history.pushState({ path: urlRedirecionamento }, '', urlRedirecionamento);
+                            }
+                            App.handleAjaxify();
+                        });
+                    });
+                    $('#modalAviso button.close', modal).on('click', function () {
+                        $(modal).modal('hide')
+                        setTimeout(function () {
+                            $(modal).remove();
+                        }, 1100);
+                        $('#container-fluid').load(urlRedirecionamento, function () {
+                            if (urlRedirecionamento != window.location) {
+                                window.history.pushState({ path: urlRedirecionamento }, '', urlRedirecionamento);
+                            }
+                            App.handleAjaxify();
+                        });
+                    });
+                }
+            } else {
+                $(button).on('click', function () {
+                    $(modal).modal('hide');
+                    setTimeout(function () {
+                        $(modal).remove();
+                    }, 1100);
+                });
+                $('#modalAviso button.close', modal).on('click', function () {
+                    $(modal).modal('hide')
+                    setTimeout(function () {
+                        $(modal).remove();
+                    }, 1100);
+                });
+            }
+            $(modal).modal('show');
+        },
+        avisoPersonalizado: function (cabecalho, texto, modulo, urlRedirecionamento) {
+            var div = $('#container-fluid');
+
+            var modal = $('<div id="modalAviso" class="modal fade modal-personalizada '+modulo+'" role="basic" data-backdrop="static" aria-hidden="true" tab-index="-1" style="display: none">' +
+                '<div class="modal-dialog">' +
+                '<div class="modal-content">' +
+                '<div class="modal-header">' +
+                '<h3 class="modal-title">' + cabecalho + '</h3>' +
+                '</div>' +
+                '<div class="modal-body" style="overflow:hidden;height:auto">' + texto + '</div>' +
+                '<div class="modal-footer">' +
+                '<button class="btn btn-default" data-dismiss="modal" id="btnOk">OK</button>' +
+                '</div>' +
+                '</div>' +
+                '</div>' +
+                '</div>');
+
+            $(div).append(modal);
+            var button = $('#btnOk', modal);
+            if (urlRedirecionamento) {
+                if (jQuery.isFunction(urlRedirecionamento)) {
+                    $(button).on('click', function () {
+                        $(modal).modal('hide');
+                        setTimeout(function () {
+                            $(modal).remove();
+                        }, 1100);
+                        urlRedirecionamento();
+                    });
+                    $('#modalAviso button.close', modal).on('click', function () {
+                        $(modal).modal('hide');
+                        setTimeout(function () {
+                            $(modal).remove();
+                        }, 1100);
+                        urlRedirecionamento();
+                    });
+                } else {
+                    $(button).on('click', function () {
+                        $(modal).modal('hide');
+                        setTimeout(function () {
+                            $(modal).remove();
+                        }, 1100);
+                        $('#container-fluid').load(urlRedirecionamento, function () {
+                            if (urlRedirecionamento != window.location) {
+                                window.history.pushState({ path: urlRedirecionamento }, '', urlRedirecionamento);
+                            }
+                            App.handleAjaxify();
+                        });
+                    });
+                    $('#modalAviso button.close', modal).on('click', function () {
+                        $(modal).modal('hide')
+                        setTimeout(function () {
+                            $(modal).remove();
+                        }, 1100);
+                        $('#container-fluid').load(urlRedirecionamento, function () {
+                            if (urlRedirecionamento != window.location) {
+                                window.history.pushState({ path: urlRedirecionamento }, '', urlRedirecionamento);
+                            }
+                            App.handleAjaxify();
+                        });
+                    });
+                }
+            } else {
+                $(button).on('click', function () {
+                    $(modal).modal('hide');
+                    setTimeout(function () {
+                        $(modal).remove();
+                    }, 1100);
+                });
+                $('#modalAviso button.close', modal).on('click', function () {
+                    $(modal).modal('hide')
+                    setTimeout(function () {
+                        $(modal).remove();
+                    }, 1100);
+                });
+            }
+            $(modal).modal('show');
+        },
+        avisoRibbon: function (cabecalho, texto, modulo, urlRedirecionamento) {
+            var div = $('#container-fluid');
+
+            var ribbon = [];
+            ribbon =
+                [
+                    '<div class="ribbon ribbon-clip">',
+                        '<div class="ribbon-sub ribbon-clip"></div>',
+                        '<h4>' + cabecalho + '</h4>',
+                    '</div>',
+                ].join('');  
+
+            var modal = $('<div id="modalAviso" class="d-flex-va modal fade modal-personalizada '+ modulo +'" role="basic" data-backdrop="static" aria-hidden="true" tab-index="-1" style="display: none">' +
+                '<div class="modal-dialog mt-element-ribbon">' +
+                ribbon +
+                '<div class="modal-content">' +
+                '<div class="modal-body" style="overflow:hidden;height:auto">' + texto + '</div>' +
+                '<div class="modal-footer">' +
+                '<button class="btn blue" data-dismiss="modal" id="btnOk">OK</button>' +
+                '</div>' +
+                '</div>' +
+                '</div>' +
+                '</div>');
+
+            $(div).append(modal);
+            var button = $('#btnOk', modal);
+            if (urlRedirecionamento) {
+                if (jQuery.isFunction(urlRedirecionamento)) {
+                    $(button).on('click', function () {
+                        $(modal).modal('hide');
+                        setTimeout(function () {
+                            $(modal).remove();
+                        }, 1100);
+                        urlRedirecionamento();
+                    });
+                    $('#modalAviso button.close', modal).on('click', function () {
+                        $(modal).modal('hide');
+                        setTimeout(function () {
+                            $(modal).remove();
+                        }, 1100);
+                        urlRedirecionamento();
+                    });
+                } else {
+                    $(button).on('click', function () {
+                        $(modal).modal('hide');
+                        setTimeout(function () {
+                            $(modal).remove();
+                        }, 1100);
+                        $('#container-fluid').load(urlRedirecionamento, function () {
+                            if (urlRedirecionamento != window.location) {
+                                window.history.pushState({ path: urlRedirecionamento }, '', urlRedirecionamento);
+                            }
+                            App.handleAjaxify();
+                        });
+                    });
+                    $('#modalAviso button.close', modal).on('click', function () {
+                        $(modal).modal('hide')
+                        setTimeout(function () {
+                            $(modal).remove();
+                        }, 1100);
+                        $('#container-fluid').load(urlRedirecionamento, function () {
+                            if (urlRedirecionamento != window.location) {
+                                window.history.pushState({ path: urlRedirecionamento }, '', urlRedirecionamento);
+                            }
+                            App.handleAjaxify();
+                        });
+                    });
+                }
+            } else {
+                $(button).on('click', function () {
+                    $(modal).modal('hide');
+                    setTimeout(function () {
+                        $(modal).remove();
+                    }, 1100);
+                });
+                $('#modalAviso button.close', modal).on('click', function () {
+                    $(modal).modal('hide')
+                    setTimeout(function () {
+                        $(modal).remove();
+                    }, 1100);
+                });
+            }
+            $(modal).modal('show');
+        },
+        confirmacao: function (cabecalho, texto, funcaoOk, funcaoCancelar, funcaoFechar) {
+            var div = $('#container-fluid');
+
+            var modal = $('<div id="modalAviso" class="modal fade" role="basic" data-backdrop="static" aria-hidden="true" tab-index="-1" style="display: none">' +
+                '<div class="modal-dialog">' +
+                '<div class="modal-content">' +
+                '<div class="modal-header">' +
+                '<button aria-hidden="true" data-dismiss="modal" class="close" type="button"></button>' +
+                '<h3 class="modal-title">' + cabecalho + '</h3>' +
+                '</div>' +
+                '<div class="modal-body">' + texto + '</div>' +
+                '<div class="modal-footer">' +
+                '<button id="btnCancelar" data-dismiss="modal" class="btn default">Não</button>  <button class="btn blue" data-dismiss="modal" id="btnOk">Sim</button>' +
+                '</div>' +
+                '</div>' +
+                '</div>' +
+                '</div>');
+
+            $(div).append(modal);
+
+            var btnOk = $('#btnOk', modal);
+            var btnCancelar = $('#btnCancelar', modal);
+
+            $(btnOk).on('click', function () {
+                $(modal).modal('hide')
+                setTimeout(function () {
+                    $(modal).remove();
+                }, 1100);
+
+                if (funcaoOk) funcaoOk();
+            });
+
+            $(btnCancelar).on('click', function () {
+                $(modal).modal('hide')
+                setTimeout(function () {
+                    $(modal).remove();
+                }, 1100);
+
+                if (funcaoCancelar) funcaoCancelar();
+            });
+
+            $('#modalAviso button.close', modal).off('click');
+            $('#modalAviso button.close', modal).on('click', function () {
+                $(modal).modal('hide')
+                setTimeout(function () {
+                    $(modal).remove();
+                }, 1100);
+            });
+
+            if (funcaoFechar) $(modal).on('hidden.bs.modal', funcaoFechar());
+
+            $(modal).modal('show');
+        },
+        confirmacaoPersonalizado: function (cabecalho, texto, modulo, funcaoOk, funcaoCancelar) {
+            var div = $('#container-fluid');
+
+            var modal = $('<div id="modalAviso" class="modal fade modal-personalizada ' + modulo +'" role="basic" data-backdrop="static" aria-hidden="true" tab-index="-1" style="display: none">' +
+                '<div class="modal-dialog">' +
+                '<div class="modal-content">' +
+                '<div class="modal-header">' +
+                '<h3 class="modal-title">' + cabecalho + '</h3>' +
+                '</div>' +
+                '<div class="modal-body">' + texto + '</div>' +
+                '<div class="modal-footer">' +
+                '<button id="btnCancelar" data-dismiss="modal" class="btn btn-default">Não</button>  <button class="btn btn-default" data-dismiss="modal" id="btnOk">Sim</button>' +
+                '</div>' +
+                '</div>' +
+                '</div>' +
+                '</div>');
+
+            $(div).append(modal);
+
+            var btnOk = $('#btnOk', modal);
+            var btnCancelar = $('#btnCancelar', modal);
+
+            $(btnOk).on('click', function () {
+                $(modal).modal('hide')
+                setTimeout(function () {
+                    $(modal).remove();
+                }, 1100);
+
+                if (funcaoOk) funcaoOk();
+            });
+
+            $(btnCancelar).on('click', function () {
+                $(modal).modal('hide')
+                setTimeout(function () {
+                    $(modal).remove();
+                }, 1100);
+
+                if (funcaoCancelar) funcaoCancelar();
+            });
+
+            $('#modalAviso button.close', modal).off('click');
+            $('#modalAviso button.close', modal).on('click', function () {
+                $(modal).modal('hide')
+                setTimeout(function () {
+                    $(modal).remove();
+                }, 1100);
+            });
+            $(modal).modal('show');
+        },
+        confirmacaoRibbon: function (cabecalho, texto, modulo, funcaoOk, funcaoCancelar, funcaoFechar) {
+            var div = $('#container-fluid');
+
+            var ribbon = [];
+            ribbon =
+                [
+                    '<div class="ribbon ribbon-clip">',
+                    '<div class="ribbon-sub ribbon-clip"></div>',
+                    '<h4>' + cabecalho + '</h4>',
+                    '</div>',
+                ].join('');
+
+            var modal = $('<div id="modalAviso" class="d-flex-va modal fade modal-personalizada ' + modulo + '" role="basic" data-backdrop="static" aria-hidden="true" tab-index="-1" style="display: none">' +
+                '<div class="modal-dialog mt-element-ribbon">' +
+                ribbon +
+                '<div class="modal-content">' +
+                '<div class="modal-body">' + texto + '</div>' +
+                '<div class="modal-footer">' +
+                '<button id="btnCancelar" data-dismiss="modal" class="btn default">Não</button>  <button class="btn blue" data-dismiss="modal" id="btnOk">Sim</button>' +
+                '</div>' +
+                '</div>' +
+                '</div>' +
+                '</div>');
+
+            $(div).append(modal);
+
+            var btnOk = $('#btnOk', modal);
+            var btnCancelar = $('#btnCancelar', modal);
+
+            $(btnOk).on('click', function () {
+                $(modal).modal('hide')
+                setTimeout(function () {
+                    $(modal).remove();
+                }, 1100);
+
+                if (funcaoOk) funcaoOk();
+            });
+
+            $(btnCancelar).on('click', function () {
+                $(modal).modal('hide')
+                setTimeout(function () {
+                    $(modal).remove();
+                }, 1100);
+
+                if (funcaoCancelar) funcaoCancelar();
+            });
+
+            $('#modalAviso button.close', modal).off('click');
+            $('#modalAviso button.close', modal).on('click', function () {
+                $(modal).modal('hide')
+                setTimeout(function () {
+                    $(modal).remove();
+                }, 1100);
+            });
+
+            if (funcaoFechar) $(modal).on('hidden.bs.modal', funcaoFechar());
+
+            $(modal).modal('show');
+        },
+    }
+}();

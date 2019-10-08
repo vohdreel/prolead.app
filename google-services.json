@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "10073927576",
+    "firebase_url": "https://prolead-app-2205b.firebaseio.com",
+    "project_id": "prolead-app-2205b",
+    "storage_bucket": "prolead-app-2205b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:10073927576:android:4adc4417371c80bdc9c5ed",
+        "android_client_info": {
+          "package_name": "com.Prolead.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "10073927576-s29t90ssecnjtjuk20br0q82jo3qdktm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBefOY5GshQkcUaTV2brjRzwiyP1MuKP8M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "10073927576-s29t90ssecnjtjuk20br0q82jo3qdktm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

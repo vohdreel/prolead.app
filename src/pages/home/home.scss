@@ -1,0 +1,87 @@
+page-home {
+    .w-60 {
+        width: 60% !important;
+    }
+    .user-icon {
+        max-width: 130px;
+        height: auto;
+    }
+    .content-grid {
+        ion-col {
+            box-shadow: 0px 3px 6px #00000029;
+            border-radius: 5px !important;
+            margin: 5px !important;
+        }
+        .modulo-icon-container {
+            width: 150px;
+            height: 150px;
+            //background: #FFFFFF 0% 0% no-repeat padding-box;            
+            opacity: 1;
+            img {
+                display: block;
+                margin-bottom: 30px;
+            }
+        }
+        .settings-icon-container {
+            width: 90px;
+            height: 90px;
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6 {
+                margin-top: 0px !important;
+            }
+            img {
+                //ksdisplay: block;
+                margin-top: 10px !important
+            }
+        }
+    }
+    .bar-button-default-md,
+    .bar-button-default-ios {
+        color: #424242 !important;
+    }
+    ion-card {
+        display: inline-block;
+    }
+    .box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .menuDisabled {
+        opacity: 0.6 !important;
+    }
+    .logo-prolead {
+        max-height: -webkit-fill-available;
+    }
+    ion-header {
+        height: 56px;
+    }
+    @media (min-width: 525px) {
+        ion-card {
+            max-width: 80%;
+        }
+        ion-header {
+            height: 7.5%;
+        }
+        ion-navbar {
+            height: 100%;
+        }
+    }
+    .padding-top {
+        padding-top: 10px;
+    }
+    .inherit {
+        position: inherit;
+    }
+    .name-margin {
+        margin-top: 25px;
+    }
+    .name-margin-bottom {
+        margin-bottom: 10px;
+    }
+}

@@ -1,0 +1,244 @@
+﻿var initLayout = Layout.init;
+
+Layout.init = function () {
+    Layout.initHeader();
+    Layout.initContent();
+    Layout.initFooter();
+    Layout.initSidebar();
+
+    Layout.handleAjaxify();
+
+    if (window.history && window.history.pushState) {
+        window.onpopstate = function (event) {
+            if (event.state && event.state.path) {
+                Metronic.loadPage(event.state.path, '.page-content .page-content-body');
+            }
+        }
+    }
+    Layout.updateMenu();
+}
+
+var myInitAjax = Metronic.initAjax;
+
+Metronic.initAjax = function () {
+
+    $('.select2me').each(function (i, select) {
+        if ($(select).hasClass('select2-hidden-accessible')) {
+            $(select).select2('destroy');
+        }
+    });
+
+    //$('.select2me').select2('destroy');
+    myInitAjax();
+};
+
+Metronic.loadPage = function (url, container, callback) {
+
+    Metronic.scrollTop();
+    var pageContentBody = $(container);
+
+    Metronic.blockUI({
+        target: pageContentBody
+    });
+
+    //Metronic.startPageLoading();
+
+    // Layout.closeMainMenu();
+
+    $.ajaxSetup({
+        statusCode: {
+            401: function () {
+                location.href = "/Conta/Login";
+            }
+        }
+    });
+
+    $.ajax({
+        type: "GET",
+        cache: false,
+        url: url,
+        async: true,
+        dataType: "html",
+        success: function (res, status, jqXHR) {
+
+            if (jqXHR.getAllResponseHeaders().indexOf('"status":401') >= 0) {
+                url = url.replace('/', '%2F').replace('?', '%3F').replace('=', '%3D');
+                location.href = "/Conta/Login?ReturnUrl=" + url;
+                return;
+            }
+
+            var div = $('<div></div>');
+            div.html(res);
+            var scripts = div.find('script');
+            scripts.remove();
+
+            //Metronic.stopPageLoading();
+            Metronic.unblockUI(pageContentBody);
+            pageContentBody.html('');
+            pageContentBody.append(div.html());
+            pageContentBody.append(scripts);
+
+            Layout.initContent(); // fix content height
+            Metronic.initAjax(); // initialize core stuff
+
+            if (callback)
+                callback();
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            pageContentBody.html('<h4>Não foi possível carregar a página solicitada.</h4>');
+            Metronic.stopPageLoading();
+        }
+    });
+};
+
+
+Metronic.ajaxGetRequest = function (url, container) {
+    function closeSideBar() {
+        $('#QuickSideBar .sidebar-content').data('origem', '');
+        $('#QuickSideBar .sidebar-content').html('');
+        $('body').removeClass('page-quick-sidebar-open');
+    }
+    closeSideBar();
+
+    var pageContentBody = container == null ? '.page-content' : container;
+    Metronic.loadPage(url, pageContentBody, function () {
+        Metronic.updateUrl(url);
+        Layout.setSidebarMenuActiveLink('match');
+    });
+};
+
+Metronic.requisicaoAjax = function (url, container, callback, blockContainer) {
+    Metronic.blockUI({ target: container });
+    var pageContentBody = null;
+
+    pageContentBody = container == null ? $('.page-content') : $(container);
+    $.ajax({
+        type: "GET",
+        cache: false,
+        url: url,
+        async: true,
+        dataType: "html",
+        success: function (res, status, jqXHR) {
+            var div = $('<div></div>');
+            div.html(res);
+            //var scripts = div.find('script');
+            //scripts.remove();
+            Metronic.unblockUI({ target: container });
+            pageContentBody = container == null ? $('.page-content') : $(container);
+            pageContentBody.html('');
+            pageContentBody.append(div.html());
+            //pageContentBody.append(scripts);
+
+            Metronic.initAjax();
+
+            if (callback)
+                callback();
+
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            pageContentBody.html('<h4>Não foi possível carregar a página solicitada.</h4>');
+            Metronic.unblockUI({ target: container });
+
+        }
+    });
+
+};
+
+Layout.updateMenu = function () {
+    var url = location.pathname;
+    var menuContainer = $('.page-sidebar ul');
+    var url = location.pathname;
+    var links = $('.page-sidebar').find(' li > a.ajaxify');  //  $('.navbar-nav a');
+    var link = [];
+    while (link.length == 0 && url != '') {
+        link = links.filter(function (index, element) {
+            return $(element).attr('href') === url;
+        })
+        if (link.length == 0) {
+            if (url != '/') {
+                var parts = url.split('/');
+                url = '';
+                for (var i = 0; i < (parts.length - 1); i++) {
+                    if (parts[i].length > 0) {
+                        url += '/' + parts[i];
+                    }
+                }
+            }
+            else {
+                url = '';
+            }
+        }
+    }
+    if (link.length == 0) {
+        var url = location.pathname + location.search;
+        link = links.filter(function (index, element) {
+            return $(element).attr('href') === url;
+        })
+    }
+    if (link.length != 0) {
+        Layout.setSidebarMenuActiveLink('set', link[0]);
+    }
+
+    Layout.setSidebarMenuActiveLink('set', link);
+}
+
+Layout.handleAjaxify = function () {
+    jQuery('body').on('click', '.ajaxify', function (e) {
+        e.preventDefault();
+        var url = $(this).attr("href");
+        Metronic.ajaxGetRequest(url);
+
+        
+    });
+
+    jQuery('.hor-menu').on('click', ' li > a.ajaxify', function (e) {
+        e.preventDefault();
+        Layout.setSidebarMenuActiveLink('set', $(this));
+
+    });
+
+    jQuery('.page-content-body').on('click', '.page-breadcrumb li > a:contains("Início")', function (e) {
+        e.preventDefault();
+
+        $('.hor-menu').find('li').removeClass('active');
+        $('.hor-menu').find('li > a:contains("Início")').parents('li').addClass('active');
+    });
+}
+
+Metronic.updateUrl = function (url) {
+    if (window.history && window.history.pushState) {
+        window.history.pushState({ path: url }, '', url);
+    }
+}
+
+if (!Array.prototype.indexOf) {
+    Array.prototype.indexOf = function (searchElement, fromIndex) {
+        var k;
+        if (this == null) {
+            throw new TypeError('"this" is null or not defined');
+        }
+
+        var O = Object(this);
+        var len = O.length >>> 0;
+        if (len === 0) {
+            return -1;
+        }
+        var n = +fromIndex || 0;
+
+        if (Math.abs(n) === Infinity) {
+            n = 0;
+        }
+        if (n >= len) {
+            return -1;
+        }
+        k = Math.max(n >= 0 ? n : len - Math.abs(n), 0);
+        while (k < len) {
+            var kValue;
+            if (k in O && O[k] === searchElement) {
+                return k;
+            }
+            k++;
+        }
+        return -1;
+    };
+}

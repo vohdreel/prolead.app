@@ -1,0 +1,194 @@
+@function set-text-color($cor) {
+    @if (lightness($cor) > 50) {
+        @return black;
+    }
+
+    @else {
+        @return white;
+    }
+}
+
+//Automaticamente atlualiza as classes com base nas variaveis.
+//Criar classes para todas as variaveis
+@each $variavel in $colors {
+    $variavel: str-slice(inspect($variavel), 1, (str-index(inspect($variavel), "#") - 2));
+    $cor: map-get($colors, $variavel);
+    $contraste: set-text-color($cor);
+
+    .bg-#{$variavel} {
+        background-color: $cor !important;
+        color: $contraste;
+    }
+
+
+    .bg-#{$variavel}-opacity {
+        background-color: rgba(red($cor), green($cor), blue($cor), 0.25) !important;
+        color: $contraste;
+    }
+
+    .#{$variavel} {
+        color: $cor !important;
+    }
+
+    .border-#{$variavel} {
+        border-color: $cor !important;
+    }
+
+    .text-#{$variavel} {
+        color: $cor !important;
+    }
+}
+
+
+
+/*Fazedor de degrades*/
+@each $variavel in $colors {
+    $variavel: str-slice(inspect($variavel), 1, (str-index(inspect($variavel), "#") - 2));
+    $cor: map-get($colors, $variavel);
+    $contraste: set-text-color($cor);
+
+    @each $variavel2 in $colors {
+        $variavel2: str-slice(inspect($variavel2), 1, (str-index(inspect($variavel2), "#") - 2));
+        $cor2: map-get($colors, $variavel2);
+
+
+        @if $cor !=$cor2 {
+
+            // parte de uma variavel, vai até outra
+            .degrade-#{$variavel}-#{$variavel2}
+            {
+                background-image: linear-gradient(to right, $cor, $cor2) !important;
+            }
+
+        }
+
+        @each $variavel3 in $colors {
+            $variavel3: str-slice(inspect($variavel3), 1, (str-index(inspect($variavel3), "#") - 2));
+            $cor3: map-get($colors, $variavel3);
+
+            @if $cor !=$cor2 and $cor3 !=$cor2 {
+
+                // parte de uma variavel, vai até outra, e volta pra outra                
+                //.degrade-#{$variavel}-#{$variavel2}-#{$variavel3} div.toolbar-background,
+                .degrade-#{$variavel}-#{$variavel2}-#{$variavel3}
+                {
+                    background-image: linear-gradient(to right, $cor, $cor2, $cor3) !important;
+                }
+            }
+
+        }
+
+    }
+
+}
+
+
+/*Classes padrão de margin e padding*/
+@for $i from 0 through 100 {
+    .m-#{$i} {
+        margin: ($i)+px !important;
+    }
+
+    .mt-#{$i} {
+        margin-top: ($i)+px !important;
+    }
+
+    .mb-#{$i} {
+        margin-bottom: ($i)+px !important;
+    }
+
+    .mtb-#{$i},
+    .mbt-#{$i} {
+        margin-top: ($i)+px !important;
+        margin-bottom: ($i)+px !important;
+    }
+
+    .ml-#{$i} {
+        margin-left: ($i)+px !important;
+    }
+
+    .mr-#{$i} {
+        margin-right: ($i)+px !important;
+    }
+
+    .mrl-#{$i},
+    .mlr-#{$i} {
+        margin-right: ($i)+px !important;
+        margin-left: ($i)+px !important;
+    }
+}
+
+@for $i from 0 through 100 {
+    .p-#{$i} {
+        padding: ($i)+px !important;
+    }
+
+    .pt-#{$i} {
+        padding-top: ($i)+px !important;
+    }
+
+    .pb-#{$i} {
+        padding-bottom: ($i)+px !important;
+    }
+
+    .ptb-#{$i},
+    .pbt-#{$i} {
+        padding-top: ($i)+px !important;
+        padding-bottom: ($i)+px !important;
+    }
+
+    .pl-#{$i} {
+        padding-left: ($i)+px !important;
+    }
+
+    .pr-#{$i} {
+        padding-right: ($i)+px !important;
+    }
+
+    .prl-#{$i},
+    .plr-#{$i} {
+        padding-right: ($i)+px !important;
+        padding-left: ($i)+px !important;
+    }
+}
+
+/*Classes de min-height, max-height e height*/
+@for $i from 0 through 100 {
+    .min-height-#{$i*5} {
+        min-height: ($i*5)+px !important;
+    }
+
+    .max-height-#{$i*5} {
+        max-height: ($i*5)+px !important;
+        overflow: hidden;
+    }
+
+    .height-#{$i*5} {
+        height: ($i*5)+px !important;
+    }
+
+    .height-#{$i*5}-scroll {
+        height: ($i*5)+px !important;
+        overflow: auto;
+    }
+}
+
+@for $i from 0 through 100 {
+    .min-width-#{$i*5} {
+        min-width: ($i*5)+px !important;
+    }
+
+    .max-width-#{$i*5} {
+        max-width: ($i*5)+px !important;
+        overflow: hidden;
+    }
+
+    .width-#{$i*5} {
+        width: ($i*5)+px !important;
+    }
+
+    .font-#{$i}px,
+    ion-icon.font-#{$i}px::before {
+        font-size: ($i)+px !important;
+    }
+}

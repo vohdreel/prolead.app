@@ -1,0 +1,244 @@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+<ion-header>
+
+    <ion-navbar color="dark">
+        <ion-title>{{this.titulo}}</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+    <div class="big-container row-wrap space-around">
+        <div class="flex-portlet fdb-header big-container space-around" ng>
+            <div class="w-40 flex space-around">
+                <div class="w-60">
+                    <img src="{{this.colaborador.foto}}" class="circle fit">
+                </div>
+                <div class="center-text w-40">
+                    <p>{{this.colaborador.nome}}</p>
+                </div>
+            </div>
+            <div class="w-20 center-content">
+                <ion-icon name="custom-prolead-next" class="double-arrow"></ion-icon>
+            </div>
+            <div class="w-40 flex space-around">
+                <div class="w-60">
+                    <img src="{{fotoColab}}" class="circle fit">
+                </div>
+                <div class="center-text w-40">
+                    <p>{{nomeColab}}</p>
+                </div>
+            </div>
+
+        </div>
+        <h4>COMPETÊNCIA AVALIADA </h4>
+        <div class="flex-portlet " [hidden]="!this.mostrar" id="Competencia">
+            <div class="w-100 center-content pad-5">
+                <input (keyup)="Buscar()" id="Buscador" placeholder="Buscar" [(ngModel)]="input" class="fdb-lista-filtro w-90" />
+            </div>
+            <div class="fdb-lista-competencia">
+                <ion-list radio-group [(ngModel)]="CompetenciaAvaliada" class="border-transparente">
+                    <ion-item *ngFor="let i of competencias" class="competencia bg-transparente border-transparente">
+                        <ion-label class="fit-text">{{i ? i.Nome : ""}}</ion-label>
+                        <ion-radio class="colaboradorRadio" value="{{i.Id}}"></ion-radio>
+                    </ion-item>
+                </ion-list>
+            </div>
+        </div>
+
+
+        <!--Perguntas do Formulario-->
+        <div class="w-80" *ngFor="let j of perguntas">
+            <div class="w-100" *ngIf="j.TipoPergunta == 7">
+                <h5>AVALIAÇÃO</h5>
+                <div class="big-container fdb-area-nota row-wrap space-around">
+                    <div class="fdb-nota-item">
+                        <label>
+                            <input value="3" name="Avaliacao" type="radio" (change)="mudarEstado($event)"
+                                [(ngModel)]="j.ValorInteiro" class="radio radio-inline radio-custom" />
+                            <ion-icon id="respBom" name="custom-prolead-positive"></ion-icon>
+                        </label>
+                    </div>
+                    <div class="fdb-nota-item">
+                        <label>
+                            <input value="2" name="Avaliacao" type="radio" (change)="mudarEstado($event)"
+                                [(ngModel)]="j.ValorInteiro" class="radio radio-inline radio-custom" />
+                            <ion-icon id="respMeh" name="custom-prolead-neutral"></ion-icon>
+                        </label>
+                    </div>
+                    <div class="fdb-nota-item">
+                        <label>
+                            <input value="1" type="radio" name="Avaliacao" (change)="mudarEstado($event)"
+                                [(ngModel)]="j.ValorInteiro" class="radio radio-inline radio-custom" />
+                            <ion-icon id="respRuim" name="custom-prolead-negative"></ion-icon>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!--campo de comentario-->
+            <div class="w-100" *ngIf="j.TipoPergunta == 2">
+                <h5>OBSERVAÇÕES</h5>
+                <div class="flex-portlet">
+                    <textarea [(ngModel)]="j.ValorTexto" class="w-available p-5 height-200 no-resize border-transparente bg-transparente" maxlength="500" placeholder="digite aqui..."></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!--Enviar Formulário-->
+        <div class="big-container fdb-btn-group row-wrap space-around">
+            <div class="flex-btn center-content">
+                <button type="submit" class="r-50 w-80 grey" (click)="Cancelar()" ion-button full>CANCELAR</button>
+            </div>
+            <div class="flex-btn center-content">
+                <button type="submit" class="r-50 w-80  orange-grad" (click)="Mapper()" ion-button full>ENVIAR</button>
+            </div>
+        </div>
+
+
+
+
+    </div>
+
+    <!-- <ion-card class="r-5 mt-25">
+        <ion-card-content class="p-0 border border-diario2">
+            <ion-card-title class="degrade-diario2-diario3-diario1 logo2 text-center mtb-0">
+                Novo {{this.titulo}}
+            </ion-card-title>
+            <ion-list class="bg-diario4-opacity">
+                <ion-row>
+                    <ion-col col-2>
+                        <img src="{{this.fotoColab}}" class="circle height-40 width-40 item-center align-middle">
+                    </ion-col>
+                    <ion-col col-8>
+                        <ion-row>
+                            <ion-col col-12 class="font-16px ptb-0">{{this.nomeColab}}</ion-col>
+                            <ion-col col-12 class="font-12px ptb-0">{{this.depColab}}</ion-col>
+                        </ion-row>
+                    </ion-col>
+                    <ion-col col-2 class="center align-middle">
+
+                        <ion-datetime doneText="Concluir" cancelText="Cancelar" displayFormat="D/M/YYYY" pickerFormat="D M YYYY" [(ngModel)]="this.data" max="{{data}}" hidden #datePicker>
+                        </ion-datetime>
+                        <ion-icon name="calendar" class="item-center align-middle font-22px" (click)="datePicker.open();">
+                        </ion-icon>
+                    </ion-col>
+                </ion-row>
+            </ion-list>
+        </ion-card-content>
+    </ion-card> -->
+    <!-- 
+  <ion-row class="border border-diario3">
+    <ion-col col-11>
+      <ion-item >
+        <ion-label>Data do ocorrido</ion-label>
+        <ion-datetime doneText="Concluir" cancelText="Cancelar" displayFormat="D/M/YYYY" pickerFormat="D M YYYY"
+          [(ngModel)]="this.data" max="{{data}}"></ion-datetime>
+      </ion-item>
+    </ion-col>
+    <ion-col col-1>
+      <ion-icon name="calendar" class="pt-13"></ion-icon>
+    </ion-col>
+  </ion-row> -->
+
+
+    <!-- <ion-card class="r-5 mt-25">
+        <ion-card-content class="p-0 border border-diario2">
+            <ion-card-title class="degrade-diario2-diario3-diario1 logo2 text-center mtb-0" (click)="this.mostrar = !this.mostrar">
+                Competência avalida
+            </ion-card-title>
+            <ion-list class="pb-8 bg-diario4-opacity">
+                <div [hidden]="!this.mostrar" id="Competencia">
+                    <ion-searchbar (ionInput)="Buscar()" id="Buscador" placeholder="Buscar" [(ngModel)]="input" class="degrade-diario2-diario3-diario1 border-transparente"></ion-searchbar>
+                    <div class="max-height-200 overflowAuto">
+                        <ion-list radio-group [(ngModel)]="CompetenciaAvaliada" class="border-transparente">
+                            <ion-item *ngFor="let i of competencias" class="mt-5  bg-transparente border-transparente">
+                                <ion-label>{{i.Nome}}</ion-label>
+                                <ion-radio class="colaboradorRadio" value="{{i.Id}}"></ion-radio>
+                            </ion-item>
+                        </ion-list>
+                    </div>
+                </div>
+            </ion-list>
+        </ion-card-content>
+    </ion-card>
+
+    <div *ngFor="let j of perguntas">
+
+        <ion-card class="r-5 mt-25">
+            <ion-card-content class="p-0 border border-diario2">
+                <ion-card-title class="degrade-diario2-diario3-diario1 logo2 text-center mtb-0">
+                    {{j.Descricao}}
+                </ion-card-title>
+                <ion-list class="ptb-8 bg-diario4-opacity">
+
+                    <div *ngIf="j.TipoPergunta == 1">
+                        <input class="w-available p-5 m-5 border border-transparente bg-transparente" id="{{j.Id}}" maxlength="100" placeholder="digite aqui..." [(ngModel)]="j.ValorTexto" />
+                    </div>
+
+                    <div *ngIf="j.TipoPergunta == 2">
+                        <textarea class="w-available p-5 m-5 height-200 no-resize border-transparente bg-transparente" id="{{j.Id}}" maxlength="500" placeholder="digite aqui..." [(ngModel)]="j.ValorTexto"></textarea>
+                    </div>
+
+                    <div *ngIf="j.TipoPergunta == 3">
+                        <div *ngFor="let k of j.AlternativaDaPerguntaFormulario"><input type="radio" name="{{j.Id}}" value="{{k.Id}}" id="{{k.Id}}" class="mb-5" [(ngModel)]="j.IdAlternativaPerguntaFormulario"> {{k.Descricao}} </div>
+                    </div>
+
+                    <div *ngIf="j.TipoPergunta == 4">
+                        <div *ngFor="let k of j.AlternativaDaPerguntaFormulario"><input type="checkbox" name="{{j.Id}}" class="mb-5" id="{{k.Id}}" [(ngModel)]="k.ValorInteiro"> {{k.Descricao}} </div>
+                    </div>
+
+                    <div *ngIf="j.TipoPergunta == 7">
+                        <ion-row radio-group class="mt-10" [(ngModel)]="j.ValorInteiro" name="{{j.Id}}">
+                            <ion-col class="text-center">
+                                <ion-item class="bg-transparente">
+                                    <ion-label class="custom-radios">
+                                        <i class="far fa-smile"></i>
+                                    </ion-label>
+                                    <ion-radio value="1" color="verde" class="radio radio-inline radio-custom">
+                                    </ion-radio>
+                                </ion-item>
+                            </ion-col>
+                            <ion-col class="text-center">
+                                <ion-item class="bg-transparente">
+                                    <ion-label class="custom-radios">
+                                        <i class="far fa-meh"></i>
+                                    </ion-label>
+                                    <ion-radio value="2" color="amarelo" class="radio radio-inline radio-custom">
+                                    </ion-radio>
+                                </ion-item>
+                            </ion-col>
+                            <ion-col class="text-center">
+                                <ion-item class="bg-transparente">
+                                    <ion-label class="custom-radios">
+                                        <i class="far fa-frown"></i>
+                                    </ion-label>
+                                    <ion-radio value="3" color="vermelho" class="radio radio-inline radio-custom">
+                                    </ion-radio>
+                                </ion-item>
+                            </ion-col>
+                        </ion-row>
+                    </div>
+                </ion-list>
+            </ion-card-content>
+        </ion-card>
+    </div>
+
+
+
+
+    <div class="mrl-3">
+        <button ion-button icon-start class="bg-verde float-right blod" (click)="Mapper()">
+            <ion-icon name="ios-checkmark"></ion-icon>
+            Enviar
+        </button>
+        <button ion-button icon-start class="bg-vermelho float-right blod" (click)="Cancelar()">
+            <ion-icon name="ios-close"></ion-icon>
+            Cancelar
+        </button>
+    </div> -->
+
+</ion-content>

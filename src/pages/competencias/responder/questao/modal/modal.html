@@ -1,0 +1,184 @@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+  crossorigin="anonymous">
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Feedbacks</ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-content padding>
+
+  <ion-card *ngFor="let i of Feedbacks" class="border border-diario2 mrl-0 w-100">
+    <ion-item class="Avaliador">
+      <ion-avatar item-start>
+        <img src="{{i.FotoAvaliador}}">
+      </ion-avatar>
+      <ion-row>
+        <ion-col col-12>
+          <h2 class="ellipsis">{{i.NomeAvaliador}}</h2>
+          <p>Dia {{i.Data}}</p>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-item class="Avaliado" [hidden]="i.NomeAvaliado == i.NomeAvaliador">
+      <ion-avatar item-start>
+        <img src="{{i.FotoAvaliado}}">
+      </ion-avatar>
+      <ion-row>
+        <ion-col col-12>
+          <h2 class="ellipsis">{{i.NomeAvaliado}}</h2>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-card-content>
+        <ion-card class="m-0 w-100 mb-20 mt-10 r-5">
+            <ion-card-content class="p-0 border border-diario2">
+              <ion-card-title class="bg-diario2 branco text-center rem2 mtb-0">
+                Competência observada  <ion-icon name="ios-search"></ion-icon>
+              </ion-card-title>
+              <p class="p-5">{{i.CompetenciaAvaliada}}</p>
+            </ion-card-content>
+          </ion-card>
+
+      <div *ngFor="let j of i.FeedBack" class="mb-20">
+
+        <ion-row>
+          <ion-col col-1 class="center" *ngIf="i.IdAvaliador == Colaborador.id">
+            <ion-icon name="md-send" class="rem2 item-center"></ion-icon>
+            <!--Icone-->
+          </ion-col>
+          <ion-col col-11>
+            <div class="prl-10 bg-diario2 r-5">
+
+              <ion-icon name="md-arrow-dropright" class="triangle-right20 diario2" *ngIf="i.IdAvaliador == Colaborador.id"></ion-icon>
+              <ion-icon name="md-arrow-dropleft" class="triangle-left20 diario2" *ngIf="i.IdAvaliador != Colaborador.id && i.IdAvaliado == Colaborador.id"></ion-icon>
+              <ion-icon name="md-arrow-dropleft" class="triangle-left20 diario2" *ngIf="i.IdAvaliador != Colaborador.id && i.IdAvaliado != Colaborador.id"></ion-icon>
+
+              <div *ngIf="j.TipoPergunta == 1">
+                <ion-label class="mtb-0 pt-5">{{j.QuestaoFormulario}}:</ion-label>
+                <div class="pl-20 pr-10">{{j.ValorTexto}}</div>
+              </div>
+
+              <div *ngIf="j.TipoPergunta == 2">
+                <ion-label class="mtb-0 pt-5">{{j.QuestaoFormulario}}:</ion-label>
+                <div class="pl-20 pr-10">{{j.ValorTexto}}</div>
+              </div>
+
+              <div *ngIf="j.TipoPergunta == 3">
+                <ion-label class="mtb-0 pt-5">{{j.QuestaoFormulario}}:</ion-label>
+                <div *ngFor="let k of j.PerguntaFormulario.AlternativaDaPerguntaFormulario"><input type="radio" class="mb-5"
+                    [checked]="j.IdAlternativaPerguntaFormulario == k.Id" name="{{j.Id}}" value="{{j.Id}}-{{k.Id}}" id="{{j.Id}}-{{k.Id}}"
+                    disabled> {{k.Descricao}} </div>
+              </div>
+
+              <div *ngIf="j.TipoPergunta == 4">
+                <ion-label class="mtb-0 pt-5">{{j.QuestaoFormulario}}:</ion-label>
+                <div *ngFor="let k of j.PerguntaFormulario.AlternativaDaPerguntaFormulario">
+                  <input type="checkbox" [checked]="verificarChecked(j.IdAlternativaPerguntaFormulario, k.Id)" class="mb-5"
+                    name="{{j.Id}}-{{k.Id}}" id="{{j.Id}}-{{k.Id}}" disabled>{{k.Descricao}}
+                </div>
+              </div>
+
+
+              <div *ngIf="j.TipoPergunta == 7" class="prl-10 mr-35 bg-diario2 r-5">
+                <ion-label class="pt-5">{{j.QuestaoFormulario}}:</ion-label>
+
+                <div class="pb-10 pr-20 pl-10">
+                  <i class="far fa-smile font-50" *ngIf="j.ValorInteiro == 1"></i>
+
+                  <i class="far fa-meh font-50" *ngIf="j.ValorInteiro == 2"></i>
+
+                  <i class="far fa-frown font-50" *ngIf="j.ValorInteiro == 3"></i>
+                </div>
+
+              </div>
+            </div>
+          </ion-col>
+          <ion-col col-1 class="center" *ngIf="i.IdAvaliador != Colaborador.id && i.IdAvaliado == Colaborador.id">
+            <ion-icon name="md-send" class="rem2 item-center"></ion-icon>
+            <!--Icone-->
+          </ion-col>
+          <ion-col col-1 class="center" *ngIf="i.IdAvaliador != Colaborador.id && i.IdAvaliado != Colaborador.id">
+            <ion-icon name="md-send" class="rem2 item-center"></ion-icon>
+            <!--Icone-->
+          </ion-col>
+        </ion-row>
+
+        <div *ngIf="UtilizaReplica && i.IdAvaliador != i.IdAvaliado" class="mt-5">
+          <ion-row *ngIf="j.DataReplicaFormat != '01/01/0001'">
+            <ion-col col-1 class="center" *ngIf="i.IdAvaliador != Colaborador.id && i.IdAvaliado == Colaborador.id">
+              <ion-icon name="ios-undo" class="pull-right rem2 item-center"></ion-icon>
+              <!--Icone-->
+            </ion-col>
+            <ion-col col-11>
+              <div class="bg-diario3 ptb-5 r-5">
+                <ion-icon name="md-arrow-dropleft" class="triangle-left diario3" *ngIf="i.IdAvaliador == Colaborador.id"></ion-icon>
+                <ion-icon name="md-arrow-dropright" class="triangle-right diario3" *ngIf="i.IdAvaliador != Colaborador.id && i.IdAvaliado == Colaborador.id"></ion-icon>
+                <ion-icon name="md-arrow-dropleft" class="triangle-left diario3" *ngIf="i.IdAvaliador != Colaborador.id && i.IdAvaliado != Colaborador.id"></ion-icon>
+                <ion-item class="Avaliado pl-10" class="bg-diario3">
+                  <ion-avatar item-start>
+                    <img class="p-0" src="{{i.FotoAvaliado}}">
+                  </ion-avatar>
+                  <ion-row>
+                    <ion-col>
+                      <h2 class="ellipsis">{{i.NomeAvaliado}}</h2>
+                      <p>Dia: {{j.DataReplicaFormat}}</p>
+                    </ion-col>
+                  </ion-row>
+                </ion-item>
+                <div class="pl-20 pr-10">{{j.Replica}}</div>
+              </div>
+            </ion-col>
+            <ion-col col-1 class="center" *ngIf="i.IdAvaliador == Colaborador.id">
+              <ion-icon name="ios-undo" class="pull-right rem2 item-center"></ion-icon>
+              <!--Icone-->
+            </ion-col>
+            <ion-col col-1 class="center" *ngIf="i.IdAvaliador != Colaborador.id && i.IdAvaliado != Colaborador.id">
+              <ion-icon name="ios-undo" class="rem2 item-center"></ion-icon>
+              <!--Icone-->
+            </ion-col>
+          </ion-row>
+          <ion-row *ngIf="j.DataTreplicaFormat != '01/01/0001'">
+            <ion-col col-1 class="center" *ngIf="i.IdAvaliador == Colaborador.id">
+              <ion-icon name="ios-redo" class="rem2 item-center"></ion-icon>
+              <!--Icone-->
+            </ion-col>
+            <ion-col col-11>
+              <div class="ptb-5 mt-5 prl-10 bg-diario2 r-5">
+                <ion-icon name="md-arrow-dropright" class="triangle-right20 diario2" *ngIf="i.IdAvaliador == Colaborador.id"></ion-icon>
+                <ion-icon name="md-arrow-dropleft" class="triangle-left20 diario2" *ngIf="i.IdAvaliador != Colaborador.id && i.IdAvaliado == Colaborador.id"></ion-icon>
+                <ion-icon name="md-arrow-dropleft" class="triangle-left20 diario2" *ngIf="i.IdAvaliador != Colaborador.id && i.IdAvaliado != Colaborador.id"></ion-icon>
+                <ion-item class="Avaliador pl-10 bg-diario2">
+                  <ion-avatar item-start>
+                    <img class="p-0" src="{{i.FotoAvaliador}}">
+                  </ion-avatar>
+                  <ion-row>
+                    <ion-col>
+                      <h2 class="ellipsis">{{i.NomeAvaliador}}</h2>
+                      <p>Dia: {{j.DataTreplicaFormat}}</p>
+                    </ion-col>
+                  </ion-row>
+                </ion-item>
+                <div class="pl-20 pr-10">{{j.Treplica}}</div>
+              </div>
+            </ion-col>
+            <ion-col col-1 class="center" *ngIf="i.IdAvaliador != Colaborador.id && i.IdAvaliado == Colaborador.id">
+              <ion-icon name="ios-redo" class="rem2 item-center"></ion-icon>
+              <!--Icone-->
+            </ion-col>
+            <ion-col col-1 class="center" *ngIf="i.IdAvaliador != Colaborador.id && i.IdAvaliado != Colaborador.id">
+              <ion-icon name="ios-redo" class="rem2 item-center"></ion-icon>
+              <!--Icone-->
+            </ion-col>
+          </ion-row>
+        </div>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <h6 [hidden]="!semResult">Nenhum resultado foi encontrado</h6>
+</ion-content>

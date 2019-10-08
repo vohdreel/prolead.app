@@ -1,0 +1,579 @@
+//Icones personalizados Pro4Tech
+ion-icon {
+    &[class*="custom-prolead-user"] {
+        mask-image: url(../assets/icon/user_icon.svg);
+    }
+    &[class*="custom-prolead-password"] {
+        mask-image: url(../assets/icon/lock_icon.svg);
+    }
+    &[class*="custom-prolead-search"] {
+        mask-image: url(../assets/icon/search_icon.svg);
+    }
+    &[class*="custom-prolead-filter"] {
+        mask-image: url(../assets/icon/filter_icon.svg);
+    }
+    &[class*="custom-prolead-negative"] {
+        mask-image: url(../assets/icon/feedback_red.svg);
+    }
+    &[class*="custom-prolead-neutral"] {
+        mask-image: url(../assets/icon/feedback_yellow.svg);
+    }
+    &[class*="custom-prolead-positive"] {
+        mask-image: url(../assets/icon/feedback_green.svg);
+    }
+    &[class*="custom-prolead-timer"] {
+        mask-image: url(../assets/icon/time_icon.svg);
+    }
+    &[class*="custom-prolead-calendar"] {
+        mask-image: url(../assets/icon/calendar_icon.svg);
+    }
+    &[class*="custom-prolead-next"] {
+        mask-image: url(../assets/icon/double_arrow.svg);
+    }
+    &[class*="custom-prolead-sendMessage"] {
+        mask-image: url(../assets/icon/paper-plane.svg);
+    }
+    &[class*="custom-prolead-diario"] {
+        mask-image: url(../assets/icon/diario_feedback_icon.svg);
+    }
+}
+
+//FONTES EXTERNAS 
+@font-face {
+    font-family: 'Rubik Medium';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Rubik Medium'), url(../assets/fonts/Rubik-Medium.woff) format("woff");
+}
+
+@font-face {
+    font-family: 'Rubik Regular';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Rubik Regular'), url(../assets/fonts/Rubik-Regular.woff) format("woff");
+}
+
+div.toolbar-background {
+    //@extend .degrade-diario2-diario3-diario1;
+    background-color: #2E333B !important
+}
+
+div.toolbar-title {
+    //color: color($colors, preto);
+    color: rgb(238, 238, 238);
+    font-family: 'Rubik Regular';
+}
+
+div.toolbar-title-ios {
+    font-weight: 0 !important;
+}
+
+#ConteudoMenu {
+    button.ativo {
+        border-left: 5px solid;
+        padding-left: 11px;
+        &.HomePage {
+            border-left-color: black !important;
+        }
+        &.DiarioDeBordoPage {
+            border-left-color: color($colors, diario1) !important;
+        }
+        &.CompetenciasPage {
+            border-left-color: color($colors, competencias1) !important;
+        }
+        &.ConfiguracoesPage {
+            border-left-color: color($colors, cinza1) !important;
+        }
+        &.NotificacoesPage {
+            border-left-color: color($colors, estrutura1) !important;
+        }
+    }
+}
+
+.portlet {
+    box-shadow: 0px 3px 6px #00000029 !important;
+    border-radius: 5px !important;
+    margin: 5px !important;
+    padding: 10px 0px 0px 10px !important;
+    p {
+        font-size: 12px
+    }
+}
+
+.border-bottom {
+    border-bottom: 1px solid;
+}
+
+.border-top-none {
+    border-top: 0px !important;
+}
+
+.border-left {
+    border-left: 1px solid;
+}
+
+.border-bottom-none {
+    border-bottom: 0px !important;
+}
+
+.back-button {
+    color: white;
+}
+
+.border-none {
+    border: none;
+}
+
+.border-right-dashed {
+    border-right: 1px dashed !important;
+}
+
+.orange-grad,
+.toggle-ios.toggle-checked .toggle-icon {
+    background: transparent linear-gradient(90deg, #F27645 25%, #EE9B47 75%) 0% 0% no-repeat padding-box;
+}
+
+.rem2 {
+    font-size: 2rem;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.border {
+    border: 1px solid;
+}
+
+.flex {
+    display: flex
+}
+
+.absolute {
+    position: absolute;
+}
+
+// div {
+//     //border: 1px solid;
+// }
+.float-right,
+.pull-right {
+    float: right;
+}
+
+.float-left,
+.pull-left {
+    float: left;
+}
+
+.w-100 {
+    width: 100% !important;
+}
+
+.w-95 {
+    width: 95% !important;
+}
+
+.w-90 {
+    width: 90% !important;
+}
+
+.w-80 {
+    width: 80% !important;
+}
+
+.w-70 {
+    width: 70% !important;
+}
+
+.w-60 {
+    width: 60% !important;
+}
+
+.w-30 {
+    width: 30% !important;
+}
+
+.w-40 {
+    width: 40% !important;
+}
+
+.w-20 {
+    width: 20% !important;
+}
+
+.w-10 {
+    width: 10% !important;
+}
+
+.r-5 {
+    border-radius: 5px !important;
+}
+
+.r-10 {
+    border-radius: 10px !important;
+}
+
+.r-25 {
+    border-radius: 25px !important;
+}
+
+.r-50 {
+    border-radius: 50px !important;
+}
+
+.round {
+    border-radius: 50% !important;
+}
+
+.font-color-lightgrey {
+    color: #AEADAD !important;
+}
+
+.flex-bottom {
+    //border: 1px solid;
+    display: flex;
+    flex-direction: column;
+    div {
+        margin-top: auto !important;
+        padding: 5px !important;
+    }
+}
+
+.center-content {
+    //display: flex;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    element,
+    button {
+        display: inline-block;
+    }
+}
+
+.rt-5 {
+    border-radius: 5px 5px 0px 0px !important;
+}
+
+.rb-5 {
+    border-radius: 0px 0px 5px 5px !important;
+}
+
+.blod {
+    font-weight: bold;
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
+
+.overflow-auto {
+    overflow: auto;
+}
+
+.item-block .item-inner {
+    border-bottom: none !important;
+}
+
+.inline {
+    display: flex;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+.rem-mt-2e5 {
+    margin-top: 2.5rem;
+}
+
+.triangle-left {
+    margin-left: -12.5px;
+    margin-top: -10px;
+    font-size: 5rem;
+    float: left;
+}
+
+.triangle-left20 {
+    margin-left: -20px;
+    margin-top: -10px;
+    font-size: 5rem;
+    float: left;
+}
+
+.triangle-right {
+    margin-right: -12.5px;
+    margin-top: -10px;
+    font-size: 5rem;
+    float: right;
+}
+
+.triangle-right20 {
+    margin-right: -20px;
+    margin-top: -10px;
+    font-size: 5rem;
+    float: right;
+}
+
+.font-50 {
+    font-size: 50px;
+}
+
+.font-10 {
+    font-size: 10px;
+}
+
+.font-10 {
+    font-size: 10px;
+}
+
+.font-15 {
+    font-size: 15px;
+}
+
+.font-20 {
+    font-size: 20px;
+}
+
+ion-icon {
+    &[class*="custom-"] {
+        mask-size: contain;
+        mask-position: 50% 50%;
+        mask-repeat: no-repeat;
+        background: currentColor;
+        width: 1em;
+        height: 1em;
+    }
+    &.custom-diario {
+        mask-image: url(../assets/imgs/06-diario-bordo-icone.svg);
+        color: color($colors, diario1);
+    }
+    &.custom-competencias {
+        mask-image: url(../assets/imgs/02-competencias-icone.svg);
+        color: color($colors, competencias1);
+    }
+    &.custom-desempenho {
+        mask-image: url(../assets/imgs/03-desempenho-icone.svg);
+        color: color($colors, desempenho1);
+    }
+    &.custom-thumbs-mid {
+        mask-image: url(../assets/imgs/_ionicons_svg_md-thumbs-up.svg);
+        transform: rotate(270deg);
+    }
+}
+
+ion-menu .menu-inner {
+    // .ion-md-exit {
+    //     color: color($colors, vermelho) !important;
+    // }
+    .ion-md-cog {
+        color: color($colors, cinza1) !important;
+    }
+    .ion-ios-notifications {
+        color: color($colors, estrutura1) !important;
+    }
+}
+
+.box-shadow-none {
+    box-shadow: none !important;
+}
+
+.overflowAuto {
+    overflow: auto;
+}
+
+.ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.text-right {
+    text-align: right !important;
+}
+
+.aling-center,
+.align-center {
+    align-items: center !important;
+}
+
+.align-bottom {
+    vertical-align: bottom !important;
+}
+
+.center {
+    align-items: center !important;
+    display: flex !important;
+    align-content: center !important;
+    text-align: center !important;
+}
+
+.item-center {
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.aling-right {
+    align-items: right !important;
+    text-align: right !important;
+}
+
+.w-100 {
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+}
+
+.w-available {
+    width: stretch;
+}
+
+.no-resize {
+    resize: none;
+}
+
+.alert-radio-label {
+    overflow: auto !important;
+    white-space: normal !important;
+    text-overflow: unset !important;
+}
+
+ion-label.custom-radios {
+    font-size: 4rem;
+    margin: 0px;
+    text-align: center;
+}
+
+.radio-custom {
+    height: 0rem;
+    width: 0rem;
+    .radio-checked {
+        display: none;
+    }
+    .radio-icon {
+        border: none;
+        border-radius: 0px;
+    }
+}
+
+.circle {
+    border-radius: 50%;
+}
+
+.label-foto {
+    vertical-align: middle;
+    display: contents;
+}
+
+.bar-button-default-md,
+.bar-button-default-ios {
+    color: white !important;
+}
+
+.justify {
+    text-align: justify;
+}
+
+.align-middle {
+    vertical-align: middle;
+}
+
+.fill-avaible {
+    height: stretch;
+}
+
+.white {
+    color: white;
+}
+
+.h-100 {
+    height: 100%;
+}
+
+.bolder {
+    font-weight: bolder
+}
+
+.text-wrap {
+    flex-wrap: wrap;
+}
+
+.border-transparente {
+    border-color: transparent !important;
+}
+
+.bg-transparente,
+.bg-none {
+    background-color: transparent !important;
+}
+
+.flex {
+    display: flex;
+}
+
+.fit-text {
+    overflow: hidden;
+    width: 150px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+//FLEXGRID
+.big-container {
+    display: flex;
+    width: 100%;
+}
+
+.row-wrap {
+    flex-flow: row wrap;
+    margin: 10px 0px 0px
+}
+
+.column {
+    flex-direction: column;
+}
+
+.space-around {
+    justify-content: space-around;
+}
+
+.big-item {
+    margin: 5px;
+    //border: 1px solid #56576C;
+    flex: 1 0 calc(25% - 5px);
+}
+
+.flex-portlet {
+    box-shadow: 0px 3px 6px #00000029 !important;
+    border-radius: 5px !important;
+    margin: 5px !important;
+    //padding: 10px 0px 0px 10px !important;
+    height: 250px;
+    flex: 0 1 80%;
+}
+
+.mtb-auto {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.h-100 {
+    height: 100%
+}
+
+body,
+ion-app.ios {
+    font-family: Rubik Medium !important;
+    font-style: normal;
+    font-weight: normal;
+    //src: local('Avenir LT Std 45 Book'), url('../app/assets/fonts/AvenirLTStd-Book.otf') format('otf');
+    //background-color: grey
+}

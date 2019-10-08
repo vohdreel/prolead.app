@@ -1,0 +1,24 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{titulo}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let i of Avaliacoes" (click)="ResponderAvaliacao(i)">
+      <ion-avatar item-start>
+        <img src="{{i.Foto}}">
+      </ion-avatar>
+      <h2>{{i.Nome}}</h2>
+      <p>Limite: {{i.Data}}</p>
+      <!--Status da avaliação-->
+      <p [hidden]="i.Status != '1'">Status: <ion-icon name="close-circle" class="vermelho"></ion-icon>  Pendente</p>
+      <p [hidden]="i.Status != '2'">Status: <ion-icon name="close-circle" class="vermelho"></ion-icon>  Fechada</p>
+      <p [hidden]="i.Status != '3'">Status: <ion-icon name="checkmark-circle" class="verde"></ion-icon>  Concluido</p>
+    </ion-item>
+  </ion-list>
+</ion-content>

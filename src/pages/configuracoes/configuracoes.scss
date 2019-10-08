@@ -1,0 +1,23 @@
+page-configuracoes {
+    div.toolbar-title {
+        color: white;
+    }
+    div.toolbar-background {
+        background-color: color($colors, cinza1);
+    }
+    .remove-mtb-lable ion-label {
+        margin-top: 6px !important;
+        margin-bottom: 6px !important;
+    }
+    .remove-mt-lable ion-label {
+        margin-top: 0px !important;
+        margin-bottom: 6px !important;
+    }
+    .remove-mb-lable ion-label {
+        margin-top: 6px !important;
+        margin-bottom: 0px !important;
+    }
+    .list-ios>.item-block:last-child {
+        border-bottom: 0px !important;
+    }
+}

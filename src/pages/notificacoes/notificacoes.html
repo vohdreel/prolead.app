@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Notificações</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-refresher (ionRefresh)="refresh($event)">
+    <ion-refresher-content>
+    </ion-refresher-content>
+  </ion-refresher>
+  <div class="mt-10" *ngFor="let i of Notificacoes" >
+    <ion-card class="r-5" (click)="redirect(i.IdEnum)">
+      <ion-card-content class="border ptb-5 pl-0 pr-5">
+        <ion-row>
+          <ion-col col-2 class="align-middle aling-center flex border-right-dashed {{defineBorda(i.IdTipo)}}">
+            <div class="w-100 text-center">
+              <ion-icon class="{{defineTipo(i.IdTipo, i.lido)}} font-30px"></ion-icon>
+            </div>
+          </ion-col>
+          <ion-col col-10>
+            <h2>{{i.Tipo}}</h2>
+            <textarea class="w-100 no-resize border-none" disabled="disabled" id="{{i.Id}}">{{i.Mensagem}} - {{i.DataEnvio}}</textarea>
+          </ion-col>
+        </ion-row>{{autosize(i.Id)}}
+      </ion-card-content>
+    </ion-card>
+  </div>
+  <ion-infinite-scroll (ionInfinite)="infinityLoad($event)">
+    <ion-infinite-scroll-content>
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

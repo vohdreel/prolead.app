@@ -1,0 +1,42 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{this.CompetenciaAtual}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+        <ion-label class="mtb-0 pb-5 prl-5 preto rem2 border-bottom border-competencias3">
+          Peso: {{Questao.RespostaPeso}}
+          <ion-icon class="float-right mr-10 custom-diario diario1" *ngIf="UsaAvaliacaoDiaria" (click)="FeedBacks()"></ion-icon>
+        </ion-label>
+
+        <ion-item class="prl-5">
+          <ion-label>Pergunta:</ion-label>
+        </ion-item>
+        <div disabled class="w-available r-5 p-5 m-5 height-200 no-resize border border-competencias3" id="{{Questao.IdQuestao}}">{{PreencherTexto(Questao.IdQuestao, Questao.RespostaNome)}}</div>
+
+        <ion-item class="border-competencias3 prl-5">
+          <ion-label>Resposta: </ion-label>
+          <ion-select [disabled]="this.Status != 1" [(ngModel)]="Questao.IdNota" cancelText="Cancelar" okText="Selecionar">
+            <ion-option selected disabled>Selecione...</ion-option>
+            <ion-option *ngFor="let resp of Notas" value="{{resp.RespostaIdNota}}">{{resp.NomeNota}}</ion-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item class="prl-5">
+          <ion-label>Justificativa:</ion-label>
+        </ion-item>
+        <textarea [disabled]="this.Status != 1" class="w-available r-5 p-5 m-5 height-200 no-resize border-competencias3" maxlength="500" [(ngModel)]="Questao.Observacao"></textarea>
+
+        <ion-item class="prl-5 mr-0 pl-0">
+          <ion-label class="mtb-0 mr-0 pl-0">
+        <button ion-button class="float-left bg-light preto r-5" [hidden]="QuestaoAgora == 0" (click)="SalvarAlteracao(2)"> <ion-icon name="arrow-back"></ion-icon>  Voltar</button>
+        <button ion-button class="float-right bg-light preto r-5" [hidden]="QuestaoAgora == totalQuestoes" (click)="SalvarAlteracao(1)"> Avançar  <ion-icon name="arrow-forward"></ion-icon> </button>
+        <button ion-button class="float-right bg-light preto r-5" [hidden]="QuestaoAgora != totalQuestoes" (click)="SalvarAlteracao(3)"> Concluir  <ion-icon name="md-checkmark"></ion-icon> </button>
+      </ion-label>
+      </ion-item>
+</ion-content>

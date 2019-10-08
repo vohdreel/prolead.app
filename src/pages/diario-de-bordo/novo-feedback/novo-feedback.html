@@ -1,0 +1,159 @@
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>Novo feedback</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+
+    <ion-list>
+        <ion-grid class="center-content" (click)="Lancar('Auto Feedback', this.colaborador.id)">
+            <ion-row class="portlet-new-feedback w-90">
+                <div class="w-50 text-left text-padding" style="height: 160px">
+                    <div>
+                        <h6>AUTO FEEDBACK</h6>
+                        <p>Dê uma avaliação para você mesmo.</p>
+                    </div>
+                </div>
+                <div class="w-50 flex-bottom" style="height: 160px">
+                    <div>
+                        <img src="../../assets/icon/auto_feedback_icon.svg" style="
+                float: right;" />
+                    </div>
+                </div>
+            </ion-row>
+            <ion-row>
+
+            </ion-row>
+        </ion-grid>
+        <ion-grid *ngIf="colaborador.idSuperior != 0" class="center-content" (click)="Lancar('Feedback do Lider', this.colaborador.idSuperior)">
+            <ion-row class="portlet-new-feedback w-90">
+                <div class="w-50 text-left text-padding" style="height: 160px">
+                    <h6>FEEDBACK AO LIDER</h6>
+                    <p>Avalie os seus representantes.</p>
+                </div>
+                <div class="w-50 flex-bottom">
+                    <div>
+                        <img src="../../assets/icon/feedback_lider_icon.svg" style="
+                float: right;" />
+                    </div>
+                </div>
+            </ion-row>
+
+            <ion-row>
+
+            </ion-row>
+        </ion-grid>
+        <ion-grid class="center-content">
+            <ion-row class="portlet-new-feedback w-90">
+                <div (click)="Mostrar()" class="w-100 flex">
+                    <div class="w-50 text-left text-padding" style="height: 160px">
+                        <h6>FEEDBACK AO LIDERADO</h6>
+                        <p>Avalie os seus colaboradores.</p>
+                    </div>
+                    <div class="w-50 flex-bottom">
+                        <div>
+                            <img src="../../assets/icon/feedback_liderados_icon.svg" style="
+                  float: right;" />
+                        </div>
+                    </div>
+                </div>
+                <ion-list [hidden]="mostrar" class="pb-8" style="margin-top: 10px; padding: 10px; overflow-x: hidden">
+                    <ion-searchbar (ionInput)="Buscar()" id="BuscadorLiderado" placeholder="Buscar" [(ngModel)]="inputLiderado"></ion-searchbar>
+                    <ion-row class="max-height-200 overflowAuto" style="overflow-x: hidden;">
+                        <ion-col col-4 *ngFor="let i of liderados" class="liderados text-center">
+                            <ion-row (click)="Lancar('Feedback dos Liderados', i.Id)">
+                                <ion-col col-12>
+                                    <img src="{{i.Foto}}" class="circle height-40 width-40 item-center">
+                                </ion-col>
+                                <ion-col col-12 class="text-center">
+                                    {{i.Nome}}
+                                </ion-col>
+                            </ion-row>
+                        </ion-col>
+                    </ion-row>
+                </ion-list>
+            </ion-row>
+        </ion-grid>
+    </ion-list>
+
+    <!-- <button [hidden]="!this.permissoes.podeAtribuirAutoFeedback" ion-item (click)="Lancar('Auto Feedback')">Auto Feedback</button>
+
+    <button [hidden]="!this.permissoes.podeAtribuirFeedbackLiderado || Colaborador.perfil == 'Colaborador'" ion-item (click)="Lancar('Feedback dos Liderados')">Feedback aos Liderados</button>
+
+    <button [hidden]="!this.permissoes.podeAtribuirFeedbackLider || Colaborador.perfil == 'Gestor'" ion-item (click)="Lancar('Feedback do Lider')">Feedback ao Lider</button>
+
+    <button [hidden]="!this.permissoes.podeAtribuirFeedbackColaborador" ion-item (click)="Lancar('Feedback Geral')">Feedback Geral</button>
+ -->
+
+
+    <!-- <ion-card class="r-5" [hidden]="!this.permissoes.podeAtribuirAutoFeedback" (click)="Lancar('Auto Feedback', this.colaborador.id)">
+    <ion-card-content class="p-0 border border-diario2">
+      <ion-card-title class="degrade-diario2-diario3-diario1 logo2 text-center mtb-0">
+        Auto feedback
+      </ion-card-title>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="r-5 mt-25" [hidden]="!this.permissoes.podeAtribuirFeedbackLider" (click)="Lancar('Feedback do Lider', this.colaborador.idSuperior)">
+    <ion-card-content class="p-0 border border-diario2">
+      <ion-card-title class="degrade-diario2-diario3-diario1 logo2 text-center mtb-0">
+        Feedback ao lider
+      </ion-card-title>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="r-5 mt-25" [hidden]="!this.permissoes.podeAtribuirFeedbackLiderado">
+    <ion-card-content class="p-0 border border-diario2">
+      <ion-card-title class="degrade-diario2-diario3-diario1 logo2 text-center mtb-0"
+        (click)="this.mostrar == 1 ? this.mostrar = 0 : this.mostrar = 1">
+        Feedback ao liderado
+      </ion-card-title>
+      <ion-list [hidden]="this.mostrar != 1" class="pb-8 bg-diario4-opacity">
+        <ion-searchbar (ionInput)="Buscar()" id="BuscadorLiderado" placeholder="Buscar" [(ngModel)]="inputLiderado" class="degrade-diario2-diario3-diario1"></ion-searchbar>
+        <ion-row class="max-height-200 overflowAuto">
+          <ion-col col-4 *ngFor="let i of liderados" class="liderados text-center">
+            <ion-row (click)="Lancar('Feedback dos Liderados', i.Id)">
+              <ion-col col-12>
+                <img src="{{i.Foto}}" class="circle height-40 width-40 item-center">
+              </ion-col>
+              <ion-col col-12 class="text-center">
+                {{i.Nome}}
+              </ion-col>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="r-5 mt-25" [hidden]="!this.permissoes.podeAtribuirFeedbackColaborador">
+    <ion-card-content class="p-0 border border-diario2">
+      <ion-card-title class="degrade-diario2-diario3-diario1 logo2 text-center mtb-0"
+        (click)="this.mostrar == 2 ? this.mostrar = 0 : this.mostrar = 2">
+        Feedback geral
+      </ion-card-title>
+      <ion-list [hidden]="this.mostrar != 2" class="pb-8 bg-diario4-opacity">
+        <ion-searchbar (ionInput)="Buscar()" id="Buscador" placeholder="Buscar" [(ngModel)]="input" class="degrade-diario2-diario3-diario1"></ion-searchbar>
+        <ion-row class="max-height-200 overflowAuto">
+          <ion-col col-4 *ngFor="let i of colaboradores" class="colaborador text-center">
+            <ion-row (click)="Lancar('Feedback Geral', i.Id)">
+              <ion-col col-12>
+                <img src="{{i.Foto}}" class="circle height-40 width-40 item-center">
+              </ion-col>
+              <ion-col col-12 class="text-center">
+                {{i.Nome}}
+              </ion-col>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+ -->
+
+</ion-content>

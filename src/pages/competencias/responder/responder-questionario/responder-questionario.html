@@ -1,0 +1,56 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{this.titulo}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div class="mt-10" [hidden]="confirmar == true">
+    <div *ngFor="let i of TiposCompetencia" class="pl-16 {{i.Class}}">
+        <h5 class="text-center">{{i.Nome}}</h5>
+        <div *ngFor="let a of Questoes">
+          <div *ngFor="let b of a">
+            <div *ngIf="b.Competencia == i.Id" (click)="onResponderPergunta(b)">
+              <ion-label><ion-icon name="checkmark-circle" class="verde" [hidden]="b.IdNota == NULL"></ion-icon> {{ b.NomeAgrupamento != null ?  (b.NomeAgrupamento):("Questão: " + (a.indexOf(b) + 1))}}</ion-label>
+              <div class="m-0 p-5 w-100 no-resize height-125 border mb-10 previa border-competencias3 r-5" id="{{i.Id + 1 + '-' + a.indexOf(b) + 1}}">{{PreencherTexto(b.RespostaNome, i.Id + 1 + '-' + a.indexOf(b) + 1)}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="mt-10 pl-16" [hidden]="confirmar == false">
+    <h5>Deseja realmente terminar a avaliação de:</h5>
+    <ion-item class="border-competencias3 border">
+      <ion-avatar item-start>
+        <img src="{{avaliado.Foto}}">
+      </ion-avatar>
+      <h2>{{avaliado.Nome}}</h2>
+      <p>Limite: {{avaliado.Data}}</p>
+    </ion-item>
+    <h5>Nenhuma alteração poderá ser feita após a conclusão</h5>
+
+    <div class="mt-15">
+      <h5>Consideração final</h5>
+      <textarea class="m-0 r-5 p-5 w-100 no-resize height-125 border mb-10 previa border-competencias3" [(ngModel)]="consideracoes" name="consideracoes"></textarea>
+    </div>
+  </div>
+
+  
+  <button [hidden]="control == false" ion-button icon-start class="bg-verde float-right blod r-5" (click)="Sair()">
+    <ion-icon name="ios-checkmark"></ion-icon>
+    Salvar
+  </button>
+  <button [hidden]="control == true" ion-button icon-start class="bg-verde float-right blod r-5" (click)="Concluir()">
+    <ion-icon name="ios-checkmark"></ion-icon>
+    Concluir
+  </button>
+  <button [hidden]="confirmar == false" ion-button icon-start class="bg-amarelo float-right blod r-5" (click)="Voltar()">
+      <ion-icon name="md-arrow-back"></ion-icon>
+      Voltar
+    </button>
+
+</ion-content>

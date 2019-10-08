@@ -1,0 +1,128 @@
+var DatePicker = function () {
+    (function (factory) {
+        if (typeof define === 'function' && define.amd) {
+            define(['moment'], factory); // AMD
+        } else if (typeof exports === 'object') {
+            module.exports = factory(require('../moment')); // Node
+        } else {
+            factory(window.moment); // Browser global
+        }
+    }(function (moment) {
+        return moment.defineLocale('pt-br', {
+            months: 'janeiro_fevereiro_março_abril_maio_junho_julho_agosto_setembro_outubro_novembro_dezembro'.split('_'),
+            monthsShort: 'jan_fev_mar_abr_mai_jun_jul_ago_set_out_nov_dez'.split('_'),
+            weekdays: 'domingo_segunda-feira_terça-feira_quarta-feira_quinta-feira_sexta-feira_sábado'.split('_'),
+            weekdaysShort: 'dom_seg_ter_qua_qui_sex_sáb'.split('_'),
+            weekdaysMin: 'dom_2ª_3ª_4ª_5ª_6ª_sáb'.split('_'),
+            longDateFormat: {
+                LT: 'HH:mm',
+                L: 'DD/MM/YYYY',
+                LL: 'D [de] MMMM [de] YYYY',
+                LLL: 'D [de] MMMM [de] YYYY [às] LT',
+                LLLL: 'dddd, D [de] MMMM [de] YYYY [às] LT'
+            },
+            calendar: {
+                sameDay: '[Hoje às] LT',
+                nextDay: '[Amanhã às] LT',
+                nextWeek: 'dddd [às] LT',
+                lastDay: '[Ontem às] LT',
+                lastWeek: function () {
+                    return (this.day() === 0 || this.day() === 6) ?
+                        '[Último] dddd [às] LT' : // Saturday + Sunday
+                        '[Última] dddd [às] LT'; // Monday - Friday
+                },
+                sameElse: 'L'
+            },
+            relativeTime: {
+                future: 'em %s',
+                past: '%s atrás',
+                s: 'segundos',
+                m: 'um minuto',
+                mm: '%d minutos',
+                h: 'uma hora',
+                hh: '%d horas',
+                d: 'um dia',
+                dd: '%d dias',
+                M: 'um mês',
+                MM: '%d meses',
+                y: 'um ano',
+                yy: '%d anos'
+            },
+            ordinal: '%dº'
+        });
+    }));
+
+    var datePickerConfig = function (ranges, startDate, endDate) {
+        var startDateConfig = moment().subtract('days', 29);
+        var endDateConfig = moment();
+        var rangesConfig = {
+            'Hoje': [moment(), moment()],
+            'Ontem': [moment().subtract('days', 1), moment().subtract('days', 1)],
+            'Últimos 7 dias': [moment().subtract('days', 6), moment()],
+            'Últimos 30 dias': [moment().subtract('days', 29), moment()],
+            'Esse mês': [moment().startOf('month'), moment().endOf('month')],
+            'Mês anterior': [moment().subtract('month', 1).startOf('month'), moment().subtract('month', 1).endOf('month')]
+        };
+
+        if (startDate && endDate){
+            startDateConfig = startDate;
+            endDateConfig = endDate;
+        }
+
+        if (ranges) {
+            rangesConfig = ranges;
+        }
+
+        $('body').ready(function () {
+            $('.reportrange').daterangepicker({
+                opens: (App.isRTL() ? 'left' : 'right'),
+                startDate: startDateConfig,
+                endDate: endDateConfig,
+                //minDate: '01/01/2012',
+                //maxDate: '12/31/2014',
+                dateLimit: {
+                    days: 60
+                },
+                showDropdowns: true,
+                showWeekNumbers: true,
+                timePicker: false,
+                timePickerIncrement: 1,
+                timePicker12Hour: true,
+                ranges: rangesConfig,
+                buttonClasses: ['btn'],
+                applyClass: 'green',
+                cancelClass: 'default',
+                format: 'DD/MM/YYYY',
+                separator: ' to ',
+                opens:'left',
+                locale: {
+                    applyLabel: 'Aplicar',
+                    cancelLabel: 'Cancelar',
+                    fromLabel: 'From',
+                    toLabel: 'To',
+                    customRangeLabel: 'Intervalo',
+                    daysOfWeek: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],
+                    monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+                    firstDay: 1
+                }
+            },
+                function (start, end) {
+                    $('.reportrange span').data('start', start.format('YYYY-MM-DD'));
+                    $('.reportrange span').data('end', end.format('YYYY-MM-DD'));
+                    $('.reportrange span').html(start.format('D/MM/YYYY') + ' - ' + end.format('D/MM/YYYY'));
+                }
+            );
+            //Set the initial state of the picker label
+            $('.reportrange span').html(startDateConfig.format('D/MM/YYYY') + ' - ' + endDateConfig.format('D/MM/YYYY'));
+            $('.reportrange span').data('start', startDateConfig.format('YYYY-MM-DD'));
+            $('.reportrange span').data('end', endDateConfig.format('YYYY-MM-DD'));
+        })
+
+    };
+
+    return {
+        init: function (ranges, startDate, endDate) {
+            datePickerConfig(ranges, startDate, endDate);
+        }
+    };
+}();

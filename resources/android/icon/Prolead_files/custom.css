@@ -1,0 +1,595 @@
+/* here you can put your own css to customize and override the theme */
+
+/***
+Rounded Portlets
+***/
+/*
+.portlet {
+	border-radius: 4px !important;
+}
+
+.portlet .portlet-title {
+	border-radius: 4px 4px 0px 0px !important;
+}
+
+.portlet .portlet-body,
+.portlet .portlet-body .form-actions  {
+	border-radius: 0px 0px 4px 4px !important;
+}
+*/
+
+/*.dropdown-user .dropdown-toggle {
+    padding: 3px 15px 3px 15px;
+}
+
+.page-header-menu a {
+    color: #fff;
+}
+
+.page-header-menu .dropdown-user.open  a{
+    color:#428bca;
+}*/
+@media (max-width: 480px) {
+    .page-header .page-header-top .top-menu {
+        clear: none;
+        margin-top: 13px;
+    }
+}
+
+.page-logo h1, .page-logo h2, .page-logo h3, .page-logo h4, .page-logo h5, .page-logo h6 {
+    font-weight: 800;
+}
+
+.page-logo a:hover, .page-logo a:active, .page-logo a:visited, .page-logo a:link {
+    text-decoration: none;
+}
+
+html > object {
+    display: none;
+}
+
+.page-breadcrumb > li > a {
+    color: #000;
+}
+
+.breadcrumb {
+    background-color: #eee;
+    color: #000;
+}
+
+.form-wizard .progress {
+    margin-bottom: 10px;
+    height: 10px;
+}
+
+.form-wizard .steps {
+    padding: 0;
+}
+
+.pager li > a, .pager li > span {
+    border-color: #c0c0c0 !important;
+}
+
+.form-wizard .steps > li.active > a.step .number {
+    background-color: #F58220!important;
+    color: #fff;
+}
+
+.progress > .progress-bar-success {
+    background-color: #F58220 !important;
+}
+
+/* Cores de botões */
+
+.btn.orange-wia {
+    background-color: #F58220;
+    color: #fff;
+}
+
+.tabbable-custom > .nav-tabs > li.active {
+    border-top: 3px solid #E86A38 !important;
+    margin-top: 0;
+    position: relative;
+}
+
+/* Custom select multiplo */
+
+.divSelect .divSeparador {
+    background: transparent url('../../../img/switch.png') no-repeat 50% 50%;
+}
+
+.divSelect .linhaSelect {
+    line-height: 2;
+    padding-left: 10px;
+}
+
+.divSelect .divDisponiveis, .divSelect .divSelecionados {
+    border: 1px solid #c0c0c0;
+    height: 260px;
+    padding: 0;
+    overflow-y: auto;
+}
+
+.divSelect .divDireita, .divSelect .divEsquerda {
+    padding: 0;
+}
+
+.divSelect .divSeparador {
+    min-height: 60px;
+}
+
+.divSelect .linhaSelect:hover {
+    cursor: pointer;
+    background-color: #005b82;
+    color: #fff;
+}
+
+.selectSearch {
+    margin-bottom: 8px;
+}
+
+.divSelect .linhaSelect:hover .popover {
+    color: #333;
+}
+
+@media (min-width: 990px) {
+    .divSelect .divSeparador {
+        height: 260px;
+    }
+}
+
+/* fim custom select multiplo */
+
+.dataTableTip .tooltip-inner {
+    max-width: 480px;
+}
+
+.table.dataTable tr td:first-child {
+    text-align: center;
+}
+
+.table.dataTable .radio .checker {
+    position: relative;
+    margin-left: 0;
+}
+
+.lupa {
+    margin-right: 15px;
+    color: #333;
+}
+
+.linhaSelect:hover > a {
+    color: #fff;
+}
+
+.titulo {
+    font-weight: bold;
+}
+
+ul.infoList li {
+    list-style: none;
+    margin-bottom: 12px;
+}
+
+ul.infoList {
+    padding-left: 0;
+}
+
+/*.page-content {
+    overflow-y: auto;
+    width: 100%;
+}*/
+
+.btn.brand-wia-blue {
+    background-color: #00284c;
+}
+
+.btn.brand-wia {
+    background-color: #f58220;
+}
+
+    .btn.brand-wia:hover {
+        background-color: #f1750b;
+    }
+
+[class^="fa-"], [class^="glyphicon-"], [class^="icon-"], [class*=" fa-"], [class*=" glyphicon-"], [class*=" icon-"] {
+    padding-right: 5px;
+}
+
+.table-bordered, .table-bordered>tbody>tr>td, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>td, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>thead>tr>th {
+    border-color: #d0d0d0;
+}
+.form-control, .form-control a.select2-choice {
+    border: 1px solid #cfcfcf;      
+}
+
+.no-padding {
+    padding: 0;
+}
+.azul-escuro {
+    background-color: #2f5597;
+}
+
+/* Fieldsets - início */
+.fieldset {
+    padding-bottom: 20px;
+}
+
+.fieldset fieldset 
+{
+    border: 1px solid #6B3B76; 
+    padding-bottom: 15px;
+    margin: 1px;
+}
+
+.fieldset fieldset legend 
+{
+    width: unset;
+    border-bottom: none;
+    color: #6B3B76;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 10px;
+    margin: 0;
+    text-align: center;
+}
+
+.fieldset fieldset > div
+{
+    display: flex;
+}
+
+.fieldset fieldset div * 
+{
+    margin: 2px;
+}
+
+.fieldset fieldset div input[type=search] 
+{
+    border-color: #AAA;
+    height: 34px;
+}
+/* Fieldsets - fim */
+
+/*Portlet (Módulo COMPETÊNCIAS) - início*/
+.portlet-competencias {
+    border: 1px solid #9c55a9 ;
+    padding: 0 !important;
+}
+
+.portlet-competencias .portlet-title {
+    background-color: #6B3B76 !important;
+    margin: 0;
+    padding: 10px 5px !important;
+}
+
+.portlet-competencias .portlet-title .portlet-title-line {
+    border-bottom: 1px solid white !important;
+    margin-bottom: 10px;
+    margin-left: 3%;
+    margin-right: 4%;
+}
+
+.portlet-competencias .portlet-body {
+    height: 450px;
+    border-color: #6B3B76 !important;
+}
+
+.portlet-competencias .portlet-body th {
+    border: none;
+}
+
+.portlet-competencias .portlet-body td {
+    border: none;
+    vertical-align: middle;
+}
+
+.portlet-competencias .portlet-body tbody tr:nth-of-type(odd) {
+    background-color: #d7bbdd !important;
+}
+/*Portlet (Módulo COMPETÊNCIAS) - fim*/
+
+/*Portlet (Módulo DESEMPENHO) - início*/
+.portlet-desempenho {
+    border: 1px solid #287CC6;
+    padding: 0 !important;
+}
+
+.portlet-desempenho .portlet-title {
+    background-color: #1B5486 !important;
+    margin: 0;
+    padding: 10px 5px !important;
+}
+
+.portlet-desempenho .portlet-title .portlet-title-line {
+    border-bottom: 1px solid white !important;
+    margin-bottom: 10px;
+    margin-left: 3%;
+    margin-right: 4%;
+}
+
+.portlet-desempenho .portlet-body {
+    height: 450px;
+    border-color: #1B5486 !important;
+}
+
+.portlet-desempenho .portlet-body th {
+    border: none;
+}
+
+.portlet-desempenho .portlet-body td {
+    border: none;
+    vertical-align: middle;
+}
+
+.portlet-desempenho .portlet-body tbody tr:nth-of-type(odd) {
+    background-color: #9CC6EB !important;
+}
+/*Portlet (Módulo DESEMPENHO) - fim*/
+
+/*Ribbons roxo para módulo competências - início*/
+.ribbon-purple {
+    color: white !important;
+    font-size: 24px;
+    font-weight: 300;
+    width: 100%
+}
+
+.ribbon-purple .ribbon-sub{
+    background-color: #6B3B76 !important;
+    color: white;
+    font-size: 12px;
+    font-weight: 300;
+}
+/*Ribbons roxo para módulo competências - fim*/
+
+/*Lista simples do metronic com tema do módulo de competências - início*/
+.simple-list-purple .mt-list-head {
+    background-color: #7a4487 !important;
+}
+
+.simple-list-purple .list-title {
+    cursor: pointer;
+}
+
+.simple-list-purple .fa-angle-down {
+    cursor: pointer;
+}
+
+.simple-list-purple .list-toggle {
+    cursor: pointer;
+}
+
+.simple-list-purple .list-toggle {
+    padding-left: 5px;
+    background-color: #b596bb;
+    color: #6B3B76;
+    font-size: 14px;
+    font-weight: 700;
+    height: 49px;
+    display: flex;
+    align-items: center;
+}
+
+.simple-list-purple .list-toggle.done {
+    background-color: #ba88c3;
+}
+
+.simple-list-purple .mt-list-item {
+    border-color: #ba88c3 !important;
+}
+
+.simple-list-purple .mt-list-item.done {
+    border-color: #ba88c3 !important;
+}
+
+.simple-list-purple .list-simple.ext-1.mt-list-container ul > .mt-list-item:hover {
+    background-color: unset;
+}
+
+.mt-element-list .list-simple.ext-1.mt-list-container ul > .mt-list-item.done:hover {
+    background-color: unset;
+}
+
+.mt-element-list .panel-collapse .list-toggle.done {
+    background-color: #d7bbdd;
+}
+
+.mt-element-list .panel-collapse .list-toggle {
+    background-color: #ecdbef;
+}
+
+.mt-element-list .mt-list-item.done {
+    border-color: #d7bbdd !important;
+}
+
+.mt-element-list .mt-list-item {
+    border-color: #ecdbef !important;
+}
+/*Lista simples do metronic com tema do módulo de competências - fim*/
+
+/*Outras - início*/
+.min-height-650 {
+    min-height: 650px !important;
+}
+
+.w-95 { width: 95% }
+.w-100 { width: 100% !important}
+.d-unset { display: unset !important}
+.d-flex { display: flex }
+.d-flex-va 
+{    
+    display: flex;
+    align-items: center;
+}
+
+.padding-25 { padding: 25px !important }
+
+.padding-left-15 { padding-left: 15px !important }
+.padding-left-25 { padding-left: 25px !important }
+.padding-left-110 { padding-left: 110px !important }
+
+.padding-x { padding-left: 0px !important; padding-right: 0px !important; }
+.padding-y { padding-top: 0px !important; padding-bottom: 0px !important; }
+
+.margin-10 { margin: 10px; }
+.margin-right-15 { margin-right: 15px; }
+
+.portlet-container-min-height-800 > .portlet{
+    min-height: 800px !important;
+}
+
+.mt-element-list .list-todo.mt-list-head.competence-purple {
+    background-color: #6B3B76;
+    color: #FFFFFF;
+}
+
+.mt-element-list .list-todo.mt-list-head.competence-purple-steel {
+    background-color: #9d55a8;
+    color: #FFFFFF;
+}
+
+
+.mt-element-list .list-todo.mt-list-head.competence-purple-light {
+    background-color: #d5bbdc;
+    color: #FFFFFF;
+}
+
+/*.competence-purple {
+    background-color: #6B3B76;
+}*/
+
+/*.competence-purple-steel {
+    background-color: #9d55a8;
+}*/
+
+.competence-purple-light {
+    background-color: #d5bbdc;
+}
+
+.mt-element-list.competence-purple .mt-list-head {
+    background-color: #6B3B76;
+    color: #fff;
+}
+
+.mt-element-list.competence-purple-steel .mt-list-head {
+    background-color: #9d55a8;
+    color: #fff;
+}
+
+.mt-element-list .list-todo .list-todo-item.competence-gallery .list-toggle {
+    background: #9d55a8
+}
+
+.mt-element-list.competence-purple .list-todo.mt-list-container ul > .mt-list-item > .list-todo-item:after {
+    border-right-color: #9d55a8;
+}
+
+.mt-element-list.competence-purple .list-todo-icon {
+    color: #9d55a8;
+}
+
+.badge-competence {
+    background-color: #6B3B76;
+    background-image: none;
+}
+
+.question-group {
+    width: 350px;
+    float: left;
+    padding: 0 11px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.question-group .group-head {
+    font-size: 15px;
+    font-weight: 600;
+    padding: 8px;
+    text-align: center;
+    background-color: #d5bbdc;
+}
+
+.question-group .group-body-border{
+    height: 400px;
+    border: 1px solid #d0d0d0;
+}
+
+    .question-group .group-body {
+        overflow-x: auto;
+        height: 400px;
+    }
+
+.no-gut {
+    padding: 0;
+}
+
+.grouped-table {
+    overflow-y: auto;
+}
+
+.question-group .linhaCompetencia {
+    border-bottom: none;
+}
+
+.question-group .mt-element-ribbon {
+    float: left;
+    margin-left: 0;
+    display: none;
+}
+
+.question-group .mt-element-ribbon.active {
+    display: block;
+}
+
+#tblResponderAvaliacao_wrapper{
+    width: 100%;
+}
+
+.portlet-competencias .portlet-body tbody tr:hover {
+    background-color: #BA88C3 !important;
+}
+
+.m-wd-500 {
+    min-width: 500px;
+}
+
+
+.m-wd-550 {
+    min-width: 550px;
+}
+
+
+.m-wd-600 {
+    min-width: 600px;
+}
+
+
+.m-wd-650 {
+    min-width: 650px;
+}
+
+.m-wd-80 {
+    min-width: 80px;
+}
+
+.m-wd-150 {
+    min-width: 150px;
+}
+
+.m-wd-200 {
+    min-width: 200px;
+}
+
+
+.m-wd-250 {
+    min-width: 250px;
+}
+
+
+.m-wd-300 {
+    min-width: 300px;
+}
+
+/*Outras - fim*/

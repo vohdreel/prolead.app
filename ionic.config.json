@@ -1,0 +1,11 @@
+{
+    "name": "ProLead",
+    "integrations": {
+        "cordova": {}
+    },
+    "proxies": [{
+        "path": "/prolead",
+        "proxyUrl": "https://pr.prolead.com.br/"
+    }],
+    "type": "ionic-angular"
+}

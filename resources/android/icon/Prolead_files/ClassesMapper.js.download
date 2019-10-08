@@ -1,0 +1,860 @@
+﻿$.Classes = {
+    TipoDeCompetencia: function TipoDeCompetencia() {
+        this.Id = 0;
+        this.Nome = '';
+        this.Descricao = '';
+    },
+    AcaoPDI: function AcaoPDI() {
+        this.Id = 0;
+        this.Nome = '';
+        this.Descricao = '';
+        this.Status = 1;
+        this.IdEmpresa = 0;
+    },
+    Natureza: function Natureza() {
+        this.Id = 0;
+        this.Sigla = '';
+        this.Nome = '';
+        this.Descricao = '';
+    },
+    Processo: function Processo() {
+        this.Id = 0;
+        this.Nome = '';
+        this.Descricao = '';
+    },
+    SubProcessoPadrao: function SubProcessoPadrao() {
+        this.Id = 0;
+        this.Nome = '';
+        this.Descricao = '';
+        this.IdProcesso = 0;
+    },
+    PerguntaFormulario: function PerguntaFormulario() {
+        this.Id = 0;
+        this.IdFormulario = '';
+        this.Descricao = '';
+        this.Ordem = 0;
+        this.TipoPergunta = 0;
+        this.QtdAlternativas = 0;
+        this.Inicio_Escala = 0;
+        this.Fim_Escala = 0;
+        this.Obrigatoria = 0;
+        this.MultiplaRespostas = 0;
+        this.OrigemResposta = 0;
+        this.AlternativaDaPerguntaFormulario = [];
+        this.Dependencias = []
+    },
+    PerguntaDependencia: function PerguntaDependencia() {
+        this.IdPerguntaDependente = 0;
+        this.IdPerguntaPai = 0;
+        this.IdAlternativa = 0;
+    },
+
+    AlternativaDaPerguntaFormulario: function AlternativaDaPerguntaFormulario() {
+        this.Id = 0;
+        this.IdPerguntaFormulario = '';
+        this.IsGrupo = '';
+        this.Descricao = 0;
+        this.Valor = 0;
+        this.Ordem = 0;
+    },
+
+    ParticipanteAvaliacao: function ParticipanteAvaliacao() {
+        this.IdColaborador = "";
+        this.TipoAvaliacao = "";
+        this.IdAvaliacao = '';
+        this.IdFormulario = '';
+        this.ResponsavelConsenso = 0;
+        this.IdsPares = [];
+        this.IdsGestores = [];
+        this.IdsMembrosEquipe = [];
+        this.EquipeAvaliaGestor = false;
+    },
+
+
+    GrupoConsenso: function GrupoConsenso() {
+        this.Id = 0;
+        this.IdParticipante = 0;
+        this.Respondente = 0;
+        this.IdAvaliacaoColaborador = 0;
+    },
+
+    FormularioResposta: function FormularioResposta() {
+        this.Id = 0;
+        this.IdFormulario = 0;
+        this.IdUsuario = '';
+        this.Data = 0;
+        this.RespostaPerguntaFormulario = [];
+    },
+
+    RespostaPerguntaFormulario: function RespostaPerguntaFormulario() {
+        this.Id = 0;
+        this.IdFormularioResposta = 0;
+        this.IdPerguntaFormulario = 0;
+        this.IdAlternativaPerguntaFormulario = 0;
+        this.ValorInteiro = 0;
+        this.ValorTexto = 0;
+    },
+
+    ModeloDescricao: function ModeloDescricao() {
+        this.Id = 0;
+        this.IdEmpresa = 0;
+        this.Nome = '';
+        this.CampoDescricao = [];
+    },
+    CampoDescricao: function CampoDescricao() {
+        this.Id = 0;
+        this.IdModeloDescricao = 0;
+        this.Nome = '';
+        this.MultiplasRespostas = false;
+        this.SelecionaNivel = false;
+        this.RespostasComparativas = false;
+        this.OrigemCampoDescricao = 0;
+        this.Ordem = 0;
+        this.IdGrupoCompetenciasHabilidades = 0;
+    },
+    OrigemCampoDescricao: function OrigemCampoDescricao() {
+        this.Id = 0;
+        this.IdCampoDescricao = 0;
+        this.IdOrigemDescricao = 0;
+        this.Ordem = 0;
+    },
+    Empresa: function Empresa() {
+        this.Id = 0;
+        this.NomeFantasia = '';
+        this.RazaoSocial = '';
+        this.Telefone = '';
+        this.CNPJ = '';
+        this.CEP = '';
+        this.Logradouro = '';
+        this.Numero = '';
+        this.Complemento = '';
+        this.Bairro = '';
+        this.Cidade = '';
+        this.Estado = '';
+        this.MinOpcional = 0;
+        this.QntGrupoQuadroAcesso = 0;
+        this.QntGrupoAproveitamentoInterno = 0;
+        this.ClienteEdita = false;
+        this.MaxBaseTrilha = 0;
+        this.MaxMediaTrilha = 0;
+        this.NivelEmpresa = [];
+        this.PeriodoAcessoDe = '';
+        this.PeriodoAcessoAte = '';
+        this.MatchingArea = false;
+        this.RespostaAnonima360 = false;
+        this.CorEmpresa = 0;
+        this.RevisaoMetas = 0;
+        this.NomeSistema = "";
+        this.PorcentagemQuantitativa = 0;
+        this.PorcentagemQualitativa = 0;
+        this.UtilizarFormulario = false;
+        this.TipoEmpresa = 0;
+        this.ParticipaConsultoria = 0;
+        this.EmpresaConfiguracao = new $.Classes.EmpresaConfiguracao;
+        this.EmpresaLogo = new $.Classes.EmpresaLogo;
+        //this.EmailNotificacao = [];
+        this.EmpresaCliente = [];
+        this.Notifications = [];
+        this.SetaMatrizAvaliacao = [];
+    },
+    EmpresaLogo: function EmpresaLogo() {
+        this.IdEmpresa = 0;
+        this.ImagemBytes = "";
+    },
+    EmpresaConfiguracao: function EmpresaConfiguracao() {
+        this.IdEmpresa = 0;
+        this.UsarPreAvaliacao = '';
+        this.NomePreAvaliacao = '';
+        this.UsarAvaliacaoDiaria = 0;
+        this.NomeAvaliacaoDiaria = 0;
+        this.IdFormularioAvaliacaoDiaria = 0;
+        this.UsarNivelCompetencia = 0;
+        this.ReplicaAvaliacaoDiaria = 0;
+        this.TreplicaAvaliacaoDiaria = 0;
+        this.PermiteExcluirAvaliacaoDiaria = 0;
+        this.UsarGestorAvaliacaoConsenso = 0;
+        this.PesoFormacao = 0;
+        this.PesoCompetencia = 0;
+        this.PesoConhecimento = 0;
+        this.AutoObservacaoObrigatoria = 0;
+        this.GestorObservacaoObrigatoria = 0;
+        this.ParesObservacaoObrigatoria = 0;
+        this.ConsensoObservacaoObrigatoria = 0;
+        this.UtilizaNivelComplexidade = 0;
+        this.UsarDescricaoQuestionarioAvaliacao = 0;
+        this.NomeComiteAvaliacaoCompetencia = '';
+        this.UsarDepartamentoCargo = false;
+        this.LideradoVisualizaFeedbackLider = 0;
+        this.LideradoRecebeNotificacaoFeedbackLider = 0;
+        this.LiderVisualizaFeedbackColaborador = 0;
+        this.LiderRecebeNotificacaoFeedbackColaborador = 0;
+        this.LideradoVisualizaFeedbackColaborador = 0;
+        this.LideradoRecebeNotificacaoFeedbackColaborador = 0;
+        this.LiderVisualizaAutoFeedbackLiderado = 0;
+        this.LiderRecebeNotificacaoAutoFeedbackLiderado = 0;
+        this.UtilizaUnicoDepartamentoPorCargo = 0;
+        this.NomeEntidadeConhecimento = 0;
+        this.NomeEntidadeHabilidade = 0;
+        this.NomeEntidadeAtitude = 0;
+        this.UtilizaCompetenciaPai = 0;
+        this.PermiteEditarAvaliacaoDiaria = 0;
+        this.NumeroDeRespostasPermitidasQuestionario = 0;
+        this.ExibirValorNotaAvaliacao = false;
+        this.EmailCoorporativo = '';
+        this.SMTPHost = '';
+        this.SMTPPort = 0;
+        this.SMTPUser = '';
+        this.SMTPPassword = '';
+        this.SMTPEnableSSL = false;
+        this.ReturnToSender = false;
+        this.ReturnToCreator = false;
+    },
+    Emails: function Emails() {
+        this.Id = 0;
+        this.Cc = '';
+        this.Subject = '';
+        this.Message = '';
+        this.Scope = 0;
+        this.Owner = 0;
+        this.Type = 0;
+    },
+    AgrupamentoQuestionario: function AgrupamentoQuestionario() {
+        this.Id = 0;
+        this.Nome = '';
+        this.Ordem = 0;
+        this.Descricao = '';
+        this.IdEmpresa = 0;
+    },
+    Notifications: function Notifications() {
+        this.Id = 0;
+        this.EmpresaId = 0;
+        //this.Empresa = new $.Classes.Empresa;
+        this.EmailId = 0;
+        this.Emails = new $.Classes.Emails;
+        this.Periodicity = 0;
+        this.DayCount = 0;
+        this.StartAtDayCount = 0;
+        this.StopAtDayCount = 0;
+    },
+
+    SetaMatrizAvaliacao: function SetaMatrizAvaliacao() {
+        this.Id = 0;
+        this.IdEmpresa = 0;
+        this.Imagem = "";
+        this.TipoSeta = 0;
+    },
+
+    Departamento: function Departamento() {
+        this.Id = 0;
+        this.Nome = '';
+        this.Descricao = '';
+        this.IdEmpresa = 0;
+    },
+    Diretoria: function Diretoria() {
+        this.Id = 0;
+        this.IdEmpresa = 0;
+        this.Codigo = '';
+        this.Nome = '';
+        this.Descricao = '';
+    },
+    Secao: function Secao() {
+        this.Id = 0;
+        this.IdEmpresa = 0;
+        this.Codigo = '';
+        this.Nome = '';
+        this.Descricao = '';
+    },
+    Area: function Area() {
+        this.Id = 0;
+        this.Nome = '';
+        this.Descricao = '';
+        this.Departamentos = [];
+        this.IdEmpresa = 0;
+    },
+    GrupoCompetenciasHabilidades: function GrupoCompetenciasHabilidades() {
+        this.Id = 0;
+        this.Nome = '';
+        this.Descricao = '';
+        this.IdEmpresa = 0;
+    },
+
+    MatrizDeAvaliacao: function MatrizDeAvaliacao() {
+        this.Id = 0;
+        this.IdAvaliacaoCompetencia = '';
+        this.IdAvaliacaoDesempenho = '';
+        this.Nome = '';
+        this.IsPrevia = 0;
+        this.ExibirNomeNaCaixa = 0;
+        this.DataLiberacao = '';
+        this.TipoMatriz = 0;
+        this.TipoComparacaoMatriz = 0;
+        this.IdTipoCompetenciaPotencial = 0;
+        this.IdTipoCompetenciaDesempenho = 0;
+        this.MatrizDeAvaliacaoFaixa = [];
+        this.MatrizDeAvaliacaoCaixa = [];
+    },
+
+    MatrizDeAvaliacaoFaixa: function MatrizDeAvaliacaoFaixa() {
+        this.Id = 0;
+        this.IdMatrizDeAvaliacao = 0;
+        this.TipoDaFaixa = 0;
+        this.TipoDaAvaliacaoDaFaixa = 0;
+        this.Valor = 0;
+    },
+
+    Formulario: function Formulario() {
+        this.Id = 0;
+        this.IdEmpresa = 0;
+        this.Tipo = 0;
+        this.Nome = '';
+        this.Data = '',
+            this.Descricao = '';
+    },
+
+    PermissaoFormulario: function PermissaoFormulario() {
+        this.Id = 0;
+        this.IdFormulario = 0;
+        this.IdRole = '';
+    },
+
+    MatrizDeAvaliacaoCaixa: function MatrizDeAvaliacaoCaixa() {
+        this.Id = 0;
+        this.IdMatrizDeAvaliacao = 0;
+        this.TipoDaCaixa = 0;
+        this.CodigoDaCor = '';
+        this.TextoPadrao = '';
+        this.NomeCaixa = '';
+    },
+
+    MatrizAvaliacaoColaborador: function MatrizAvaliacaoColaborador() {
+        this.IdMatrizAvaliacao = 0;
+        this.IdColaborador = 0;
+        this.Incluso = 'false';
+    },
+
+    AlterarSenha: function AlterarSenha() {
+        this.__RequestVerificationToken = '';
+        this.OldPassword = '';
+        this.NewPassword = '';
+        this.ConfirmPassword = '';
+    },
+    Nivel: function Nivel() {
+        this.Id = 0;
+        this.IdEmpresa = 0;
+        this.Nome = '';
+        this.Descricao = '';
+        this.Relevancia = 0;
+        this.Areas = [];
+    },
+    NiveisEntrega: function NiveisEntrega() {
+        this.IdNivelEmpresa = 0;
+        this.Descricao = '';
+        this.IdCompetencia = 0;
+    },
+    Competencia: function Competencia() {
+        this.Id = 0;
+        this.IdEmpresa = 0;
+        this.IdGrupo = 0;
+        this.Nome = '';
+        this.Descricao = '';
+        this.IdTipoCompetencia = 0;
+        this.IdTipoEntidade = 0;
+        this.IdAcoes = [];
+        this.IdCompetenciaPai = 0;
+        this.IdNivelComplexidade = 0;
+    },
+    NivelEmpresa: function NivelEmpresa() {
+        this.Id = 0;
+        this.IdEmpresa = 0;
+        this.Tipo = 0;
+        this.Valor = 0;
+        this.Nome = '';
+    },
+    Unidade: function Unidade() {
+        this.Id = 0;
+        this.Nome = '';
+        this.Descricao = '';
+        this.IdEmpresa = 0;
+        this.RazaoSocial = '';
+        this.NomeFantasia = '';
+        this.CNPJ = '';
+        this.Telefone = '';
+        this.CEP = '';
+        this.Logradouro = '';
+        this.Numero = '';
+        this.Complemento = '';
+        this.Cidade = '';
+        this.Bairro = '';
+        this.Estado = '';
+    },
+    Cargo: function Cargo() {
+        this.Id = 0;
+        this.Nome = '';
+        this.Step = '';
+        this.IdExperiencia = 0;
+        this.IdDepartamento = 0;
+        this.IdNivelHierarquico = 0;
+        this.IdGrupo = 0;
+        this.IdEmpresa = 0;
+        this.Missao = '';
+        this.CargoFormacao = [];
+        this.IdsPapel = [];
+        this.CargoConhecimento = [];
+        this.CargoCompetencia = [];
+        this.CargoExperiencia = [];
+        this.CaminhoNatural = 0;
+        this.QtdSalarioPLR = 0;
+        this.Descricao = "";
+    },
+    CargoCompetencia: function CargoCompetencia() {
+        this.IdCargo = 0;
+        this.IdCompetencia = 0;
+        this.Nivel = 0;
+        this.Peso = 0;
+    },
+
+    VersaoDescricaoCargo: function VersaoDescricaoCargo() {
+        this.IdCargo = 0;
+        this.Id = 0;
+        this.Nome = '';
+    },
+
+    CargoConhecimento: function CargoConhecimento() {
+        this.IdCargo = 0;
+        this.IdConhecimento = 0;
+        this.Nivel = 0;
+        this.Peso = 0;
+    },
+    CargoFormacao: function CargoFormacao() {
+        this.IdCargo = 0;
+        this.IdFormacao = 0;
+        this.Nivel = 0;
+        this.Peso = 0;
+    },
+    CargoExperiencia: function CargoExperiencia() {
+        this.IdCargo = 0;
+        this.IdExperiencia = 0;
+        this.Peso = 0;
+    },
+    Colaborador: function Colaborador() {
+        this.Id = 0;
+        this.Nome = '';
+        this.Sigla = '';
+        this.CPF = '';
+        this.IdExperiencia = 0;
+        this.Email = '';
+        this.IdDepartamento = 0;
+        this.IdUnidade = 0;
+        this.IdEmpresa = 0;
+        this.IdCargo = 0;
+        this.IdSuperior = 0;
+        this.Descricao = '';
+        this.ColaboradorFormacao = [];
+        this.ColaboradorConhecimento = [];
+        this.ColaboradorCompetencia = [];
+        this.ColaboradorDepartamento = [];
+        this.Foto = '';
+        this.DataAdmissao = '';
+        this.Salario = 0;
+        this.Ativo = 0;
+        this.IdVersaoDescricaoCargo = null;
+        this.IdDiretoria = 0;
+        this.IdSecao = 0;
+    },
+    ColaboradorDepartamento: function ColaboradorDepartamento() {
+        this.IdColaborador = 0;
+        this.IdDepartamento = 0;
+    },
+    ColaboradorCompetencia: function ColaboradorCompetencia() {
+        this.IdColaborador = 0;
+        this.IdCompetencia = 0;
+        this.Nivel = 0;
+    },
+    PeriodoDeAvaliacao: function PeriodoDeAvaliacao() {
+        this.Id = 0;
+        this.IdEmpresa = 0;
+        this.DataInicio = '';
+        this.DataFim = '';
+        this.IsAtivo = true;
+        this.Nome = '';
+        this.TipoAgrupamento = 1;
+        this.TipoAvaliacao = 1;
+        this.Status = 1;
+        this.ConfigurarEtapasPeriodo = [];
+    },
+    AvaliacaoPerformance: function AvaliacaoPerformance() {
+        this.Id = 0;
+        this.IdEmpresa = 0;
+        this.DataInicio = '';
+        this.DataFim = '';
+        this.Nome = '';
+        this.TipoApuracaoResultado = 0;
+        this.TipoAvaliacao = 0;
+        this.Status = 0;
+    },
+
+    PeriodoAvaliacao: function PeriodoAvaliacao() {
+        this.Id = 0;
+        this.IdAvaliacaoPerformance = 0;
+        this.DataInicio = '';
+        this.DataFim = '';
+        this.DataLimite = '';
+        this.Nome = '';
+        this.Status = 0;
+    },
+
+    AvaliacaoDeCompetencias: function AvaliacaoDeCompetencias() {
+        this.Id = 0;
+        this.NomeAvaliacaoCompetencia = '';
+    },
+    NotaAvaliacao: function NotaAvaliacao() {
+        this.IdEmpresa = 0;
+        this.Nome = '';
+        this.Valor = 0;
+        this.Id = 0;
+        this.IdNivelCompetencia = 0;
+        this.IdNivelConhecimento = 0;
+        this.IdNivelFormacao = 0;
+        this.NotaMinima = false;
+        this.UsarNoCalculo = true;
+        this.Cor = '';
+        this.ConfiguracaoNotaAvaliacao = [];
+    },
+    ConfiguracaoNotaAvaliacao: function ConfiguracaoNotaAvaliacao() {
+        this.IdNota = 0;
+        this.Id = 0;
+        this.Nome = '';
+        this.NomeAutoAvaliacao = '';
+        this.NomeAvaliacaoPares = '';
+        this.NomeAvaliacaoGestor = '';
+        this.NomeAvaliacaoConsenso = '';
+        this.IdTipoCompetencia = 0;
+    },
+    UserProfile: function UserProfile() {
+        this.Id = 0;
+        this.UserName = ' ';
+        this.Password = ' ';
+        this.Email = ' ';
+        this.RoleNames = ' ';
+        this.IdEmpresa = 0;
+    },
+
+    CompetenciasSelecionadasVM: function CompetenciasSelecionadasVM() {
+        this.IdColaborador = 0;
+        this.IdCompetencia = 0;
+        this.IsAdicional = false;
+        this.Selecionado = false;
+        this.NivelEmpresa = 0;
+        this.Peso = 1;
+    },
+
+    ColaboradorPDI: function ColaboradorPDI() {
+        this.Selecionado = true;
+        this.Id = 0;
+        this.IdColaborador = 0;
+        this.IdCompetencia = 0;
+        this.IdAcaoPDI = 0;
+        this.IsConcluido = false;
+        this.DataLimite = '';
+        this.Observacao = '';
+    },
+
+    DadosConsolidadoVM: function DadosConsolidadoVM() {
+        this.Nivel = 0;
+        this.IdColaborador = 0;
+        this.IdCompetencia = 0;
+        this.IdEntidade = 0;
+    },
+
+    ConfigurarAvaliadosVM: function ConfigurarAvaliadosVM() {
+        this.CompetenciasSelecionadasVM = [];
+    },
+
+    GerarSenhaModel: function GerarSenhaModel() {
+        this.IdEmpresa = 0;
+        this.IdsColaboradores = [];
+        this.SelecionarTodos = false;
+        this.Status = 0;
+        this.IdCargo = 0;
+        this.IdColaborador = 0;
+        this.Query = '';
+    },
+
+    FiltroResultadosVM: function FiltroResultadosVM() {
+        this.IdColaborador = 0;
+        this.IdEmpresa = 0;
+        this.Periodos = [];
+        this.Cargos = [];
+        this.Niveis = [];
+        this.Departamentos = [];
+        this.Unidades = [];
+        this.TiposCompetencia = [];
+        this.Competencias = [];
+        this.TipoGrafico = 0;
+        this.TipoAgrupamento = 0;
+        this.IncluirGlobal = false;
+    },
+    Categoria: function Categoria() {
+        this.Id = 0;
+        this.Nome = '';
+        this.Descricao = '';
+    },
+    Grupo: function Grupo() {
+        this.Id = 0;
+        this.Nome = '';
+        this.Descricao = '';
+        this.Relevancia = 0;
+        this.IdEmpresa = 0;
+    },
+    Formacao: function Formacao() {
+        this.Id = 0;
+        this.Nome = '';
+        this.Descricao = '';
+        this.IdEmpresa = 0;
+    },
+    ConhecimentoEspecifico: function ConhecimentoEspecifico() {
+        this.Id = 0;
+        this.Nome = '';
+        this.Descricao = '';
+        this.IdEmpresa = 0;
+    },
+    CompetenciaCarreiras: function Competencia() {
+        this.Id = 0;
+        this.Nome = '';
+        this.Descricao = '';
+        this.IdEmpresa = 0;
+    },
+    Papeis: function Papeis() {
+        this.Id = 0;
+        this.Nome = '';
+        this.Descricao = '';
+        this.IdEmpresa = 0;
+    },
+    Experiencia: function Experiencia() {
+        this.Id = 0;
+        this.Nome = '';
+        this.Descricao = '';
+        this.IdEmpresa = 0;
+    },
+    EnderecoEmpresa: function EnderecoEmpresa() {
+        this.Id = 0;
+        this.IdEmpresa = 0;
+        this.CEP = '';
+        this.Logradouro = '';
+        this.Numero = '';
+        this.Complemento = '';
+        this.Bairro = '';
+        this.Cidade = '';
+        this.Estado = '';
+    },
+    CargoCarreiras: function Cargo() {
+        this.Id = 0;
+        this.Nome = '';
+        this.IdExperiencia = 0;
+        this.IdDepartamento = 0;
+        this.IdGrupo = 0;
+        this.IdEmpresa = 0;
+        this.Missao = '';
+        this.CargoFormacao = [];
+        this.IdsPapel = [];
+        this.CargoConhecimento = [];
+        this.CargoCompetencia = [];
+        this.CargoExperiencia = [];
+        this.CaminhoNatural = 0;
+        this.CBO = 0;
+    },
+    CargoConhecimentoCarreiras: function CargoConhecimento() {
+        this.IdCargo = 0;
+        this.IdConhecimento = 0;
+        this.Nivel = 0;
+    },
+    CargoFormacaoCarreiras: function CargoFormacao() {
+        this.IdCargo = 0;
+        this.IdFormacao = 0;
+        this.Nivel = 0;
+    },
+    CargoCompetenciaCarreiras: function CargoCompetencia() {
+        this.IdCargo = 0;
+        this.IdCompetencia = 0;
+        this.Nivel = 0;
+    },
+    CargoExperienciaCarreiras: function CargoExperiencia() {
+        this.IdCargo = 0;
+        this.IdExperiencia = 0;
+    },
+    ColaboradorCarreirsa: function Colaborador() {
+        this.Id = 0;
+        this.Nome = '';
+        this.CPF = '';
+        this.IdExperiencia = 0;
+        this.Email = '';
+        this.IdDepartamento = 0;
+        this.IdUnidade = 0;
+        this.IdEmpresa = 0;
+        this.IdCargo = 0;
+        this.ColaboradorFormacao = [];
+        this.ColaboradorConhecimento = [];
+        this.ColaboradorCompetencia = [];
+    },
+    ColaboradorConhecimento: function ColaboradorConhecimento() {
+        this.IdColaborador = 0;
+        this.IdConhecimento = 0;
+        this.Nivel = 0;
+    },
+    ColaboradorFormacao: function ColaboradorFormacao() {
+        this.IdColaborador = 0;
+        this.IdFormacao = 0;
+        this.Nivel = 0;
+    },
+    EmailAproveitamento: function EmailAproveitamento() {
+        this.IdCargo = 0;
+        this.Tipo = 0;
+        this.Destinatario = '';
+        this.Mensagem = '';
+        this.IdsColaboradores = [];
+    },
+    Filtro: function Filtro() {
+        this.IdEmpresa = 0;
+        this.Inicio = '';
+        this.Fim = '';
+    },
+    ConfiguracaoColetaAutomatica: function ConfiguracaoColetaAutomatica() {
+        this.Id = 0;
+        this.IdEmpresa = 0;
+        this.TipoDeConexao = 0;
+        this.EnderecoConexao = '';
+        this.Usuario = '';
+        this.Senha = '';
+        this.Catalogo = '';
+        this.Query = '';
+        this.InicioPeriodo = '';
+        this.FimPeriodo = '';
+        this.Intervalo = 0;
+        this.Ativo = false;
+    },
+    Meta: function Meta() {
+        this.Id = 0;
+        this.IdAvaliacao = 0;
+        this.Valor = 0.0;
+        this.ValorMinimo = 0.0;
+        this.ValorTexto = "";
+        this.ValorTextoMinimo = "";
+        this.Nome = '';
+        this.Peso = 0;
+        this.TipoEntidade = 0;
+        this.Decrescente = 0;
+        this.Acumulativa = 0;
+        this.TipoMeta = 0;
+        this.IdPai = '';
+        this.IdDepartamento = '';
+        this.IdColaborador = '';
+        this.MetaPeriodo = [];
+    },
+    MetaPeriodo: function MetaPeriodo() {
+        this.Id = 0;
+        this.Valor = 0.0;
+        this.ValorMinimo = 0.0;
+        this.ValorTexto = "";
+        this.ValorTextoMinimo = "";
+        this.IdPeriodo = 0;
+        this.IdMeta = 0;
+    },
+    ModeloDescricaoRespostaVM: function ModeloDescricaoRespostaVM() {
+        this.Id = 0;
+        this.IdModeloDescricao = 0;
+        this.IdCargo = 0;
+        this.IdVersao = 0;
+        this.RespostaCampoDescricaoVM = [];
+    },
+    RespostaCampoDescricaoVM: function RespostaCampoDescricaoVM() {
+        this.Id = 0;
+        this.IdCampoDescricao = 0;
+        this.RespostaOrigemDescricaoVM = [];
+        this.IdCategoria = 0;
+    },
+    RespostaOrigemDescricaoVM: function RespostaOrigemDescricaoVM() {
+        this.NomeOrigem = '';
+        this.IdOrigemCampoDescricao = 0;
+        this.Resposta = '';
+
+    },
+    GrupoDescricao: function GrupoDescricao() {
+        this.Id = 0;
+        this.Nome = '';
+        this.Campos = 0;
+    },
+
+    CategoriaDescricao: function CategoriaDescricao() {
+        this.Id = 0;
+        this.Nome = '';
+        this.Campos = 0;
+    },
+
+    FamiliaDescricao: function FamiliaDescricao() {
+        this.Id = 0;
+        this.IdEmpresa = 0;
+        this.Nome = '';
+        this.IdModeloDescricao = 0;
+        this.CargoFamiliaDescricao = [];
+    },
+
+    CargoFamiliaDescricao: function CargoFamiliaDescricao() {
+        this.Id = 0;
+        this.IdCargo = 0;
+        this.IdVersao = 0;
+        this.Ordem = 0;
+    },
+
+    MatchingDeModelos: function MatchingDeModelos() {
+        this.Id = 0;
+        this.IdModeloConsultoria = 0;
+        this.IdModeloCliente = 0;
+    },
+    AvaliacaoDiaria: function AvaliacaoDiaria() {
+        this.Id = 0;
+        this.IdColaboradorAvaliado = '';
+        this.IdColaboradorAvaliador = '';
+        this.Data = '';
+        this.IdFormularioResposta = 0;
+        this.IdCompetencia = '';
+        this.FormularioResposta = new $.Classes.FormularioResposta;
+    },
+    ConfiguracaoAvaliacao: function ConfiguracaoAvaliacao() {
+        this.Id = 0;
+        this.IdAvaliacao = 0;
+        this.TipoEntidadeMeta = 0;
+        this.Peso = 0;
+    },
+    GrupoTipoCompetencia: function GrupoTipoCompetencia() {
+        this.Id = 0;
+        this.IdEmpresa = 0;
+        this.Ordem = 0;
+        this.Nome = '';
+        this.Descricao = '';
+    },
+    NivelComplexidade: function NivelComplexidade() {
+        this.Id = 0;
+        this.IdEmpresa = 0;
+        this.Nome = '';
+    },
+    ConfigurarEtapasPeriodo: function ConfigurarEtapasPeriodo() {
+        this.Id = 0;
+        this.Etapa = 0;
+        this.DataInicio = '';
+        this.DataFim = '';
+        this.IdPeriodo = 0;
+    },
+    PDI_Filtro: function PDI_Filtro() {
+        this.IdPeriodoDeAvaliacao = 0;
+        this.IdNivelComplexidade = 0;
+        this.IdDepartamento = 0;
+        this.IdSuperior = 0;
+    },
+    Instrucao: function Instrucao()
+    {
+        this.IdEmpresa = 0;
+        this.IdTipoInstrucao = 0;
+        this.HTML = "";
+        this.ArquivoInstrucao = []
+    }
+}

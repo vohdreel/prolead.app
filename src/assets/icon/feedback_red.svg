@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="27.747" height="27.747" viewBox="0 0 27.747 27.747">
+  <g id="feedback_red" transform="translate(0 0)">
+    <path id="path-1_21_" d="M3,1.5A1.5,1.5,0,1,1,1.5,0,1.5,1.5,0,0,1,3,1.5Z" transform="translate(16.648 8.892)" fill="#e56563"/>
+    <path id="path-2_21_" d="M3,1.5A1.5,1.5,0,1,1,1.5,0,1.5,1.5,0,0,1,3,1.5Z" transform="translate(8.035 8.892)" fill="#e56563"/>
+    <path id="path-3_21_" d="M.617,5.45A.617.617,0,0,1,0,4.832,4.811,4.811,0,0,1,4.778,0H6.858a4.8,4.8,0,0,1,4.778,4.806.617.617,0,1,1-1.234,0A3.561,3.561,0,0,0,6.858,1.235H4.778a3.574,3.574,0,0,0-3.543,3.6A.617.617,0,0,1,.617,5.45Z" transform="translate(8.146 16.138)" fill="#e56563"/>
+    <g id="Elipse_548" data-name="Elipse 548" transform="translate(0 0)" fill="none" stroke="#e56563" stroke-width="2">
+      <ellipse cx="13.874" cy="13.874" rx="13.874" ry="13.874" stroke="none"/>
+      <ellipse cx="13.874" cy="13.874" rx="12.874" ry="12.874" fill="none"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="23.796" height="23.215" viewBox="0 0 23.796 23.215">
+  <g id="double_arrow" transform="translate(-191.792 -234.123)">
+    <g id="next" transform="translate(191.792 234.122)">
+      <path id="Chevron_Right_1_" d="M66.556,10.779,56.116.343A1.172,1.172,0,0,0,54.457,2l9.612,9.608-9.61,9.608a1.173,1.173,0,0,0,1.66,1.657l10.44-10.436A1.183,1.183,0,0,0,66.556,10.779Z" transform="translate(-54.113 0)" fill="#474b51"/>
+    </g>
+    <g id="next-2" data-name="next" transform="translate(202.806 234.122)">
+      <path id="Chevron_Right_1_2" data-name="Chevron_Right_1_" d="M66.556,10.779,56.116.343A1.172,1.172,0,0,0,54.457,2l9.612,9.608-9.61,9.608a1.173,1.173,0,0,0,1.66,1.657l10.44-10.436A1.183,1.183,0,0,0,66.556,10.779Z" transform="translate(-54.113 0)" fill="#474b51"/>
+    </g>
+  </g>
+</svg>

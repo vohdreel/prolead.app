@@ -1,0 +1,130 @@
+<ion-content padding>
+    <form (ngSubmit)="login(usuario)" #usuerForm="ngForm">
+        <ion-list>
+
+            <!-- <ion-list>
+        <ion-list-header>
+          Items with Labels
+        </ion-list-header>
+        <ion-item>
+          <ion-label>Label</ion-label>
+        </ion-item>
+
+        <ion-item>
+          <ion-icon item-right name="ios-eye-outline"></ion-icon>
+          <ion-label>Label with Icon</ion-label>
+        </ion-item>
+      </ion-list> -->
+
+            <!-- <ion-grid>
+        <ion-row>
+          <ion-col>
+            <div>1 of 2</div>
+          </ion-col>
+          <ion-col>
+            <div>2 of 2</div>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <div>1 of 3</div>
+          </ion-col>
+          <ion-col>
+            <div>2 of 3</div>
+          </ion-col>
+          <ion-col>
+            <div>3 of 3</div>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <div>
+              <button type="button" class="btn btn-dark btn-block">Dark</button>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid> -->
+
+            <ion-grid>
+                <ion-row>
+                    <ion-col>
+                        <div class="w-100 center-content flex" style="height: 250px">
+                            <img src="../../assets/imgs/prolead_horizontal.svg">
+                        </div>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <h3>Login</h3>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <ion-item class="inner-addon left-addon r-50 shade-project">
+                            <ion-icon name="custom-prolead-user" class="right" item-left></ion-icon>
+                            <ion-input type="email" required name="email" [(ngModel)]="usuario.email" class="border-bottom border-sublinha"></ion-input>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <ion-item class="inner-addon left-addon right-addon r-50 shade-project">
+                            <ion-icon name="custom-prolead-password" class="left" item-left></ion-icon>
+                            <ion-input type="{{type}}" name="senha" clearOnEdit="false" [(ngModel)]="usuario.senha" required class="border-bottom border-sublinha"></ion-input>
+                            <ion-icon item-content class="passwordToggler right" name="eye" [hidden]="!show" (click)="MostrarSenha()">
+                            </ion-icon>
+                            <ion-icon item-content class="passwordToggler right" name="eye-off" [hidden]="show" (click)="MostrarSenha()">
+                            </ion-icon>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col class="inline">
+                        <div class="text-center inline w-60">
+                            <ion-checkbox color="blue" name="MantenhameConectado" class="border-branco #333333" [(ngModel)]="ManterConectado">
+                            </ion-checkbox>
+                            <label class="keep-logged-font">Mantenha-me Conectado</label>
+
+                        </div>
+                        <div class="text-center w-40">
+                            <a (click)="onEsqueciMinhaSenha()" class="forget-password-font">Esqueceu sua senha?</a>
+                        </div>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <div class="w-100 center-content flex" style="height: 150px">
+
+                            <button type="submit" class="r-50 w-50 orange-grad" style="display: inline-block;" ion-button full>Entrar</button>
+                        </div>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+
+            <!-- Old 
+
+      <ion-grid>
+        <ion-col col-1 class="p-0 olho">
+          <ion-item class="p-0 mt-32 mrl-0">
+            <ion-icon class="branco" name="eye" [hidden]="!show" (click)="MostrarSenha()"></ion-icon>
+            <ion-icon class="branco" name="eye-off" [hidden]="show" (click)="MostrarSenha()"></ion-icon>
+          </ion-item>
+        </ion-col>
+        <div>
+          <button type="submit" class="r-5" ion-button full>Entrar</button>
+        </div>
+
+        <ion-row class="pt-10">
+          <div class="text-center w-100">
+            <label class="branco">Mantenha-me Conectado</label>
+            <ion-checkbox color="blue" name="MantenhameConectado" class="border-branco" [(ngModel)]="ManterConectado">
+            </ion-checkbox>
+          </div>
+        </ion-row>
+        <ion-row>
+          <div class="text-center w-100">
+            <a (click)="onEsqueciMinhaSenha()" class="branco">Esqueci a Senha</a>
+          </div>
+        </ion-row>
+      </ion-grid>-->
+        </ion-list>
+    </form>
+</ion-content>

@@ -1,0 +1,22 @@
+page-selecionar-avaliacao {
+    div.toolbar-background {
+        background-color: color($colors, competencias2);
+    }
+    div.toolbar-title {
+        color: white;
+    }
+    ion-item{
+
+        &:nth-child(2n){
+            background-color: color($colors, competencias4);
+        }
+
+        p{
+            color: color($colors, cinza1) !important;
+        }
+
+        h2{
+            color: color($colors, preto) !important;
+        }
+    }
+}

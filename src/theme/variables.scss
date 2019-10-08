@@ -1,0 +1,86 @@
+// Ionic Variables and Theming. For more info, please see:
+// http://ionicframework.com/docs/theming/
+// Font path is used to include ionicons,
+// roboto, and noto sans fonts
+$font-path: "../assets/fonts";
+// The app direction is used to include
+// rtl styles in your app. For more info, please see:
+// http://ionicframework.com/docs/theming/rtl-support/
+$app-direction: ltr;
+@import "ionic.globals";
+// Shared Variables
+// --------------------------------------------------
+// To customize the look and feel of this app, you can override
+// the Sass variables found in Ionic's source scss files.
+// To view all the possible Ionic variables, see:
+// http://ionicframework.com/docs/theming/overriding-ionic-variables/
+// Named Color Variables
+// --------------------------------------------------
+// Named colors makes it easy to reuse colors on various components.
+// It's highly recommended to change the default colors
+// to match your app's branding. Ionic uses a Sass map of
+// colors so you can add, rename and remove colors as needed.
+// The "primary" color is the only required color in the map.
+$colors: (
+/*-Padrões:                 */
+
+primary : #598abf, secondary : #32db64, danger : #f53d3d, light : #f4f4f4, dark : #222222,
+/*-CINZA:                   */
+
+cinza1 : #595959, cinza2 : #7F7F7F, cinza3 : #A5A5A5, cinza4 : #CBCBCB, cinza5 : #F1F1F1, cinza9 : #999999,
+/*-COMPETÊNCIAS:            */
+
+competencias1: #5B819C, competencias2: #8BA6B9, competencias3: #ACC0CD, competencias4: #CDD9E1,
+/*-SUCESSÃO:                */
+
+sucessao1 : #9291BB, sucessao2 : #B2B1CF, sucessao3 : #C8C8DD, sucessao4 : #DEDEEA,
+/*-DESEMPENHO:              */
+
+desempenho1 : #60817E, desempenho2 : #AFC0BE, desempenho3 : #8FA6A4, desempenho4 : #9CC6EB,
+/*-MATRIZ DE AVALIAÇÃO:     */
+
+matriz1 : #9FCDA0, matriz2 : #BBDCBC, matriz3 : #CFE6CF, matriz4 : #E2F0E2,
+/*-DIÁRIO DE BORDO:         */
+
+diario1 : #8EBEDC, diario2 : #AFD1E6, diario3 : #C6DEED, diario4 : #DDEBF5,
+/*-ESTRUTURA ORGANIZACIONAL:*/
+
+estrutura1 : #F5A964, estrutura2 : #F8C292, estrutura3 : #FAD4B1, estrutura4 : #FCE5D0,
+/*-PESQUISA DE CLIMA:       */
+
+pesquisa1 : #605F7C, pesquisa2 : #8F8EA3, pesquisa3 : #AFAEBD, pesquisa4 : #CFCED7,
+/*-RECRUTAMENTO E SELEÇÃO:  */
+
+recrutamento1: #F1C59E, recrutamento2: #F5D6BB, recrutamento3: #FBEEE2, recrutamento4: #FBEEE2, logo2: #474C52, // /*-Cores do logo            */  logo1:         #F18523, logo2:         #474C52,
+
+/*-Cores Comuns             */
+
+branco : #ffffff, verde : #AFD154, amarelo : #F8FF4D, vermelho : #f53d3d, preto : #000000, sublinha : #c8c7cc, );
+// primary:   #488aff,
+// App iOS Variables
+// --------------------------------------------------
+// iOS only Sass variables can go here
+// App Material Design Variables
+// --------------------------------------------------
+// App Windows Variables
+// --------------------------------------------------
+// Windows only Sass variables can go here
+// App Theme
+// --------------------------------------------------
+// Ionic apps can have different themes applied, which can
+// then be future customized. This import comes last
+// so that the above variables are used and Ionic's
+// default are overridden.
+@import "ionic.theme.default";
+@import "customColorClasses.scss";
+// Ionicons
+// --------------------------------------------------
+// The premium icon font for Ionic. For more info, please see:
+// http://ionicframework.com/docs/ionicons/
+@import "ionic.ionicons";
+@import "https://use.fontawesome.com/releases/v5.5.0/css/all.css";
+@import "./node_modules/bootstrap/dist/css/bootstrap";
+// Fonts
+// --------------------------------------------------
+@import "roboto";
+@import "noto-sans";

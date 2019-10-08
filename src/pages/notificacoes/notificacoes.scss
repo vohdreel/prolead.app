@@ -1,0 +1,20 @@
+page-notificacoes {
+    div.toolbar-background {
+        background-color: color($colors, estrutura1);
+    }
+    div.toolbar-title {
+        color: white;
+    }
+
+    textarea[disabled]{
+        background-color: white;
+    }
+
+    .ion-ios-notifications{
+        color: color($colors, estrutura1);
+    }
+
+    .lido{
+        color: color($colors, cinza2) !important; 
+    }
+}

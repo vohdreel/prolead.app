@@ -1,0 +1,30 @@
+page-responder-questionario {
+
+        div.toolbar-background {
+            background-color: color($colors, competencias2);
+        }
+        div.toolbar-title {
+            color: white;
+        }
+        div.previa{
+            background-color: white;
+            overflow:hidden;
+            font-size: 1.6rem;
+
+            &:hover{
+                overflow:auto;
+            }
+        }
+
+        div.respondido{
+            border-left: 8px solid #2eff2e;
+            padding-left: 8px !important;
+        }
+
+        div.scroll-content{
+            padding-left: 0px !important;
+        }
+        table{
+            width: 100% !important;
+        }
+}

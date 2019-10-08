@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-navbar>
+      <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+    <ion-title>Competências</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+    <ion-card class="r-5" [hidden]="!this.permissoes.deveHabilitarResponderAvaliacao">
+      <ion-card-content class="p-0 border border-competencias3">
+        <ion-card-title class="bg-competencias3 branco text-center mtb-0">
+          Responder Avaliação
+        </ion-card-title>
+        <ion-list>
+          <button [hidden]="!this.permissoes.temAutoAvaliacao" ion-item (click)="onClickResponderQuestionario('Auto Avaliação')">Auto Avaliação</button>
+
+          <button [hidden]="!this.permissoes.temAvaliacaoLiderados" ion-item (click)="onClickResponderQuestionario('Avaliação dos Liderados')">Avaliação dos Liderados</button>
+
+          <button [hidden]="!this.permissoes.temAvaliacaoPares" ion-item (click)="onClickResponderQuestionario('Avaliação de Pares')">Avaliação de Pares</button>
+
+          <button [hidden]="!this.permissoes.temAvaliacaoEquipe" ion-item (click)="onClickResponderQuestionario('Avaliação de Lider')">Avaliação de Membros de Equipe</button>
+
+          <!-- <button [hidden]="!this.permissoes.temAvaliacaoConsenso" ion-item>Avaliação de Consenso</button> -->
+
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+    
+    <!-- <ion-card class="r-5" [hidden]="!this.permissoes.deveHabilitarResultadosLiderados && !this.permissoes.deveHabilitarMeusResultados">
+      <ion-card-content class="p-0 border border-competencias3">
+        <ion-card-title class="bg-competencias3 branco text-center mtb-0">
+          Visualizar Resultados
+        </ion-card-title>       
+        <ion-list>
+          <button [hidden]="!this.permissoes.deveHabilitarMeusResultados" ion-item>Auto Avaliação</button>
+          
+          <button [hidden]="!this.permissoes.deveHabilitarResultadosLiderados" ion-item>Avaliação dos Liderados</button>
+        </ion-list>
+      </ion-card-content>
+    </ion-card> -->
+    
+    <!-- <ion-card class="r-5">
+      <ion-card-content class="p-0 border border-competencias3">
+        <ion-card-title class="bg-competencias3 branco text-center mtb-0">
+          PDIs
+        </ion-card-title>
+        <ion-list>
+          <button ion-item>Acompanhar PDI</button>
+          
+          <button ion-item>Lançar PDI</button>
+          
+          <button ion-item>Validar PDI</button>
+        </ion-list>
+      </ion-card-content>
+    </ion-card> -->
+
+    <p [hidden]="this.permissoes.deveHabilitarResponderAvaliacao">Não há opções disponiveis por aqui, para acesso completo do sistema acesse: pr.prolead.com.br</p>
+    
+</ion-content>

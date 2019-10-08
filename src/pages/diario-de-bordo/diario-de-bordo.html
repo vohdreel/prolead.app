@@ -1,0 +1,211 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+        <ion-title>Diário de bordo</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+        <ion-grid>
+            <ion-row>
+                <ion-col class="center-content">
+                    <img src="../../assets/icon/diario_feedback_icon.svg" />
+                    <h5>DIÁRIO DE FEEDBACK</h5>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+        <ion-grid>
+            <ion-row>
+                <ion-col class="center-content">
+                    <img src="../../assets/icon/new_feedback.svg" (click)="Novo()" />
+                    <h5>NOVO FEEDBACK</h5>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-list>
+
+    <ion-list>
+        <ion-grid class="center-content">
+            <ion-row class="portlet w-80" (click)="Lista('atribuidos')">
+                <div class="w-50 text-left" style="height: 160px">
+                    <div>
+                        <h5>ATRIBUÍDOS</h5>
+                        <p>Todos os Feedbacks atribuídos</p>
+                    </div>
+                    <div>
+                        <p> {{totalAtribuidos}}</p>
+                    </div>
+                </div>
+                <div class="w-50 flex-bottom" style="height: 160px">
+                    <div>
+                        <img src="../../assets/icon/atribuidos_icon.svg" style="
+              float: right;" />
+                    </div>
+                </div>
+            </ion-row>
+            <ion-row> </ion-row>
+        </ion-grid>
+        <ion-grid class="center-content">
+            <ion-row class="portlet w-80" (click)="Lista('recebidos')">
+                <div class="w-50 text-left" style="height: 160px">
+                    <div>
+                        <h5>RECEBIDOS</h5>
+                        <p>Todos os Feedbacks recebidos</p>
+                    </div>
+                    <div>
+                        <p> {{totalRecebidas}}</p>
+                    </div>
+                </div>
+                <div class="w-50 flex-bottom">
+                    <div>
+                        <img src="../../assets/icon/recebidos_icon.svg" style="
+              float: right;" />
+                    </div>
+                </div>
+            </ion-row>
+            <ion-row> </ion-row>
+        </ion-grid>
+    </ion-list>
+</ion-content>
+
+<!--
+<ion-content padding>
+  <div class="mrl-12">
+    <button [hidden]="!this.permissoes.podeAtribuir" full ion-button round (click)="Novo()"
+      class="border-diario2 text-center border logo2 degrade-diario2-diario3-diario1">
+      <ion-icon slot="icon-only" class="bolder logo2 custom-diario font-25px"></ion-icon>
+      <span class="font-19px mt-3">  Atribuir feedback</span>
+    </button>
+  </div>
+
+
+  <ion-card class="r-5 mt-25 mb-35">
+    <ion-card-content class="p-0 border border-diario2">
+      <ion-card-title class="degrade-diario2-diario3-diario1 logo2 text-center mtb-0">
+        Status das avaliações recebidas
+      </ion-card-title>
+      <ion-list class="ptb-8 bg-diario4-opacity">
+
+        <ion-row>
+
+          <ion-col col-4 class="text-center">
+            <i class="far fa-smile font-50 verde"></i>
+          </ion-col>
+
+          <ion-col col-4 class="text-center">
+            <i class="far fa-meh font-50 amarelo"></i>
+          </ion-col>
+
+          <ion-col col-4 class="text-center">
+            <i class="far fa-frown font-50 vermelho"></i>
+          </ion-col>
+
+          
+        </ion-row>
+
+        <ion-row>
+
+            <ion-col col-4 class="text-center">
+              {{totalAvaliacoesBoa}}%
+            </ion-col>
+  
+            <ion-col col-4 class="text-center">
+              {{totalAvaliacoesMeh}}%
+            </ion-col>
+  
+            <ion-col col-4 class="text-center">
+              {{totalAvaliacoesRuim}}%
+            </ion-col>
+
+        </ion-row>
+
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+
+  <ion-list class="bg-diario4-opacity border-diario2 border mrl-12 r-5">
+    <ion-row (click)="this.permissoes.podeAtribuir ? Lista('atribuidos') : ''">
+      <ion-col col-8>
+        <ion-row>
+          <ion-col col-12 class="font-20px bolder">
+            Atribuidos
+          </ion-col>
+          <ion-col col-12 class="font-18px bolder">
+            {{totalAtribuidos}}
+          </ion-col>
+          <ion-col col-12 class="font-12px">
+            Todos os seus feedbacks atribuidos
+          </ion-col>  
+        </ion-row>        
+      </ion-col>
+      <ion-col col-4 class="text-right align-middle height-135">
+        <img class="max-height-125" src="../../assets/imgs/feedbacks/enviarFeedback.png" />
+      </ion-col>
+    </ion-row>
+  </ion-list>
+
+
+  <ion-list class="bg-diario4-opacity border-diario2 border mrl-12 r-5">
+    <ion-row (click)="this.permissoes.podeVisualizar ? Lista('recebidos') : ''">
+      <ion-col col-6>
+        <ion-row>
+          <ion-col col-12 class="font-20px bolder">
+            Recebidos
+          </ion-col>
+          <ion-col col-12 class="font-18px bolder">
+            {{totalRecebidas}}
+          </ion-col>
+          <ion-col col-12 class="font-12px">
+            Todos os seus feedbacks recebidos
+          </ion-col>
+        </ion-row>
+      </ion-col>
+      <ion-col col-6 class="text-right align-middle prl-0 height-135">
+        <img class="max-height-125" src="../../assets/imgs/feedbacks/receberFeedback.png" />
+      </ion-col>
+    </ion-row>
+  </ion-list>
+
+<p> região comentada anteriomente</p>
+   <ion-card [hidden]="!this.permissoes.podeAtribuir" class="r-5">
+    <ion-card-content class="p-0 border border-diario2">
+      <ion-card-title class="bg-diario2 branco text-center mtb-0">
+        Atribuir Feedback
+      </ion-card-title>
+      <ion-list>
+  
+        <button [hidden]="!this.permissoes.podeAtribuirAutoFeedback" ion-item (click)="Lancar('Auto Feedback')">Auto Feedback</button>
+
+        <button [hidden]="!this.permissoes.podeAtribuirFeedbackLiderado || Colaborador.perfil == 'Colaborador'" ion-item (click)="Lancar('Feedback dos Liderados')">Feedback aos Liderados</button>
+
+        <button [hidden]="!this.permissoes.podeAtribuirFeedbackLider || Colaborador.perfil == 'Gestor'" ion-item (click)="Lancar('Feedback do Lider')">Feedback ao Lider</button>
+
+        <button [hidden]="!this.permissoes.podeAtribuirFeedbackColaborador" ion-item (click)="Lancar('Feedback Geral')">Feedback Geral</button>
+
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card [hidden]="!this.permissoes.podeVisualizar" class="r-5">
+      <ion-card-content class="p-0 border border-diario2">
+        <ion-card-title class="bg-diario2 branco text-center mtb-0">
+          Visualizar Feedback
+        </ion-card-title>
+        <ion-list>
+
+            <button [hidden]="!this.permissoes.podeVisualizarAutoFeedback" ion-item (click)="Visualizar('Meus Feedbacks')">Meus Feedbacks</button>
+
+            <button [hidden]="!this.permissoes.podeVisualizarFeedbackLiderado || Colaborador.perfil == 'Colaborador'" ion-item (click)="Visualizar('Feedbacks dos Liderados')">Feedbacks dos Liderados</button>
+
+            <button [hidden]="!this.permissoes.podeVisualizarFeedbackLider || Colaborador.perfil == 'Gestor'" ion-item (click)="Visualizar('Feedback do Lider')">Feedback do Lider</button>
+
+            <button [hidden]="!this.permissoes.podeVisualizarFeedbackColaborador" ion-item (click)="Visualizar('Feedbacks Gerais')">Feedbacks Gerais</button>
+  
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+</ion-content> -->
