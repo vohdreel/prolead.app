@@ -50,10 +50,10 @@
         </ion-grid>
         <ion-grid class="center-content">
             <ion-row class="portlet-new-feedback w-90">
-                <div (click)="Mostrar()" class="w-100 flex">
+                <div (click)="MostrarLiderados()" class="w-100 flex">
                     <div class="w-50 text-left text-padding" style="height: 160px">
                         <h6>FEEDBACK AO LIDERADO</h6>
-                        <p>Avalie os seus colaboradores.</p>
+                        <p>Avalie os seus liderados.</p>
                     </div>
                     <div class="w-50 flex-bottom">
                         <div>
@@ -62,11 +62,46 @@
                         </div>
                     </div>
                 </div>
-                <ion-list [hidden]="mostrar" class="pb-8" style="margin-top: 10px; padding: 10px; overflow-x: hidden">
-                    <ion-searchbar (ionInput)="Buscar()" id="BuscadorLiderado" placeholder="Buscar" [(ngModel)]="inputLiderado"></ion-searchbar>
+                <ion-list [hidden]="mostrarLidera" class="pb-8 w-100" style="margin-top: 10px; padding: 10px; overflow-x: hidden">
+                    <div class="w-100 center-content pad-5">
+                        <input (keyup)="BuscarLiderados()" id="Buscador" placeholder="Buscar" [(ngModel)]="inputLiderado" class="fdb-lista-filtro w-90" />
+                    </div>
                     <ion-row class="max-height-200 overflowAuto" style="overflow-x: hidden;">
                         <ion-col col-4 *ngFor="let i of liderados" class="liderados text-center">
                             <ion-row (click)="Lancar('Feedback dos Liderados', i.Id)">
+                                <ion-col col-12>
+                                    <img src="{{i.Foto}}" class="circle height-40 width-40 item-center">
+                                </ion-col>
+                                <ion-col col-12 class="text-center">
+                                    {{i.Nome}}
+                                </ion-col>
+                            </ion-row>
+                        </ion-col>
+                    </ion-row>
+                </ion-list>
+            </ion-row>
+        </ion-grid>
+        <ion-grid class="center-content">
+            <ion-row class="portlet-new-feedback w-90">
+                <div (click)="MostrarColaboradores()" class="w-100 flex">
+                    <div class="w-50 text-left text-padding" style="height: 160px">
+                        <h6>FEEDBACK AO COLABORADOR</h6>
+                        <p>Avalie outros colaboradores.</p>
+                    </div>
+                    <div class="w-50 flex-bottom">
+                        <div>
+                            <img src="../../assets/icon/feedback_colaborador_icon.svg" style="
+                float: right;" />
+                        </div>
+                    </div>
+                </div>
+                <ion-list [hidden]="mostrarColab" class="pb-8 w-100" style="margin-top: 10px; padding: 10px; overflow-x: hidden">
+                    <div class="w-100 center-content pad-5">
+                        <input (keyup)="BuscarColaboradores()" id="Buscador" placeholder="Buscar" [(ngModel)]="inputColaborador" class="fdb-lista-filtro w-90" />
+                    </div>
+                    <ion-row class="max-height-200 overflowAuto" style="overflow-x: hidden;">
+                        <ion-col col-4 *ngFor="let i of colaboradores" class="colaborador text-center">
+                            <ion-row (click)="Lancar('Feedback dos Colaboradores', i.Id)">
                                 <ion-col col-12>
                                     <img src="{{i.Foto}}" class="circle height-40 width-40 item-center">
                                 </ion-col>

@@ -1,26 +1,26 @@
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>Recuperar senha</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>Recuperar senha</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
 
-  <div center text-center>
-    <img src="/assets/imgs/logoProlead.png" alt="logo ProLead" class="mt-20">
-  </div>
+    <div center text-center>
+        <img src="/assets/imgs/prolead_horizontal.svg" alt="logo ProLead" class="mt-20">
+    </div>
 
 
     <ion-item class="mb-10">
-      <ion-label floating>Usuario</ion-label>
-      <ion-input type="text" [(ngModel)]="usuario" class="border-bottom border-sublinha"></ion-input>
+        <ion-label floating>Usuario</ion-label>
+        <ion-input type="text" [(ngModel)]="usuario" class="border-bottom border-sublinha"></ion-input>
     </ion-item>
 
     <div padding>
-      <button (click)="onUserSubmit()" class="r-5" ion-button full><ion-icon name="md-mail"></ion-icon>  Enviar email de recuperação</button>
+        <button (click)="onUserSubmit()" class="r-50 orange-grad" ion-button full><ion-icon name="md-mail"></ion-icon>  Enviar email de recuperação</button>
     </div>
-    
+
 </ion-content>

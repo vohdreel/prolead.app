@@ -27,4 +27,12 @@ page-novo-feedback {
     .colaborador-nome {
         font-size: 10px;
     }
+    .fdb-lista-filtro {
+        outline: 0;
+        border-width: 0 0 2px;
+        border-color: #e3e3e4;
+        &:focus {
+            border-color: rgb(179, 179, 179);
+        }
+    }
 }

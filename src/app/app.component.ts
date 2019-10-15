@@ -168,9 +168,12 @@ export class MyApp {
       }
       localStorage.setItem("ManterConectado", "false");
       localStorage.setItem("Senha", "");
+      this.nav.setRoot(page.component);
+      return;
+
     }
     this.changeColor(page.seletor);
-    this.nav.setRoot(page.component);
+    this.nav.push(page.component);
   }
 
   changeColor(title: string) {

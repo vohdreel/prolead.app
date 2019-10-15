@@ -10,6 +10,7 @@ import {
 } from "../../../app/app.url";
 import { Colaborador } from "../../../models/Colaborador";
 import { LancarFeedbackPage } from "../lancar-feedback/lancar-feedback";
+import * as $ from 'jquery';
 
 /**
  * Generated class for the NovoFeedbackPage page.
@@ -26,9 +27,11 @@ import { LancarFeedbackPage } from "../lancar-feedback/lancar-feedback";
 export class NovoFeedbackPage {
   permissoes = {} as permissoesFeedback;
   colaborador = new Colaborador();
-  mostrar:Boolean = false;
+  mostrarColab:Boolean = true;
+  mostrarLidera:Boolean = true;
   input = "";
   inputLiderado = "";
+  inputColaborador = "";
 
   liderados = [];
   colaboradores = [];
@@ -43,14 +46,19 @@ export class NovoFeedbackPage {
     this.ListarColaboradores();
   }
 
-  Mostrar(){
-    this.mostrar = !this.mostrar;
+  MostrarColaboradores(){
+    this.mostrarColab = !this.mostrarColab;
   }
+
+  
+  MostrarLiderados(){
+    this.mostrarLidera = !this.mostrarLidera;
+  }
+
   ListarColaboradores() {
     let Parametros = "";
 
     if (this.permissoes.podeAtribuirFeedbackColaborador) {
-      this.mostrar = true;
       Parametros =
         URL_BASE + URL_ListarColabores + "?idColab=" + this.colaborador.id;
       this.http
@@ -59,6 +67,7 @@ export class NovoFeedbackPage {
         .subscribe(
           resp => {
             this.colaboradores = resp.Lista;
+            console.log(resp.Lista);
           },
           err => {
             this.CustomMethods.okAlert(
@@ -71,7 +80,6 @@ export class NovoFeedbackPage {
 
     
     if (this.permissoes.podeAtribuirFeedbackLiderado) {      
-      this.mostrar = false;
         Parametros =
           URL_BASE + URL_ListarLiderados + "?idColab=" + this.colaborador.id;
         this.http
@@ -93,34 +101,39 @@ export class NovoFeedbackPage {
       
   }
 
-  BuscarLiderado() {
+  BuscarColaboradores() {
     var filter, colaborador, i;
-    filter = this.inputLiderado.toUpperCase();
-    colaborador = document.getElementsByClassName("colaboradorLiderado");
+    filter = this.inputColaborador.toUpperCase();
+    colaborador = $(".colaborador");
+    console.log(colaborador);
 
     for (i = 0; i < colaborador.length; i++) {
-      if (this.liderados[i].Nome.toUpperCase().indexOf(filter) > -1) {
-        colaborador[i].style.display = "";
+      if (this.colaboradores[i].Nome.toUpperCase().indexOf(filter) > -1) {
+        
+        colaborador.eq(i).show();
       } else {
-        colaborador[i].style.display = "none";
+        console.log(filter);
+        colaborador.eq(i).hide();
       }
     }
   }
 
-  Buscar() {
-    var filter, colaborador, i;
-    filter = this.input.toUpperCase();
-    colaborador = document.getElementsByClassName("colaborador");
+  BuscarLiderados() {
+    var filter, liderado, i;
+    filter = this.inputLiderado.toUpperCase();
+    liderado = $(".liderados");
+    console.log(liderado);
 
-    for (i = 0; i < colaborador.length; i++) {
-      if (this.colaboradores[i].Nome.toUpperCase().indexOf(filter) > -1) {
-        colaborador[i].style.display = "";
+    for (i = 0; i < liderado.length; i++) {
+      if (this.liderados[i].Nome.toUpperCase().indexOf(filter) > -1) {
+        
+        liderado.eq(i).show();
       } else {
-        colaborador[i].style.display = "none";
+        console.log(filter);
+        liderado.eq(i).hide();
       }
     }
-  } 
-
+  }
   Lancar(titulo, id) {
     this.navCtrl.push(LancarFeedbackPage, {tit: titulo, idColab: id});
   }

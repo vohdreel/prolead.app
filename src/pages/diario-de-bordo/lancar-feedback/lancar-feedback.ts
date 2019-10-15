@@ -309,11 +309,14 @@ export class LancarFeedbackPage {
     filter = this.input.toUpperCase();
     competencia = $(".competencia");
     console.log(competencia);
+    console.log(this.competencias)
 
     for (i = 0; i < competencia.length; i++) {
       if (this.competencias[i].Nome.toUpperCase().indexOf(filter) > -1) {
+        
         competencia.eq(i).show();
       } else {
+        console.log(filter);
         competencia.eq(i).hide();
       }
     }

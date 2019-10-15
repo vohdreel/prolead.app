@@ -72,9 +72,6 @@ export class HomePage {
         )
         .map(res => res.json())
         .subscribe(resp => {
-          this.CustomMethods.okAlert(
-            resp
-          );
 
         }, err => { });
     }
