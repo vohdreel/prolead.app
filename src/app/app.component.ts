@@ -73,7 +73,7 @@ export class MyApp {
             ];
             if (resp.AvaliacaoDiaria) {
               this.pages.push({
-                title: "Diário de bordo",
+                title: "Diário de Feedback",
                 icon: "custom-prolead-diario",
                 component: DiarioDeBordoPage,
                 seletor: "DiarioDeBordoPage"

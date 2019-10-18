@@ -123,7 +123,7 @@ export class LancarFeedbackPage {
     
     switch (e.target.value) {
       case '1': {
-        $("#respRuim").addClass("selecionado");
+        $("#respBom").addClass("selecionado");
         break;
       }
       case '2': {
@@ -131,7 +131,7 @@ export class LancarFeedbackPage {
         break;
       }
       case '3': {
-        $("#respBom").addClass("selecionado");
+        $("#respRuim").addClass("selecionado");
       }
         break;
     }

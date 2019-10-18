@@ -103,8 +103,7 @@ export class LogInPage {
           } else {
             if (err.type == 3) {
               this.customMethods.okAlert(
-                err.toString()
-                + "\nA aplicação esta offline por algum motivo inesperado, tente novamente mais tarde"
+                "\nA aplicação esta offline por algum motivo inesperado, tente novamente mais tarde"
               );
             } else if (err.type == 2) {
               this.customMethods.okAlert("Usuário e/ou senha inválido(s)");

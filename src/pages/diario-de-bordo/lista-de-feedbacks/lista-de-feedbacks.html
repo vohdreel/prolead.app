@@ -20,13 +20,13 @@
         <ion-grid class="grid">
             <ion-row class="center-content filter-box">
                 <div class="btn-serch">
-                    <ion-icon name="custom-prolead-search" class="font-20"></ion-icon>
+                    <!-- <ion-icon name="custom-prolead-search" class="font-20"></ion-icon> -->
                 </div>
                 <div class="w-80">
-                    <ion-input type="text" placeholder="Pesquisar..."></ion-input>
+                    <ion-input type="text" (keyup)="Buscar()" [(ngModel)]="inputAutorFeedback" placeholder="Pesquisar..."></ion-input>
                 </div>
                 <div class="btn-filter">
-                    <ion-icon name="custom-prolead-filter" class="font-20"></ion-icon>
+                    <!-- <ion-icon name="custom-prolead-filter" class="font-20"></ion-icon> -->
                 </div>
             </ion-row>
         </ion-grid>
@@ -103,13 +103,13 @@
         <!-- lista de feedbacks -->
         <div class="center-content">
             <div class="flexgrid-lista-feedbacks">
-                <div class="box" *ngFor="let i of Feedbacks" (click)="abrirFeedback(i.Id); i.Lido = true; i.GestorLido = true;" [ngClass]="{'new-Feedback': !i.Lido}">
+                <div class="box autorFeedback" *ngFor="let i of Feedbacks" (click)="abrirFeedback(i.Id); i.Lido = true; i.GestorLido = true;" [ngClass]="{'new-Feedback': !i.Lido}">
                     <div class="perfil-feedback-coladobador">
                         <div class="w-40 center-content flex img-holder">
-                            <img src="{{i.IdAvaliador == i.IdAvaliado ? i.FotoAvaliador : i.FotoAvaliado}}" class="circle">
+                            <img src="{{titulo == 'atribuidos' ? i.FotoAvaliado : i.FotoAvaliador}}" class="circle">
                         </div>
-                        <div class="w-70 name-container">
-                            <span style="margin-top: 15px">{{i.IdAvaliador == i.IdAvaliado ? i.NomeAvaliador : i.NomeAvaliado}}</span>
+                        <div class="w-70 name-container" style="align-self: center;">
+                            <span style="margin-top: 15px">{{titulo =='atribuidos' ? i.NomeAvaliado : i.NomeAvaliador}}</span>
                         </div>
                     </div>
                     <div class="inicio-feedback">
@@ -117,8 +117,8 @@
                             {{i.NomeCompetencia}}
                         </div>
                     </div>
-                    <div class="data-feedback">
-                        <div class="w-50">
+                    <div class="data-feedback grey-text">
+                        <div class="w-50 grey-text">
                             <ion-icon name="custom-prolead-timer"></ion-icon>
                             <h6> {{i.DataHora}}</h6>
                         </div>

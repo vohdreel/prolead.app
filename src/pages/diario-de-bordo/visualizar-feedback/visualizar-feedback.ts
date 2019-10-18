@@ -185,10 +185,11 @@ export class VisualizarFeedbackPage {
       this.http.get(URL_BASE + URL_SalvarReplicaFeedback + "?replica=" + questao.Replica + "&id=" + questao.Id + "&idQuestao=" + id + "&idColab=" + this.Colaborador.id)
         .map(res => res.json()).subscribe(
           resp => {
-            this.CustomMethods.loader.dismiss();
+            //this.CustomMethods.loader.dismiss();
             if (resp.sucesso) {
-              //this.CustomMethods.okAlert("Réplica enviada com sucesso");
-              this.loadFeedback();
+              this.CustomMethods.okAlert("Réplica enviada com sucesso");
+              this.loadFeedback();              
+              this.PodeResponder = false;
             } else {
               this.CustomMethods.okAlert("Não foi possivel enviar réplica, verifique sua conexão com a internet e tente novamente");
             }

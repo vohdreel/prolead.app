@@ -19,6 +19,7 @@ page-lista-de-feedbacks {
                     display: inline-block;
                     vertical-align: middle;
                     font-size: 11px;
+                    color: #474B51;
                 }
             }
         }
@@ -30,6 +31,7 @@ page-lista-de-feedbacks {
             text-overflow: ellipsis;
             text-align: left;
             padding: 2px 0px 0px 5px;
+            color: #474B51;
         }
         .data-feedback {
             min-height: 25%;
@@ -120,6 +122,14 @@ page-lista-de-feedbacks {
             div {
                 //display: inline-block;
                 margin-top: 15px !important
+            }
+        }
+    }
+    .grey-text {
+        div {
+            ion-icon,
+            h6 {
+                color: rgb(179, 179, 179)
             }
         }
     }

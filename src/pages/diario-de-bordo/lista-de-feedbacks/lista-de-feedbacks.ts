@@ -5,6 +5,7 @@ import { CustomMethods } from '../../../app/GlobalMethods';
 import { Colaborador } from '../../../models/Colaborador';
 import { URL_BASE, URL_ListarFeedbacks } from '../../../app/app.url';
 import { VisualizarFeedbackPage } from '../visualizar-feedback/visualizar-feedback';
+import * as $ from 'jquery';
 
 @IonicPage()
 @Component({
@@ -15,7 +16,8 @@ export class ListaDeFeedbacksPage {
 
   titulo = "";
   contador = 10;
-  width = 60
+  width = 60;
+  inputAutorFeedback = "";
 
   Feedbacks = [];
 
@@ -63,7 +65,7 @@ export class ListaDeFeedbacksPage {
     }
   }
 
-  Data(data: string): Date{
+  Data(data: string): Date {
     //console.log(new Date(data.replace('/')));
     return new Date(data);
   }
@@ -109,7 +111,7 @@ export class ListaDeFeedbacksPage {
             this.contador = this.contador - 10
           } else {
             this.Feedbacks = this.Feedbacks.concat(resp.feedbacks);
-            
+
           }
 
           this.VerificarResultados();
@@ -135,7 +137,7 @@ export class ListaDeFeedbacksPage {
           } else {
             this.Feedbacks = this.Feedbacks.concat(resp.feedbacks);
             console.log(resp.feedbacks)
-           
+
           }
 
           this.VerificarResultados();
@@ -161,4 +163,19 @@ export class ListaDeFeedbacksPage {
     this.navCtrl.push(VisualizarFeedbackPage, { tit: 'Visualizar feedback', idFeed: id });
   }
 
+  Buscar() {
+    var filter, autorFeedback, i;
+    filter = this.inputAutorFeedback.toUpperCase();
+    autorFeedback = $(".autorFeedback");
+
+    for (i = 0; i < autorFeedback.length; i++) { 
+      let filterTarget = this.titulo == 'atribuidos' ? this.Feedbacks[i].NomeAvaliado : this.Feedbacks[i].NomeAvaliador 
+      if (filterTarget.toUpperCase().indexOf(filter) > -1) {
+        autorFeedback.eq(i).show();
+      } else {
+        console.log(filter);
+        autorFeedback.eq(i).hide();
+      }
+    }
+  }
 }

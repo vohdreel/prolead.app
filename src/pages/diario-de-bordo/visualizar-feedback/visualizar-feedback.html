@@ -252,7 +252,7 @@
             <textarea style="resize: none" maxRows="4" class="w-100 r-50" *ngIf="stringTipoResposta == 'treplica'" [(ngModel)]="ultimaQuestao.Treplica" [disabled]="!PodeResponder"></textarea>
         </div>
         <div class="w-20 center-content">
-            <button class="send-button" [disabled]="ultimaQuestao.Replica || ultimaQuestao.Replica == ''" *ngIf="stringTipoResposta == 'replica'" class="item-center" (click)="SalvarReplica(ultimaQuestao, feedback.Id)">
+            <button class="send-button" [disabled]="!ultimaQuestao.Replica || ultimaQuestao.Replica == ''" *ngIf="stringTipoResposta == 'replica'" (click)="SalvarReplica(ultimaQuestao, feedback.Id)">
                     <ion-icon name="custom-prolead-sendMessage"></ion-icon>
             </button>
             <button class="send-button" [disabled]="!ultimaQuestao.Treplica || ultimaQuestao.Treplica == ''" *ngIf="stringTipoResposta == 'treplica'" (click)="SalvarTreplica(ultimaQuestao, feedback.Id)">
