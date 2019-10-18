@@ -40,39 +40,39 @@
                 <ion-col class="modulo-icon-container" (click)="AcessaAvaliacaoDiaria? DiarioDeBordo():''">
                     <img src="../../assets/icon/diario_feedback_icon.svg" /> DIÁRIO DE FEEDBACK
                 </ion-col>
-                <ion-col class="modulo-icon-container">
+                <ion-col class="modulo-icon-container lightgrey-disabled">
                     <img src="../../assets/icon/competencia_icon.svg" /> COMPETÊNCIA
                 </ion-col>
             </ion-row>
             <ion-row>
-                <ion-col class="modulo-icon-container">
+                <ion-col class="modulo-icon-container lightgrey-disabled">
                     <img src="../../assets/icon/desemp_icon_blocked.svg" /> DESEMPENHO
                 </ion-col>
-                <ion-col class="modulo-icon-container">
+                <ion-col class="modulo-icon-container lightgrey-disabled">
                     <img src="../../assets/icon/clima_icon_blocked.svg" /> CLIMA ORGANIZACIONAL
                 </ion-col>
             </ion-row>
-            <!-- Settings 
+            <!-- Settings -->
             <ion-row>
-                <ion-col class="center-content">
+                <ion-col class="center-content" (click)="AbrirConfiguracao('foto', true)">
                     <div class="center-content inline-block settings-icon-container padding-top">
                         <img src="../../assets/icon/change_picture_icon.svg" />
                         <p class="font-10"> ALTERAR FOTO DE PERFIL</p>
                     </div>
                 </ion-col>
-                <ion-col class="center-content">
+                <ion-col class="center-content" (click)="AbrirConfiguracao('senha', true)">
                     <div class="center-content inline-block settings-icon-container padding-top">
                         <img src="../../assets/icon/change_password_lock.svg" />
                         <p class="font-10">ALTERAR SENHA</p>
                     </div>
                 </ion-col>
-                <ion-col class="center-content">
+                <ion-col class="center-content" (click)="SairSistema()">
                     <div class="center-content inline-block settings-icon-container padding-top">
                         <img src="../../assets/icon/logout_icon.svg" />
-                        <p class="font-10"> SAIR</p>
+                        <p class="font-10 "> SAIR</p>
                     </div>
                 </ion-col>
-            </ion-row>-->
+            </ion-row>
 
         </ion-grid>
 

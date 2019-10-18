@@ -2,49 +2,6 @@
     <form (ngSubmit)="login(usuario)" #usuerForm="ngForm">
         <ion-list>
 
-            <!-- <ion-list>
-        <ion-list-header>
-          Items with Labels
-        </ion-list-header>
-        <ion-item>
-          <ion-label>Label</ion-label>
-        </ion-item>
-
-        <ion-item>
-          <ion-icon item-right name="ios-eye-outline"></ion-icon>
-          <ion-label>Label with Icon</ion-label>
-        </ion-item>
-      </ion-list> -->
-
-            <!-- <ion-grid>
-        <ion-row>
-          <ion-col>
-            <div>1 of 2</div>
-          </ion-col>
-          <ion-col>
-            <div>2 of 2</div>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>
-            <div>1 of 3</div>
-          </ion-col>
-          <ion-col>
-            <div>2 of 3</div>
-          </ion-col>
-          <ion-col>
-            <div>3 of 3</div>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>
-            <div>
-              <button type="button" class="btn btn-dark btn-block">Dark</button>
-            </div>
-          </ion-col>
-        </ion-row>
-      </ion-grid> -->
-
             <ion-grid>
                 <ion-row>
                     <ion-col>
@@ -100,33 +57,12 @@
                     </ion-col>
                 </ion-row>
             </ion-grid>
-
-            <!-- Old 
-
-      <ion-grid>
-        <ion-col col-1 class="p-0 olho">
-          <ion-item class="p-0 mt-32 mrl-0">
-            <ion-icon class="branco" name="eye" [hidden]="!show" (click)="MostrarSenha()"></ion-icon>
-            <ion-icon class="branco" name="eye-off" [hidden]="show" (click)="MostrarSenha()"></ion-icon>
-          </ion-item>
-        </ion-col>
-        <div>
-          <button type="submit" class="r-5" ion-button full>Entrar</button>
-        </div>
-
-        <ion-row class="pt-10">
-          <div class="text-center w-100">
-            <label class="branco">Mantenha-me Conectado</label>
-            <ion-checkbox color="blue" name="MantenhameConectado" class="border-branco" [(ngModel)]="ManterConectado">
-            </ion-checkbox>
-          </div>
-        </ion-row>
-        <ion-row>
-          <div class="text-center w-100">
-            <a (click)="onEsqueciMinhaSenha()" class="branco">Esqueci a Senha</a>
-          </div>
-        </ion-row>
-      </ion-grid>-->
         </ion-list>
     </form>
+    <div class="w-100">
+        <div class="w-30 float-right powered">
+            <p class="font-color-lightgrey font-10 text-right">Powered by:</p>
+            <img src="../../assets/imgs/prolead_powered.svg">
+        </div>
+    </div>
 </ion-content>

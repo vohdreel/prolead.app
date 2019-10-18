@@ -41,7 +41,7 @@ page-lista-de-feedbacks {
                 align-items: center;
                 justify-content: space-around;
                 ion-icon {
-                    font-size: 25px;
+                    font-size: 20px;
                 }
             }
         }
@@ -53,7 +53,8 @@ page-lista-de-feedbacks {
         }
     }
     .new-Feedback {
-        border: 2px solid #AFD154;
+        //border: 2px solid #AFD154;
+        border: 2px solid #ffc299;
     }
     .flexgrid-lista-feedbacks {
         min-height: 100%;

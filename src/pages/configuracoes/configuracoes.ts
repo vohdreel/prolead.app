@@ -20,6 +20,7 @@ export class ConfiguracoesPage {
   Colaborador = new Colaborador;
   RecebeEmail = 0; RecebePush = 0; fotoColab;
   ativo: string = 'gerais';
+  fromHome: Boolean;
   imageSrc: string;
   senhaAntiga = ""; senhaNova = ""; confirmarSenha = ""; requisitos = 'Sua senha precisa de: 8 Caracteres 1 Letra maiúscula 1 Letra minúscula 1 Número 1 caractere especial';
   salvar = false;
@@ -36,6 +37,8 @@ export class ConfiguracoesPage {
   ) {
     this.CarregarConfiguracoes();
     this.fotoColab = this.Colaborador.foto;
+    this.ativo = this.navParams.get('type');
+    this.fromHome = this.navParams.get('isFromHome')
   }
 
   CarregarConfiguracoes() {
@@ -232,6 +235,15 @@ export class ConfiguracoesPage {
     }
   }
 
+  VoltarConfiguracao() {
+    if (this.fromHome)
+      this.navCtrl.pop();
+    else
+      this.ativo = 'gerais'
+
+
+  }
+
   async SalvarSenha() {
     this.CustomMethods.exibirLoading()
     let data = new URLSearchParams();
@@ -253,9 +265,9 @@ export class ConfiguracoesPage {
         }
       );
 
-      
-    }
-        Inicio(){
-  this.navCtrl.setRoot(HomePage);
-        }
+
+  }
+  Inicio() {
+    this.navCtrl.setRoot(HomePage);
+  }
 }

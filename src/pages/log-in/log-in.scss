@@ -134,4 +134,9 @@ page-log-in {
     .right-addon ion-input {
         padding-right: 50px;
     }
+    .powered {
+        * {
+            margin: 0px !important
+        }
+    }
 }

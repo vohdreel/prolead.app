@@ -12,6 +12,8 @@ import { Colaborador } from '../../models/Colaborador';
 import { Firebase } from '@ionic-native/firebase';
 import { FCM } from '@ionic-native/fcm';
 import { NotificacoesPage } from '../notificacoes/notificacoes';
+import { ConfiguracoesPage } from '../configuracoes/configuracoes';
+import { LogInPage } from '../log-in/log-in';
 
 @Component({
   selector: 'page-home',
@@ -79,20 +81,31 @@ export class HomePage {
 
   Competencias() {
     this.ColocarBarraPagina('CompetenciasPage');
-    this.navCtrl.setRoot(CompetenciasPage)
+    this.navCtrl.push(CompetenciasPage)
   }
 
   DiarioDeBordo() {
     this.ColocarBarraPagina('DiarioDeBordoPage');
-    this.navCtrl.setRoot(DiarioDeBordoPage)
+    this.navCtrl.push(DiarioDeBordoPage)
+    
   }
 
   AbrirNotificacoes() {
     this.navCtrl.push(NotificacoesPage)
   }
 
+  AbrirConfiguracao(config: string, FromHome: boolean){
+    this.navCtrl.push(ConfiguracoesPage, {type: config, isFromHome: FromHome})
+  }
+
   ColocarBarraPagina(seletor: string) {
     this.events.publish('colocarBarra', seletor)
+  }
+
+  SairSistema(){
+      localStorage.setItem("ManterConectado", "false");
+      localStorage.setItem("Senha", "");
+      this.navCtrl.setRoot(LogInPage);
   }
 
 }

@@ -19,7 +19,7 @@ import { ConfiguracoesPage } from "../pages/configuracoes/configuracoes";
 import { Firebase } from '@ionic-native/firebase';
 //import { FirebaseX } from '@ionic-native/firebase-x/ngx';
 import { Push, PushObject, PushOptions } from '@ionic-native/push/ngx';
-import{FCM} from '@ionic-native/fcm'
+import { FCM } from '@ionic-native/fcm'
 
 @Component({
   templateUrl: "app.html"
@@ -138,9 +138,6 @@ export class MyApp {
 
       // push usando FCM
       if (this.platform.is("cordova")) {
-        // this.firebase.hasPermission();
-        // this.firebase.grantPermission();
-        // this.notificationFCM();
         this.notificationPushFirebase();
         this.windowsAzureNotify();
       }
@@ -154,17 +151,16 @@ export class MyApp {
       //logout firebase
 
       if (this.platform.is("cordova")) {
-        // this.firebase.unregister();
-        // localStorage.setItem("FcmToken", "");
-        // this.http
-        //   .get(
-        //     URL_BASE +
-        //     URL_FcmToken +
-        //     "?idColaborador=" +
-        //     localStorage.getItem("idColaborador")
-        //   )
-        //   .map(res => res.json())
-        //   .subscribe(resp => { }, err => { });
+        localStorage.setItem("FcmToken", "");
+        this.http
+          .get(
+            URL_BASE +
+            URL_FcmToken +
+            "?idColaborador=" +
+            localStorage.getItem("idColaborador")
+          )
+          .map(res => res.json())
+          .subscribe(resp => { }, err => { });
       }
       localStorage.setItem("ManterConectado", "false");
       localStorage.setItem("Senha", "");
@@ -173,7 +169,10 @@ export class MyApp {
 
     }
     this.changeColor(page.seletor);
-    this.nav.push(page.component);
+    if (page.title == 'Configurações')
+      this.nav.push(page.component, { type: 'gerais', isFromHome: false })
+    else
+      this.nav.push(page.component);
   }
 
   changeColor(title: string) {
@@ -184,9 +183,9 @@ export class MyApp {
 
   //azure dev ops Push System;
 
-  notificationPushFirebase(){
+  notificationPushFirebase() {
     this.fcm.getToken().then(token => {
-      localStorage.setItem('FCMDeviceToken', token);      
+      localStorage.setItem('FCMDeviceToken', token);
     });
     this.fcm.subscribeToTopic('all');
 
@@ -208,7 +207,7 @@ export class MyApp {
 
     const options: PushOptions = {
       android: {
-        senderID:  "10073927576",
+        senderID: "10073927576",
         forceShow: 'true',
         sound: 'true',
 
@@ -228,10 +227,11 @@ export class MyApp {
 
 
     pushObject.on('notification').subscribe((notification: any) => console.log('Received a notification', notification));
-    pushObject.on('registration').subscribe((data: any) => { console.log('Registered', data)
-    localStorage.setItem('registrationId', data.registrationId)
-    
-  });
+    pushObject.on('registration').subscribe((data: any) => {
+      console.log('Registered', data)
+      localStorage.setItem('registrationId', data.registrationId)
+
+    });
     pushObject.on('error').subscribe(error => console.error('Error with Push plugin', error));
 
   }

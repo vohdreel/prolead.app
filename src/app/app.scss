@@ -134,7 +134,7 @@ div.toolbar-title-ios {
 
 .orange-grad,
 .toggle-ios.toggle-checked .toggle-icon {
-    background: transparent linear-gradient(90deg, #F27645 25%, #EE9B47 75%) 0% 0% no-repeat padding-box;
+    background: transparent linear-gradient(90deg, #F27645 25%, #ee9b47 75%) 0% 0% no-repeat padding-box;
 }
 
 .rem2 {
@@ -240,6 +240,10 @@ div.toolbar-title-ios {
 
 .font-color-lightgrey {
     color: #AEADAD !important;
+}
+
+.lightgrey-disabled {
+    color: rgb(216, 216, 216) !important;
 }
 
 .flex-bottom {
