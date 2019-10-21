@@ -122,6 +122,7 @@ export class LogInPage {
     let perfil = "";
     let idUnidade = "";
     let nome = "";
+    let cargo = "";
 
     console.log(permissoes);
 
@@ -144,6 +145,10 @@ export class LogInPage {
       if (keyValues[0] == "NomeColaborador") {
         nome = keyValues[1].trim();
         localStorage.setItem("NomeColaborador", nome);
+      }
+      if (keyValues[0] == "Cargo") {
+        cargo = keyValues[1].trim();
+        localStorage.setItem("Cargo", cargo);
       }
     });
 

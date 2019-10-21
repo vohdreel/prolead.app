@@ -12,6 +12,7 @@ export class Colaborador {
     perfil:string = localStorage.getItem('perfil');
     foto:string = localStorage.getItem('foto');
     nome:string = localStorage.getItem('NomeColaborador');
+    cargo:string = localStorage.getItem('Cargo');
 
     //Dados do colaborador logado
     //id:number = ;
