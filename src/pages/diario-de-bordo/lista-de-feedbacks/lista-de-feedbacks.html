@@ -26,8 +26,16 @@
                     <ion-input type="text" (keyup)="Buscar()" [(ngModel)]="inputAutorFeedback" placeholder="Pesquisar..."></ion-input>
                 </div>
                 <div class="btn-filter">
-                    <!-- <ion-icon name="custom-prolead-filter" class="font-20"></ion-icon> -->
+                    <ion-icon name="custom-prolead-filter" class="font-20" (click)="mostrarFiltroReacao()"></ion-icon>
                 </div>
+                <ion-item class="hidden">
+                    <ion-label>Filtrar por...</ion-label>
+                    <ion-select multiple id="filtroReacao" [(ngModel)]="valorFiltro" (ionChange)="confirmarFiltro()">
+                        <ion-option [value]="1">Positivo</ion-option>
+                        <ion-option [value]="2">Neutro</ion-option>
+                        <ion-option [value]="3">Negativo</ion-option>
+                    </ion-select>
+                </ion-item>
             </ion-row>
         </ion-grid>
 
@@ -103,10 +111,10 @@
         <!-- lista de feedbacks -->
         <div class="center-content">
             <div class="flexgrid-lista-feedbacks">
-                <div class="box autorFeedback" *ngFor="let i of Feedbacks" (click)="abrirFeedback(i.Id); i.Lido = true; i.GestorLido = true;" [ngClass]="{'new-Feedback': !i.Lido}">
+                <div class="box autorFeedback" *ngFor="let i of Feedbacks | FeedBackFilter:valorFiltro" (click)="abrirFeedback(i.Id); i.Lido = true; i.GestorLido = true;" [ngClass]="{'new-Feedback': !i.Lido}">
                     <div class="perfil-feedback-coladobador">
                         <div class="w-40 center-content flex img-holder">
-                            <img src="{{titulo == 'atribuidos' ? i.FotoAvaliado : i.FotoAvaliador}}" class="circle">
+                            <img src="{{titulo == 'atribuidos' ? i.FotoAvaliado : i.FotoAvaliador}}" class="circle" [ngClass]="{'positivo': i.TipoFeedback == 1, 'neutro': i.TipoFeedback == 2, 'negativo': i.TipoFeedback == 3}">
                         </div>
                         <div class="w-70 name-container" style="align-self: center;">
                             <span style="margin-top: 15px">{{titulo =='atribuidos' ? i.NomeAvaliado : i.NomeAvaliador}}</span>

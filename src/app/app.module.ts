@@ -19,6 +19,7 @@ import { LancarFeedbackPage } from "../pages/diario-de-bordo/lancar-feedback/lan
 import { NovoFeedbackPage } from "../pages/diario-de-bordo/novo-feedback/novo-feedback";
 import { ListaDeFeedbacksPage } from "../pages/diario-de-bordo/lista-de-feedbacks/lista-de-feedbacks";
 import { SelecionarAvaliacaoPage } from "../pages/competencias/selecionar-avaliacao/selecionar-avaliacao";
+import {FeedBackFilterPipe} from '../pipes/FeedbackFilterPipe'
 
 
 import { StatusBar } from "@ionic-native/status-bar";
@@ -55,7 +56,8 @@ import {FCM} from '@ionic-native/fcm'
     NotificacoesPage,
     PreWorkPage,
     NovoFeedbackPage,
-    ListaDeFeedbacksPage
+    ListaDeFeedbacksPage,
+    FeedBackFilterPipe,
   ],
   imports: [
     BrowserModule,

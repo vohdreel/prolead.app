@@ -18,6 +18,7 @@ export class ListaDeFeedbacksPage {
   contador = 10;
   width = 60;
   inputAutorFeedback = "";
+  valorFiltro: number[] = [];
 
   Feedbacks = [];
 
@@ -65,9 +66,19 @@ export class ListaDeFeedbacksPage {
     }
   }
 
+  confirmarFiltro(){
+
+    console.log(this.valorFiltro)
+  }
+
   Data(data: string): Date {
     //console.log(new Date(data.replace('/')));
     return new Date(data);
+  }
+
+  mostrarFiltroReacao(){
+    $("#filtroReacao > button").click();
+
   }
 
   Filtrar2(): string {

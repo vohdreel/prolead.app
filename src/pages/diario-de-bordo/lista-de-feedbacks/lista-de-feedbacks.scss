@@ -10,7 +10,19 @@ page-lista-de-feedbacks {
         .perfil-feedback-coladobador {
             min-height: 60px;
             .img-holder {
-                padding: 3px
+                padding: 3px;
+                .positivo {
+                    border: 2px solid #AFD154;
+                    box-shadow: 0 0 3px #AFD154;
+                }
+                .neutro {
+                    border: 2px solid #F0C536;
+                    box-shadow: 0 0 3px #F0C536;
+                }
+                .negativo {
+                    border: 2px solid #E66E6C;
+                    box-shadow: 0 0 3px #E66E6C;
+                }
             }
             .name-container {
                 text-align: center;
@@ -149,4 +161,13 @@ page-lista-de-feedbacks {
             margin-left: 10px !important;
         }
     }
+}
+
+.alert-ios [aria-checked=true] .alert-checkbox-icon {
+    border-color: #f98658;
+    background-color: #ff9e6a;
+}
+
+.alert-ios .alert-button {
+    color: #262626;
 }
