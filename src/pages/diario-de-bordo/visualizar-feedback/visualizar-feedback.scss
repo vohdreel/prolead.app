@@ -41,8 +41,8 @@ page-visualizar-feedback {
         border-width: 1px;
     }
     .double-arrow {
-        margin-top: 7px;
-        font-size: 25px;
+        margin-top: 25%;
+        font-size: 30px;
         color: #2E333B;
     }
     img {
@@ -81,6 +81,7 @@ page-visualizar-feedback {
     .avaliado {
         background-color: #474B51;
         align-self: flex-end;
+        color: #FCFCFC;
         padding: 6px 15px 5px 20px;
         &:after {
             content: '';

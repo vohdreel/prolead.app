@@ -35,8 +35,8 @@
                     <ion-icon name="{{getIconeResultadoAvaliacao(avaliacao?.ValorInteiro)}}" class="fill" [ngClass]="getIconeColor(avaliacao?.ValorInteiro)"></ion-icon>
                 </div>
                 <div class="w-90" style="padding-top: 5px">
-                    <div class="label-competencia fit-text">
-                        <div> {{feedback?.CompetenciaAvaliada}} </div>
+                    <div class="label-competencia" (click)="mostrarCompetencia()">
+                        <div class="fit-text"> {{feedback?.CompetenciaAvaliada}} </div>
                     </div>
                 </div>
             </div>
@@ -238,6 +238,8 @@
                     </ion-col>
                     <ion-col col-1 class="p-5 center text-center border-left border-diario2">
                         <ion-icon name="send" class="item-center" (click)="SalvarTreplica(ultimaQuestao, feedback.Id)"></ion-icon>
+                    (!ultimaQuestao.Replica || ultimaQuestao.Replica == '') &&  
+                    
                     </ion-col>
                 </ion-row>
             </div>
@@ -252,10 +254,10 @@
             <textarea style="resize: none" maxRows="4" class="w-100 r-50" *ngIf="stringTipoResposta == 'treplica'" [(ngModel)]="ultimaQuestao.Treplica" [disabled]="!PodeResponder"></textarea>
         </div>
         <div class="w-20 center-content">
-            <button class="send-button" [disabled]="!ultimaQuestao.Replica || ultimaQuestao.Replica == ''" *ngIf="stringTipoResposta == 'replica'" (click)="SalvarReplica(ultimaQuestao, feedback.Id)">
+            <button class="send-button" [disabled]="(!ultimaQuestao.Replica || ultimaQuestao.Replica == '') || !PodeResponder" *ngIf="stringTipoResposta == 'replica'" (click)="SalvarReplica(ultimaQuestao, feedback.Id)">
                     <ion-icon name="custom-prolead-sendMessage"></ion-icon>
             </button>
-            <button class="send-button" [disabled]="!ultimaQuestao.Treplica || ultimaQuestao.Treplica == ''" *ngIf="stringTipoResposta == 'treplica'" (click)="SalvarTreplica(ultimaQuestao, feedback.Id)">
+            <button class="send-button" [disabled]="(!ultimaQuestao.Replica || ultimaQuestao.Replica == '') || !PodeResponder" *ngIf="stringTipoResposta == 'treplica'" (click)="SalvarTreplica(ultimaQuestao, feedback.Id)">
                     <ion-icon name="custom-prolead-sendMessage" ></ion-icon>
             </button>
         </div>

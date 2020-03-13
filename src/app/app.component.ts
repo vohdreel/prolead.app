@@ -20,6 +20,7 @@ import { Firebase } from '@ionic-native/firebase';
 //import { FirebaseX } from '@ionic-native/firebase-x/ngx';
 import { Push, PushObject, PushOptions } from '@ionic-native/push/ngx';
 import { FCM } from '@ionic-native/fcm'
+import { VisualizarFeedbackPage } from "../pages/diario-de-bordo/visualizar-feedback/visualizar-feedback";
 
 @Component({
   templateUrl: "app.html"
@@ -108,6 +109,7 @@ export class MyApp {
         );
     });
   }
+
   notificationFCM() {
     this.firebase
       .getToken()
@@ -118,12 +120,14 @@ export class MyApp {
       //return this.firebase.onMessageReceived().subscribe(data => {
       if (data.wasTapped) {
         //Notification was received on device tray and tapped by the user.
-        console.log(JSON.stringify(data));
-        this.nav.setRoot("DetailPage", { profileId: data.profileId });
+        //console.log(JSON.stringify(data));
+        // this.nav.setRoot("DetailPage", { profileId: data.profileId });
+        this.custom.okAlert(data);
+        this.nav.push(VisualizarFeedbackPage, { tit: 'Visualizar feedback', idFeed: data.id});
       } else {
         //Notification was received in foreground. Maybe the user needs to be notified.
         console.log(JSON.stringify(data));
-        this.nav.push("DetailPage", { profileId: data.profileId });
+        this.nav.push(VisualizarFeedbackPage, { tit: 'Visualizar feedback', idFeed: data.id});
       }
     });
   }
@@ -195,9 +199,11 @@ export class MyApp {
 
     this.fcm.onNotification().subscribe(data => {
       if (data.wasTapped) {
-        console.log("Received in background");
+        console.log("Received in background");        
+        this.nav.push(VisualizarFeedbackPage, { tit: 'Visualizar feedback', idFeed: data.id});
       } else {
-        console.log("Received in foreground");
+        console.log("Received in foreground");        
+        this.nav.push(VisualizarFeedbackPage, { tit: 'Visualizar feedback', idFeed: data.id});
       };
     });
   }

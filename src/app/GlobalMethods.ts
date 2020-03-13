@@ -29,6 +29,17 @@ export class CustomMethods{
         alert.present();
     }
 
+    AlertWithText(Titulo:string, Mensagem:string){
+      let alert = this.alertCtrl.create({
+          title: Titulo,
+          message: Mensagem,
+          buttons: ['OK'],
+          cssClass: 'alertCustomCss'
+      });
+      alert.present();
+  }
+
+
     AlertReload(Mensagem:string){
         let alert = this.alertCtrl.create({
             title: 'Aviso!',

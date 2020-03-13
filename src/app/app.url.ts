@@ -1,9 +1,9 @@
 //export const URL_BASE: string = "http://sistemasrh-quality.azurewebsites.net/"
 //export const URL_BASE : string = "http://sistemasrh-sandbox.azurewebsites.net/"
 //export const URL_BASE : string = "https://sistemasrh-staging.azurewebsites.net/"
-//export const URL_BASE : string = "http://localhost:42707/"
+export const URL_BASE : string = "http://localhost:42707/"
 //export const URL_BASE:  string = "/prolead/"
-export const URL_BASE : string = "https://pr.prolead.com.br/"
+//export const URL_BASE : string = "https://pr.prolead.com.br/"
 //export const URL_BASE : string = "https://qa.prolead.com.br/"
 
 //Menu

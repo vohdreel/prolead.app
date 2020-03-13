@@ -74,18 +74,18 @@ export class VisualizarFeedbackPage {
 
   habilitarResposta() {
 
-    
 
-    if (this.feedback.IdAvaliador == this.feedback.IdAvaliado){
-      
+
+    if (this.feedback.IdAvaliador == this.feedback.IdAvaliado) {
+
       this.PodeResponder = false
       return;
     }
 
     //se eu sou um cara que espera por uma replica
-    if (this.observacao.Replica == null && this.UtilizaReplica && (this.IdColaborador == this.feedback.IdAvaliado))  {
+    if (this.observacao.Replica == null && this.UtilizaReplica && (this.IdColaborador == this.feedback.IdAvaliado)) {
       this.stringTipoResposta = 'replica';
-      this.PodeResponder = true;      
+      this.PodeResponder = true;
       return;
     }
 
@@ -98,13 +98,13 @@ export class VisualizarFeedbackPage {
 
   }
 
-  getIconeColor(value: number):string{
+  getIconeColor(value: number): string {
     switch (value) {
-      case 1: 
+      case 1:
         return 'boa-avaliacao'
-      case 2: 
+      case 2:
         return 'meh-avaliacao'
-      case 3: 
+      case 3:
         return 'ruim-avaliacao'
     }
   }
@@ -167,13 +167,18 @@ export class VisualizarFeedbackPage {
           this.observacao = Object.assign({}, this.feedback.FeedBack[1]); console.log(this.observacao);
 
           this.habilitarResposta();
-        
+
 
         }, err => {
           this.CustomMethods.loader.dismiss();
           this.CustomMethods.okAlert("Não foi possivel carregar feedback, verifique sua conexão com a internet e tente novamente");
         }
       );
+  }
+
+
+  mostrarCompetencia() {
+    this.CustomMethods.AlertWithText('Competência:',this.feedback.CompetenciaAvaliada);
   }
 
 
@@ -188,7 +193,7 @@ export class VisualizarFeedbackPage {
             //this.CustomMethods.loader.dismiss();
             if (resp.sucesso) {
               this.CustomMethods.okAlert("Réplica enviada com sucesso");
-              this.loadFeedback();              
+              this.loadFeedback();
               this.PodeResponder = false;
             } else {
               this.CustomMethods.okAlert("Não foi possivel enviar réplica, verifique sua conexão com a internet e tente novamente");
