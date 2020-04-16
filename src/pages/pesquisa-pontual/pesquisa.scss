@@ -1,0 +1,27 @@
+page-pesquisa-pontual {
+    div.toolbar-background {
+        background-color: color($colors, competencias2);
+    }
+    div.toolbar-title {
+        color: white;
+    }
+    img {
+        background-image: cover;
+    }
+    .portlet {
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            margin-top: 0px !important;
+            //color: #AFD154;
+        }
+        p {
+            color: #474C52;
+            font-family: 'Rubik Regular';
+            font-size: 14px
+        }
+    }
+}

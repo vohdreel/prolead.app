@@ -72,3 +72,7 @@ export const URL_EsqueciSenha: string = "Conta/ForgotPasswordApp"
 
     //Trazer notificações
     export const URL_LoadNotifications: string = "PerfilProlead/GetAlertas"
+
+//Pesquisa Pontual
+
+export const URL_ListarPesquisasPontuais: string = "PerfilProlead/ListarPesquisasPontuaisApp"

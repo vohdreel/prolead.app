@@ -67,6 +67,8 @@
         "highcharts": "^6.2.0",
         "install": "^0.13.0",
         "ionic-angular": "3.9.2",
+        "ionic3-star-rating": "^2.1.2",
+        "ionic4-rating": "^1.0.9",
         "ionicons": "3.0.0",
         "jquery": "^3.4.1",
         "npm": "^6.11.3",

@@ -1,0 +1,55 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Pesquisa Pontual</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-list>
+        <ion-grid class="center-content">
+            <ion-row class="portlet w-80" (click)="Lista(1)">
+                <div class="w-50 text-left" style="height: 160px">
+                    <h5>EM ANDAMENTO</h5>
+                    <p>Todas as pesquisas em andamento</p>
+                    <div>
+                        <p> </p>
+                    </div>
+                </div>
+                <div class="w-50 flex-bottom" style="height: 160px">
+                    <div>
+                        <img src="../../assets/icon/pesquisa_file_icon.svg" style="
+                  float: right; height: 50%; margin-top: 50%;" />
+                    </div>
+                </div>
+            </ion-row>
+            <ion-row> </ion-row>
+        </ion-grid>
+        <ion-grid class="center-content">
+            <ion-row class="portlet w-80" (click)="Lista('recebidos')">
+                <div class="w-50 text-left" style="height: 160px">
+                    <div>
+                        <h5>HISTÓRICO</h5>
+                        <p>Todos as pesquisas anteriores</p>
+                    </div>
+                    <div>
+                        <p> </p>
+                    </div>
+                </div>
+                <div class="w-50 flex-bottom" style="height: 160px">
+                    <div>
+                        <img src="../../assets/icon/pesquisa_file_history_icon.svg" style="
+                  float: right; height: 50%; margin-top: 50%;" />
+                    </div>
+                </div>
+            </ion-row>
+            <ion-row> </ion-row>
+        </ion-grid>
+    </ion-list>
+
+
+</ion-content>

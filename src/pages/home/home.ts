@@ -14,6 +14,7 @@ import { FCM } from '@ionic-native/fcm';
 import { NotificacoesPage } from '../notificacoes/notificacoes';
 import { ConfiguracoesPage } from '../configuracoes/configuracoes';
 import { LogInPage } from '../log-in/log-in';
+import { PesquisaPontualPage } from '../pesquisa-pontual/pesquisa';
 
 @Component({
   selector: 'page-home',
@@ -29,6 +30,7 @@ export class HomePage {
   AcessaCompetencias;
   AcessaMatrizInformacao;
   AcessaSucessao;
+  AcessaPesquisaPontual
   constructor(
     public navCtrl: NavController,
     public menuCtrl: MenuController,
@@ -54,6 +56,7 @@ export class HomePage {
           this.AcessaCompetencias = resp.Competencias;
           this.AcessaMatrizInformacao = resp.MatrizInformacao;
           this.AcessaSucessao = resp.Sucessao;
+          this.AcessaPesquisaPontual = true;
           this.CustomMethods.loader.dismiss();
           this.ColocarBarraPagina('HomePage');
         }, err => {
@@ -87,6 +90,12 @@ export class HomePage {
   DiarioDeBordo() {
     this.ColocarBarraPagina('DiarioDeBordoPage');
     this.navCtrl.push(DiarioDeBordoPage)
+    
+  }
+
+  PesquisaPontual() {
+    this.ColocarBarraPagina('PesquisaPontualPage');
+    this.navCtrl.push(PesquisaPontualPage)
     
   }
 

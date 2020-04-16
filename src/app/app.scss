@@ -36,6 +36,9 @@ ion-icon {
     &[class*="custom-prolead-diario"] {
         mask-image: url(../assets/icon/diario_feedback_icon.svg);
     }
+    &[class*="custom-prolead-pesquisa"] {
+        mask-image: url(../assets/icon/pesquisa_file_icon.svg);
+    }
 }
 
 ion-content {
@@ -257,10 +260,10 @@ div.toolbar-title-ios {
 }
 
 .center-content {
-    //display: flex;
+    display: flex;
     align-items: center !important;
-    justify-content: center !important;
-    text-align: center !important;
+    justify-content: center;
+    text-align: center;
     element,
     button {
         display: inline-block;

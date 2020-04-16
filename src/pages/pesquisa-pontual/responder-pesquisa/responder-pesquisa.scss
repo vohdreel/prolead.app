@@ -1,0 +1,85 @@
+page-responder-pesquisa {
+    .item-md.item-block .item-inner {
+        border-bottom: none;
+    }
+    textarea {
+        font-size: 1.6rem;
+    }
+    .fdb-header {
+        height: 65px;
+    }
+    .fdb-btn-group {
+        height: 75px;
+        flex: 0 1 80%;
+        .flex-btn {
+            flex: 1 0 calc(45% - 5px);
+            margin: 5px;
+        }
+    }
+    .fdb-lista-competencia {
+        height: 200px;
+        overflow: auto;
+    }
+    ion-icon {
+        color: rgb(179, 179, 179)
+    }
+    .grey {
+        background: #C9C9C9;
+    }
+    .fdb-lista-filtro {
+        outline: 0;
+        border-width: 0 0 2px;
+        border-color: #e3e3e4;
+        &:focus {
+            border-color: rgb(179, 179, 179);
+        }
+    }
+    .area-pergunta {
+        // height: 100px;
+        // margin: 5px;
+        flex: 0 1 80%;
+        padding: 10px;
+        box-shadow: 0px 3px 6px #00000029 !important;
+        border-radius: 5px !important;
+    }
+    .shadow-border {
+        box-shadow: 0px 3px 6px #00000029 !important;
+        border-radius: 5px !important;
+    }
+    .perguntas-form {
+        margin-bottom: 10px
+    }
+    .fdb-nota-item {
+        box-shadow: 0px 3px 6px #00000029 !important;
+        border-radius: 5px !important;
+        flex: 1 0 calc(30% - 10px);
+        text-align: center;
+        padding-top: 6px;
+        margin: 4px;
+        ion-icon {
+            font-size: 80px;
+        }
+    }
+    .pad-5 {
+        padding: 5px;
+    }
+    .double-arrow {
+        margin-top: 10px;
+        font-size: 40px;
+        color: #2E333B;
+    }
+    .fit {
+        height: 100%;
+        width: auto;
+        padding: 4px;
+    }
+    .center-text {
+        height: 100%;
+        display: table;
+        p {
+            vertical-align: middle;
+            display: table-cell;
+            font-size: 12px;
+        }
+    }
+}

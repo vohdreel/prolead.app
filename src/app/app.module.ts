@@ -19,7 +19,11 @@ import { LancarFeedbackPage } from "../pages/diario-de-bordo/lancar-feedback/lan
 import { NovoFeedbackPage } from "../pages/diario-de-bordo/novo-feedback/novo-feedback";
 import { ListaDeFeedbacksPage } from "../pages/diario-de-bordo/lista-de-feedbacks/lista-de-feedbacks";
 import { SelecionarAvaliacaoPage } from "../pages/competencias/selecionar-avaliacao/selecionar-avaliacao";
-import {FeedBackFilterPipe} from '../pipes/FeedbackFilterPipe'
+import { PesquisaPontualPage } from "../pages/pesquisa-pontual/pesquisa"
+import { ResponderPesquisaPage } from "../pages/pesquisa-pontual/responder-pesquisa/responder-pesquisa"
+import {ListaDePesquisasPage} from '../pages/pesquisa-pontual/lista-de-pesquisas/lista-de-pesquisas'
+
+import { FeedBackFilterPipe } from '../pipes/FeedbackFilterPipe'
 
 
 import { StatusBar } from "@ionic-native/status-bar";
@@ -30,12 +34,14 @@ import { IonicStorageModule } from "@ionic/storage";
 import { Network } from "@ionic-native/network";
 import { RequestService } from "./../Serivices/request.service";
 import { ConfiguracoesPage } from "../pages/configuracoes/configuracoes";
+import { StarRatingModule } from 'ionic3-star-rating';
+
 
 import { Firebase } from '@ionic-native/firebase';
 import { Push, PushObject, PushOptions } from '@ionic-native/push/ngx';
 import { NotificacoesPage } from "../pages/notificacoes/notificacoes";
 import { PreWorkPage } from "../pages/competencias/responder/pre-work/pre-work";
-import {FCM} from '@ionic-native/fcm'
+import { FCM } from '@ionic-native/fcm'
 
 
 @NgModule({
@@ -58,6 +64,9 @@ import {FCM} from '@ionic-native/fcm'
     NovoFeedbackPage,
     ListaDeFeedbacksPage,
     FeedBackFilterPipe,
+    PesquisaPontualPage,
+    ListaDePesquisasPage,
+    ResponderPesquisaPage
   ],
   imports: [
     BrowserModule,
@@ -68,7 +77,8 @@ import {FCM} from '@ionic-native/fcm'
       mode: "ios"
     }),
     HttpModule,
-    IonicStorageModule.forRoot()    
+    StarRatingModule,
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -88,7 +98,10 @@ import {FCM} from '@ionic-native/fcm'
     NotificacoesPage,
     PreWorkPage,
     NovoFeedbackPage,
-    ListaDeFeedbacksPage
+    ListaDeFeedbacksPage,
+    PesquisaPontualPage,
+    ListaDePesquisasPage,
+    ResponderPesquisaPage
   ],
   providers: [
     StatusBar,
@@ -106,4 +119,4 @@ import {FCM} from '@ionic-native/fcm'
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class AppModule {}
+export class AppModule { }
