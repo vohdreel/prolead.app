@@ -22,7 +22,7 @@ import { SelecionarAvaliacaoPage } from "../pages/competencias/selecionar-avalia
 import { PesquisaPontualPage } from "../pages/pesquisa-pontual/pesquisa"
 import { ResponderPesquisaPage } from "../pages/pesquisa-pontual/responder-pesquisa/responder-pesquisa"
 import {ListaDePesquisasPage} from '../pages/pesquisa-pontual/lista-de-pesquisas/lista-de-pesquisas'
-
+import {VisualizarPesquisaPage} from '../pages/pesquisa-pontual/visualizar-pesquisa/visualizar-pesquisa'
 import { FeedBackFilterPipe } from '../pipes/FeedbackFilterPipe'
 
 
@@ -66,7 +66,8 @@ import { FCM } from '@ionic-native/fcm'
     FeedBackFilterPipe,
     PesquisaPontualPage,
     ListaDePesquisasPage,
-    ResponderPesquisaPage
+    ResponderPesquisaPage,
+    VisualizarPesquisaPage
   ],
   imports: [
     BrowserModule,
@@ -101,7 +102,8 @@ import { FCM } from '@ionic-native/fcm'
     ListaDeFeedbacksPage,
     PesquisaPontualPage,
     ListaDePesquisasPage,
-    ResponderPesquisaPage
+    ResponderPesquisaPage,
+    VisualizarPesquisaPage
   ],
   providers: [
     StatusBar,

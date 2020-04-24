@@ -8,6 +8,12 @@ page-pesquisa-pontual {
     img {
         background-image: cover;
     }
+    .img-holder img {
+        float: right;
+        height: 55%;
+        margin-top: 45%;
+        margin-left: 20%;
+    }
     .portlet {
         h1,
         h2,
@@ -22,6 +28,9 @@ page-pesquisa-pontual {
             color: #474C52;
             font-family: 'Rubik Regular';
             font-size: 14px
+        }
+        .titulo-pesquisa-tipo {
+            color: #FA7F4A
         }
     }
 }

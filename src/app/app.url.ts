@@ -76,3 +76,6 @@ export const URL_EsqueciSenha: string = "Conta/ForgotPasswordApp"
 //Pesquisa Pontual
 
 export const URL_ListarPesquisasPontuais: string = "PerfilProlead/ListarPesquisasPontuaisApp"
+export const URL_AbrirFormularioPesquisaEmAndamento: string = "PerfilProlead/AbrirPesquisaEmAndamento"
+export const URL_SalvarPesquisaPontual: string = "PerfilProlead/SalvarPesquisaPontual"
+export const URL_CarregarPesquisaPontual: string = "PerfilProlead/CarregarPesquisaPontual"

@@ -1,0 +1,36 @@
+<!--
+  Generated template for the ListaDePesquisasPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar color="dark">
+        <ion-title>Histórico</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+
+<ion-content padding>
+
+
+    <div class="big-container row-wrap space-around" *ngIf="success">
+        <h4 class="red-text">{{PesquisaPontual.NomePesquisa}} </h4>
+        <span class="grey-text">Respondida em: {{PesquisaPontual.Data}} </span>
+        <div class="w-90 perguntas-form" *ngFor="let pergunta of PesquisaPontual.Respostas; let numero = index">
+            <div class="w-100">
+                <div class="big-container area-pergunta row-wrap space-around">
+                    <span style="flex: 0 1 100%;
+                    padding: 8px;">Pergunta {{numero + 1}}:</span>
+                    <span style="font-size: 15px">{{pergunta.QuestaoFormulario}}</span>
+                    <ionic3-star-rating [(ngModel)]="pergunta.ValorInteiro" activeIcon="ios-star" defaultIcon="ios-star-outline" activeColor="#488aff" defaultColor="#f4f4f4" readonly="true" fontSize="32px" (ratingChanged)="onRateChange($event)">
+                    </ionic3-star-rating>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h6 *ngIf="success == false" style="color: grey; font-size: 22px">Não foi possível carregar as respostas. Por favor tente novamente mais tarde.</h6>
+</ion-content>

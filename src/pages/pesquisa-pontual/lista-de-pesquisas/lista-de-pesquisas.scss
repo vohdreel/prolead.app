@@ -4,7 +4,8 @@ page-lista-de-pesquisas {
     }
     .icon-holder ion-icon {
         height: 70%;
-        width: 70%
+        width: 70%;
+        color: #C58245;
     }
     .item-md.item-block .item-inner {
         border-bottom: none;
@@ -17,18 +18,8 @@ page-lista-de-pesquisas {
         .linha-pesquisa {
             min-height: 80px;
             .img-holder {
-                padding: 3px;
-                .positivo {
-                    border: 2px solid #AFD154;
-                    box-shadow: 0 0 3px #AFD154;
-                }
-                .neutro {
-                    border: 2px solid #F0C536;
-                    box-shadow: 0 0 3px #F0C536;
-                }
-                .negativo {
-                    border: 2px solid #E66E6C;
-                    box-shadow: 0 0 3px #E66E6C;
+                .grey-icon {
+                    // color: "#0c0c0c"
                 }
             }
             .texto-pesquisa {
@@ -113,6 +104,10 @@ page-lista-de-pesquisas {
     }
     .inline {
         height: 40px !important
+    }
+    .nova-pesquisa {
+        //border: 2px solid #AFD154;
+        border: 2px solid #ffc299;
     }
     textarea {
         font-size: 1.6rem;

@@ -7,7 +7,7 @@
 <ion-header>
 
     <ion-navbar color="dark">
-        <ion-title>{{titulo.toUpperCase()}}</ion-title>
+        <ion-title>Responder Pesquisa</ion-title>
     </ion-navbar>
 
 </ion-header>
@@ -18,16 +18,14 @@
 
 
     <div class="big-container row-wrap space-around">
-
-
-        <!--Perguntas do Formulario-->
-        <div class="w-90 perguntas-form" *ngFor="let number of loopNumbers">
+        <h4 class="red-text">{{PesquisaPontual.Nome}} </h4>
+        <div class="w-90 perguntas-form" *ngFor="let pergunta of PerguntasFormulario; let numero = index">
             <div class="w-100">
                 <div class="big-container area-pergunta row-wrap space-around">
                     <span style="flex: 0 1 100%;
-                    padding: 8px;">Pergunta {{number}}:</span>
-                    <span style="font-size: 10px">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum.</span>
-                    <ionic3-star-rating style="flex: 0 1 80%" #rating activeIcon="ios-star" defaultIcon="ios-star-outline" activeColor="#488aff" defaultColor="#f4f4f4" readonly="false" rating="3" fontSize="32px" (ratingChanged)="onRateChange($event)">
+                    padding: 8px; color: #2E333B">Pergunta {{numero + 1}}:</span>
+                    <span style="font-size: 15px">{{pergunta.Descricao}}</span>
+                    <ionic3-star-rating [(ngModel)]="pergunta.ValorInteiro" activeIcon="ios-star" defaultIcon="ios-star-outline" activeColor="#488aff" defaultColor="#f4f4f4" readonly="false" fontSize="32px" (ratingChanged)="onRateChange($event)">
                     </ionic3-star-rating>
                 </div>
             </div>
@@ -39,7 +37,7 @@
                 <button type="submit" class="r-50 w-80 grey" (click)="Cancelar()" ion-button full>CANCELAR</button>
             </div>
             <div class="flex-btn center-content">
-                <button type="submit" class="r-50 w-80  orange-grad" (click)="Mapper()" ion-button full>ENVIAR</button>
+                <button type="submit" class="r-50 w-80  orange-grad" (click)="Enviar()" ion-button full>ENVIAR</button>
             </div>
         </div>
 

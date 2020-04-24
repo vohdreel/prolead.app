@@ -7,7 +7,7 @@
 <ion-header>
 
     <ion-navbar>
-        <ion-title>lista-de-pesquisas</ion-title>
+        <ion-title>{{titulo.toUpperCase()}}</ion-title>
     </ion-navbar>
 
 </ion-header>
@@ -15,21 +15,23 @@
 
 <ion-content padding>
 
-    <div class="center-content">
+    <div class="center-content" *ngIf="PesquisasPontuais.length != 0">
         <div class="flexgrid-lista-pesquisas">
-            <div class="box autorFeedback" *ngFor="let i of PesquisasPontuais" (click)="AbrirPesquisa(1)">
+            <div class="box autorFeedback" *ngFor="let pesquisa of PesquisasPontuais" (click)="AbrirPesquisa(pesquisa); pesquisa.Visualizado = true;" [ngClass]="{'nova-pesquisa': !pesquisa.Visualizado}">
                 <div class="linha-pesquisa flex">
                     <div class="w-20 icon-holder">
-                        <ion-icon name="custom-prolead-pesquisa"></ion-icon>
+                        <ion-icon class="grey-icon" name="custom-prolead-pesquisa"></ion-icon>
                     </div>
                     <div class="w-80 flex column texto-pesquisa">
-                        <span class="titulo-pesquisa" style="margin-top: 10px"> [Título da Pesquisa] </span>
-                        <span class="texto-complementar" style="margin-top: 10px"> Prazo final: 20/04/2020 </span>
+                        <span class="titulo-pesquisa" style="margin-top: 10px"> {{pesquisa.Nome}}</span>
+                        <span class="texto-complementar" style="margin-top: 10px"> Prazo final: {{pesquisa.DataTermino}}</span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <span *ngIf="PesquisasPontuais.length == 0" style="color: grey; font-size: 22px"> Nenhum resultado foi encontrado.</span>
 
 
 </ion-content>

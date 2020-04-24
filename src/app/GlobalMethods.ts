@@ -39,6 +39,27 @@ export class CustomMethods{
       alert.present();
   }
 
+  async AlertWithCallback(Mensagem: string, confimacao: string, negacao:string, callback: any) {
+    let alert = this.alertCtrl.create({
+      title: 'Aviso!',
+      message: Mensagem,
+      buttons: [{
+        text: confimacao,
+        handler: () => {
+          callback();
+        }
+      },
+      {
+        text: negacao,
+        handler: () => {
+        }
+      }],
+      cssClass: 'alertCustomCss'
+    });
+    alert.present();
+  }
+
+
 
     AlertReload(Mensagem:string){
         let alert = this.alertCtrl.create({

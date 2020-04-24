@@ -10,4 +10,4 @@ import { PesquisaPontualPage } from './pesquisa';
     IonicPageModule.forChild(PesquisaPontualPage),
   ],
 })
-export class CompetenciasPageModule {}
+export class PesquisaPontualPageModule {}

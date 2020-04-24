@@ -51,7 +51,7 @@ export class PesquisaPontualPage {
   onClickResponderQuestionario(titulo) {
   }
 
-  Lista(tipo: string){
+  Listar(tipo: number){
     this.navCtrl.push(ListaDePesquisasPage, {type: tipo})
 
 

@@ -109,29 +109,6 @@ export class MyApp {
         );
     });
   }
-
-  notificationFCM() {
-    this.firebase
-      .getToken()
-      .then(token => localStorage.setItem("FcmToken", token)) // save the token server-side and use it to push notifications to this device
-      .catch(error => console.error("Error getting token", error));
-
-    return this.firebase.onNotificationOpen().subscribe(data => {
-      //return this.firebase.onMessageReceived().subscribe(data => {
-      if (data.wasTapped) {
-        //Notification was received on device tray and tapped by the user.
-        //console.log(JSON.stringify(data));
-        // this.nav.setRoot("DetailPage", { profileId: data.profileId });
-        this.custom.okAlert(data);
-        this.nav.push(VisualizarFeedbackPage, { tit: 'Visualizar feedback', idFeed: data.id});
-      } else {
-        //Notification was received in foreground. Maybe the user needs to be notified.
-        console.log(JSON.stringify(data));
-        this.nav.push(VisualizarFeedbackPage, { tit: 'Visualizar feedback', idFeed: data.id});
-      }
-    });
-  }
-
   initializeApp() {
     this.platform.ready().then(() => {
       this.menuCtrl.enable(false);
@@ -199,11 +176,14 @@ export class MyApp {
 
     this.fcm.onNotification().subscribe(data => {
       if (data.wasTapped) {
-        console.log("Received in background");        
-        this.nav.push(VisualizarFeedbackPage, { tit: 'Visualizar feedback', idFeed: data.id});
+        console.log("Received in background");
+        if (data.Type == "Feedback")
+          this.nav.push(VisualizarFeedbackPage, { tit: 'Visualizar feedback', idFeed: data.id });
+        else if (data.Type == "Pontual")
+          this.nav.push(VisualizarFeedbackPage, { tit: 'Visualizar feedback', idFeed: data.id });
       } else {
-        console.log("Received in foreground");        
-        this.nav.push(VisualizarFeedbackPage, { tit: 'Visualizar feedback', idFeed: data.id});
+        console.log("Received in foreground");
+        this.nav.push(VisualizarFeedbackPage, { tit: 'Visualizar feedback', idFeed: data.id });
       };
     });
   }
