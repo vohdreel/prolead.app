@@ -21,6 +21,7 @@ import { Firebase } from '@ionic-native/firebase';
 import { Push, PushObject, PushOptions } from '@ionic-native/push/ngx';
 import { FCM } from '@ionic-native/fcm'
 import { VisualizarFeedbackPage } from "../pages/diario-de-bordo/visualizar-feedback/visualizar-feedback";
+import { PesquisaPontualPage } from "../pages/pesquisa-pontual/pesquisa";
 
 @Component({
   templateUrl: "app.html"
@@ -92,6 +93,12 @@ export class MyApp {
             //     seletor: "CompetenciasPage"
             //   });
             // }
+            this.pages.push({
+              title: "Pesquisa Pontual",
+              icon: "custom-prolead-pesquisa-history",
+              component: PesquisaPontualPage,
+              seletor: "PesquisaPontualPage"
+            });
             this.pages.push({
               title: "Configurações",
               icon: "ion-md-cog",
@@ -177,10 +184,7 @@ export class MyApp {
     this.fcm.onNotification().subscribe(data => {
       if (data.wasTapped) {
         console.log("Received in background");
-        if (data.Type == "Feedback")
-          this.nav.push(VisualizarFeedbackPage, { tit: 'Visualizar feedback', idFeed: data.id });
-        else if (data.Type == "Pontual")
-          this.nav.push(VisualizarFeedbackPage, { tit: 'Visualizar feedback', idFeed: data.id });
+        this.nav.push(VisualizarFeedbackPage, { tit: 'Visualizar feedback', idFeed: data.id });
       } else {
         console.log("Received in foreground");
         this.nav.push(VisualizarFeedbackPage, { tit: 'Visualizar feedback', idFeed: data.id });

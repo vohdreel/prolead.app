@@ -40,8 +40,9 @@
                 <ion-col class="modulo-icon-container" (click)="AcessaAvaliacaoDiaria? DiarioDeBordo():''">
                     <img src="../../assets/icon/diario_feedback_icon.svg" /> DIÁRIO DE FEEDBACK
                 </ion-col>
-                <ion-col class="modulo-icon-container lightgrey-disabled" (click)="PesquisaPontual? PesquisaPontual():''">
-                    <img src="../../assets/icon/clima_icon_blocked.svg" style="height: 88px" /> PESQUISA PONTUAL
+                <ion-col class="modulo-icon-container" [ngClass]="{'lightgrey-disabled': !AcessaPesquisaPontual}" (click)="AcessaPesquisaPontual? PesquisaPontual():''">
+                    <img *ngIf="!AcessaPesquisaPontual" src="../../assets/icon/clima_icon_blocked.svg" style="height: 88px" />
+                    <img *ngIf="AcessaPesquisaPontual" src="../../assets/icon/clima_icon.png" style="height: 88px" /> PESQUISA PONTUAL
                 </ion-col>
             </ion-row>
             <ion-row>

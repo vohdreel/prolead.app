@@ -39,6 +39,9 @@ ion-icon {
     &[class*="custom-prolead-pesquisa"] {
         mask-image: url(../assets/icon/pesquisa_file_icon.svg);
     }
+    &[class*="custom-prolead-pesquisa-history"] {
+        mask-image: url(../assets/icon/pesquisa_file_history_icon.svg);
+    }
 }
 
 ion-content {
@@ -73,6 +76,10 @@ div.toolbar-title {
 
 div.toolbar-title-ios {
     font-weight: 0 !important;
+}
+
+.ion-ios-star-outline {
+    color: #878b92 !important
 }
 
 #ConteudoMenu {

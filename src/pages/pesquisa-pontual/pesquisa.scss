@@ -8,11 +8,13 @@ page-pesquisa-pontual {
     img {
         background-image: cover;
     }
-    .img-holder img {
+    .img-holder img,
+    .img-holder svg {
         float: right;
         height: 55%;
         margin-top: 45%;
         margin-left: 20%;
+        fill: #593B1F;
     }
     .portlet {
         h1,
