@@ -42,6 +42,9 @@ ion-icon {
     &[class*="custom-prolead-pesquisa-history"] {
         mask-image: url(../assets/icon/pesquisa_file_history_icon.svg);
     }
+    &[class*="custom-prolead-pesquisa-pontual-icon"] {
+        mask-image: url(../assets/icon/pesquisa_pontual_icon.png);
+    }
 }
 
 ion-content {

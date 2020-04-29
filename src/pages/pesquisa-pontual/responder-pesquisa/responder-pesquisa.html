@@ -25,7 +25,7 @@
                     <span style="flex: 0 1 100%;
                     padding: 8px; color: #2E333B">Pergunta {{numero + 1}}:</span>
                     <span style="font-size: 15px">{{pergunta.Descricao}}</span>
-                    <ionic3-star-rating [(ngModel)]="pergunta.ValorInteiro" activeIcon="ios-star" defaultIcon="ios-star-outline" activeColor="#488aff" defaultColor="#f4f4f4" readonly="false" fontSize="32px" (ratingChanged)="onRateChange($event)">
+                    <ionic3-star-rating [(ngModel)]="pergunta.ValorInteiro" activeIcon="ios-star" defaultIcon="ios-star-outline" activeColor="#488aff" defaultColor="#f4f4f4" readonly="false" maxRating="6" fontSize="32px" (ratingChanged)="onRateChange($event)">
                     </ionic3-star-rating>
                 </div>
             </div>

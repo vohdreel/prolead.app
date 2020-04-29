@@ -1,14 +1,16 @@
 page-lista-de-pesquisas {
     .icon-holder ion-icon {
-        height: 70%;
-        width: 70%;
-        color: #C58245;
+        height: 85%;
+        width: 85%;
+        margin-top: 5px;
+        color: rgb(206, 89, 39);
+        ;
     }
     .item-md.item-block .item-inner {
         border-bottom: none;
     }
     .box {
-        //border: 0.5px groove #EFEFEF;
+        //border: 0.5px groove #EFEFEF; 
         div {
             max-height: -webkit-fill-avaliable;
         }
