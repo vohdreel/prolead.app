@@ -2,39 +2,35 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
-	<string>ca-app-pub-3940256099942544/2934735716</string>
-	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
-	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>79170146348-163arl8e48pp4npr9rgie1c65i0ej0r5.apps.googleusercontent.com</string>
+	<string>10073927576-vocpr2m4ecptfsa7jsmii0h96i6nbake.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.79170146348-163arl8e48pp4npr9rgie1c65i0ej0r5</string>
+	<string>com.googleusercontent.apps.10073927576-vocpr2m4ecptfsa7jsmii0h96i6nbake</string>
 	<key>API_KEY</key>
-	<string>AIzaSyCywO2e4L2QmKZ89ZVIE-hIVteyiqRuXGo</string>
+	<string>AIzaSyBuT95_9c1TeCnaOk0Detl5HOaHc98DzzU</string>
 	<key>GCM_SENDER_ID</key>
-	<string>79170146348</string>
+	<string>10073927576</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.ProLead.App</string>
 	<key>PROJECT_ID</key>
-	<string>proleadapp</string>
+	<string>prolead-app-2205b</string>
 	<key>STORAGE_BUCKET</key>
-	<string>proleadapp.appspot.com</string>
+	<string>prolead-app-2205b.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<true></true>
+	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
 	<false></false>
 	<key>IS_APPINVITE_ENABLED</key>
-	<false></false>
+	<true></true>
 	<key>IS_GCM_ENABLED</key>
 	<true></true>
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:79170146348:ios:ee7755b9ec23a57c</string>
+	<string>1:10073927576:ios:28777b0b0ad9e165c9c5ed</string>
 	<key>DATABASE_URL</key>
-	<string>https://proleadapp.firebaseio.com</string>
+	<string>https://prolead-app-2205b.firebaseio.com</string>
 </dict>
 </plist>
