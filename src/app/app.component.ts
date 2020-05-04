@@ -94,7 +94,7 @@ export class MyApp {
             //   });
             // }
             this.pages.push({
-              title: "Pesquisa Pontual",
+              title: "Express Yourself",
               icon: "custom-prolead-pesquisa-history",
               component: PesquisaPontualPage,
               seletor: "PesquisaPontualPage"
