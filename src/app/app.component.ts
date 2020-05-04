@@ -125,9 +125,9 @@ export class MyApp {
       this.splashScreen.hide();
 
       // push usando FCM
-      if (this.platform.is("cordova")) {
+      if (this.platform.is("cordova") || this.platform.is("ios")) {
         this.notificationPushFirebase();
-        this.windowsAzureNotify();
+        // this.windowsAzureNotify();
       }
     });
   }
@@ -138,7 +138,7 @@ export class MyApp {
     if (page.title == "Sair") {
       //logout firebase
 
-      if (this.platform.is("cordova")) {
+      if (this.platform.is("cordova") || this.platform.is("ios")) {
         localStorage.setItem("FcmToken", "");
         this.http
           .get(
