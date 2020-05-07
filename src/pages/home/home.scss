@@ -58,9 +58,7 @@ page-home {
     .logo-prolead {
         max-height: -webkit-fill-available;
     }
-    ion-header {
-        height: 56px;
-    }
+    
     @media (min-width: 525px) {
         ion-card {
             max-width: 80%;
@@ -83,5 +81,20 @@ page-home {
     }
     .name-margin-bottom {
         margin-bottom: 10px;
+    }
+
+    //iphone fix
+
+    .scroll-content{
+        margin-top: 0px !important;
+    }
+
+    ion-content{
+        position: relative !important
+    }
+
+    ion-header {
+        //height: 56px;
+        position: relative !important
     }
 }
