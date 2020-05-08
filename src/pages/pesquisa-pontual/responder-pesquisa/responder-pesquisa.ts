@@ -162,15 +162,16 @@ export class ResponderPesquisaPage {
 
     let alert = this.alertCtrl.create({
       title: 'Aviso!',
-      message: "Deseja realmente enviar? Suas respostas não poderão ser alteradas.",
+      message: `Ao responder a pesquisa, estou ciente que meus resultados serão compartilhados com 
+                meu gestor imediato. Da mesma forma, os meus dados podem ser utilizados de maneira individual.`,
       buttons: [{
-        text: "Sim",
+        text: "Aceitar",
         handler: () => {
           this.Mapper();
         }
       },
       {
-        text: "Não",
+        text: "Recusar",
         handler: () => {
         }
       }],
