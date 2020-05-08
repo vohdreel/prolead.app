@@ -100,10 +100,13 @@ page-visualizar-feedback {
         padding: 5px;
     }
     .send-button {
-        font-size: 50px;
-        width: 60px;
-        height: 60px;
+        //border: solid 1px black;
+        //font-size: 50px;
+        width: 100%;
+        display: block;
+        height: 100%;
         border-radius: 50%;
+        //flex: 0 1 100%;
         background-color: #AFD154;
         ion-icon {
             margin-bottom: 5px;
