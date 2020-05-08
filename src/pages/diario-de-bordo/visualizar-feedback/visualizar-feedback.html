@@ -249,11 +249,11 @@
 
 <ion-footer>
     <div class="flex row-wrap space-around padding-message">
-        <div class="w-80 center-content" style="border:solid 1px black; flex: 0 1 80%">
+        <div class="" style="border:solid 1px black; flex: 0 1 80%">
             <textarea style="resize: none" maxRows="4" class="w-100 r-50" *ngIf="stringTipoResposta == 'replica'" [(ngModel)]="ultimaQuestao.Replica" [disabled]="!PodeResponder"></textarea>
             <textarea style="resize: none" maxRows="4" class="w-100 r-50" *ngIf="stringTipoResposta == 'treplica'" [(ngModel)]="ultimaQuestao.Treplica" [disabled]="!PodeResponder"></textarea>
         </div>
-        <div class="w-20 center-content" style="border:solid 1px black; flex: 0 1 10%">
+        <div class="" style="border:solid 1px black; flex: 0 1 15%">
             <button class="send-button" [disabled]="(!ultimaQuestao.Replica || ultimaQuestao.Replica == '') || !PodeResponder" *ngIf="stringTipoResposta == 'replica'" (click)="SalvarReplica(ultimaQuestao, feedback.Id)">
                     <ion-icon name="custom-prolead-sendMessage"></ion-icon>
             </button>
