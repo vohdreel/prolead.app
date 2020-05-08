@@ -134,6 +134,14 @@ page-visualizar-feedback {
     }
 }
 
+.feedback-textarea{
+
+    flex: 0 1 80%
+}
+.feedback-sender{
+    flex: 0 1 15%
+}
+
 .flex-portlet-vf {
     flex: 1 0 80%;
     height: 45%;

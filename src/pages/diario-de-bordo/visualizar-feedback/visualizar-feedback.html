@@ -249,15 +249,15 @@
 
 <ion-footer>
     <div class="flex row-wrap space-around padding-message">
-        <div class="" style="border:solid 1px black; flex: 0 1 80%">
+        <div class="feedback-textarea">
             <textarea style="resize: none" maxRows="4" class="w-100 r-50" *ngIf="stringTipoResposta == 'replica'" [(ngModel)]="ultimaQuestao.Replica" [disabled]="!PodeResponder"></textarea>
             <textarea style="resize: none" maxRows="4" class="w-100 r-50" *ngIf="stringTipoResposta == 'treplica'" [(ngModel)]="ultimaQuestao.Treplica" [disabled]="!PodeResponder"></textarea>
         </div>
-        <div class="" style="border:solid 1px black; flex: 0 1 15%">
+        <div class="feedback-sender">
             <button class="send-button" [disabled]="(!ultimaQuestao.Replica || ultimaQuestao.Replica == '') || !PodeResponder" *ngIf="stringTipoResposta == 'replica'" (click)="SalvarReplica(ultimaQuestao, feedback.Id)">
                     <ion-icon name="custom-prolead-sendMessage"></ion-icon>
             </button>
-            <button class="send-button" [disabled]="(!ultimaQuestao.Replica || ultimaQuestao.Replica == '') || !PodeResponder" *ngIf="stringTipoResposta == 'treplica'" (click)="SalvarTreplica(ultimaQuestao, feedback.Id)">
+            <button class="send-button" [disabled]="(!ultimaQuestao.Treplica || ultimaQuestao.Treplica == '') || !PodeResponder" *ngIf="stringTipoResposta == 'treplica'" (click)="SalvarTreplica(ultimaQuestao, feedback.Id)">
                     <ion-icon name="custom-prolead-sendMessage" ></ion-icon>
             </button>
         </div>

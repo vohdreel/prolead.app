@@ -127,7 +127,6 @@ export class MyApp {
       // push usando FCM
       if (this.platform.is("cordova") || this.platform.is("ios")) {
         this.notificationPushFirebase();
-        // this.windowsAzureNotify();
       }
     });
   }
@@ -136,20 +135,7 @@ export class MyApp {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     if (page.title == "Sair") {
-      //logout firebase
-
-      if (this.platform.is("cordova") || this.platform.is("ios")) {
-        localStorage.setItem("FcmToken", "");
-        this.http
-          .get(
-            URL_BASE +
-            URL_FcmToken +
-            "?idColaborador=" +
-            localStorage.getItem("idColaborador")
-          )
-          .map(res => res.json())
-          .subscribe(resp => { }, err => { });
-      }
+            
       localStorage.setItem("ManterConectado", "false");
       localStorage.setItem("Senha", "");
       this.nav.setRoot(page.component);
@@ -224,6 +210,21 @@ export class MyApp {
     });
     pushObject.on('error').subscribe(error => console.error('Error with Push plugin', error));
 
+  }
+
+  resetToken(){
+    if (this.platform.is("cordova") || this.platform.is("ios")) {
+      localStorage.setItem("FcmToken", "");
+      this.http
+        .get(
+          URL_BASE +
+          URL_FcmToken +
+          "?idColaborador=" +
+          localStorage.getItem("idColaborador")
+        )
+        .map(res => res.json())
+        .subscribe(resp => { }, err => { });
+    }
   }
 
 
