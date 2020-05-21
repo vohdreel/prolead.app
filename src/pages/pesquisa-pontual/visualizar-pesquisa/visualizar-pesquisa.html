@@ -17,10 +17,39 @@
 <ion-content padding>
 
 
-    <div class="big-container row-wrap space-around" *ngIf="success">
-        <h4 class="red-text">{{PesquisaPontual.NomePesquisa}} </h4>
-        <span class="grey-text">Respondida em: {{PesquisaPontual.Data}} </span>
-        <div class="w-90 perguntas-form" *ngFor="let pergunta of PesquisaPontual.Respostas; let numero = index">
+    <div class="big-container row-wrap flex-center" *ngIf="success">
+        <h4 class="red-text">{{RespostaPesquisaPontual.NomePesquisa}} </h4>
+        <span class="grey-text">Respondida em: {{RespostaPesquisaPontual.Data}} </span>
+        <div class="option-group flex row-wrap w-90 round-shadow">
+            <!--Pergunta Ambiente de Trabalho-->
+
+            <h6 style="width: 100%; text-align: center;"> Ambiente de trabalho:</h6>
+            <div class="radio-custom-option radio-group-ambiente " [ngClass]="{'selecionado':RespostaPesquisaPontual.TipoAmbiente ==1 }">
+                <label>
+                    <input value="1" name="Avaliacao" type="radio"
+                        class="radio radio-inline radio-custom " disabled />
+                    <!-- <ion-icon id="respBom" name="custom-prolead-positive"></ion-icon> -->
+                    <span style="margin: 0px; width: 100%">Em casa</span>
+                </label>
+            </div>
+            <div class="radio-custom-option radio-group-ambiente" [ngClass]="{'selecionado':RespostaPesquisaPontual.TipoAmbiente ==2 }">
+                <label>
+                    <input value="2" name="Avaliacao" type="radio"
+                        class="radio radio-inline radio-custom" disabled/>
+                    <!-- <ion-icon id="respMeh" name="custom-prolead-neutral"></ion-icon> -->
+                    <span style="margin: 0px">Escritório</span>
+                </label>
+            </div>
+            <div class="radio-custom-option radio-group-ambiente" [ngClass]="{'selecionado':RespostaPesquisaPontual.TipoAmbiente ==3}">
+                <label>
+                    <input value="3" type="radio" name="Avaliacao"
+                        class="radio radio-inline radio-custom " disabled />
+                    <!-- <ion-icon id="respRuim" name="custom-prolead-negative"></ion-icon> -->
+                    <span style="margin: 0px">Ambos</span>
+                </label>
+            </div>
+        </div>
+        <div class="w-90 perguntas-form" *ngFor="let pergunta of RespostaPesquisaPontual.Respostas; let numero = index">
             <div class="w-100">
                 <div class="big-container area-pergunta row-wrap space-around">
                     <span style="flex: 0 1 100%;

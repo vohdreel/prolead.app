@@ -36,29 +36,35 @@
                 </ion-col>
             </ion-row>
         </ion-grid>
-
-        <br>
-
         <!-- Menu Grid -->
         <ion-grid class="content-grid">
             <ion-row>
-                <ion-col class="modulo-icon-container" (click)="AcessaAvaliacaoDiaria? DiarioDeBordo():''">
-                    <img src="../../assets/icon/diario_feedback_icon.svg" /> DIÁRIO DE FEEDBACK
+                <ion-col class="modulo-icon-container center-content" (click)="AcessaAvaliacaoDiaria? DiarioDeBordo():''">
+                    <div class="center-content inline-block"><img src="../../assets/icon/diario_feedback_icon.svg" />
+                        <p> DIÁRIO DE FEEDBACK</p>
+                    </div>
                 </ion-col>
-                <ion-col class="modulo-icon-container" [ngClass]="{'lightgrey-disabled': !AcessaPesquisaPontual}"
-                    (click)="AcessaPesquisaPontual? PesquisaPontual():''">
-                    <img *ngIf="!AcessaPesquisaPontual" src="../../assets/icon/clima_icon_blocked.svg"
-                        style="height: 88px" />
-                    <img *ngIf="AcessaPesquisaPontual" src="../../assets/icon/pesquisa_pontual_icon.png"
-                        style="height: 88px" /> EXPRESS YOURSELF
+                <ion-col class="modulo-icon-container center-content" [ngClass]="{'lightgrey-disabled': !AcessaPesquisaPontual}" (click)="AcessaPesquisaPontual? PesquisaPontual():''">
+                    <div class="center-content inline-block">
+                        <img *ngIf="!AcessaPesquisaPontual" src="../../assets/icon/clima_icon_blocked.svg" style="height: 88px" />
+                        <img *ngIf="AcessaPesquisaPontual" src="../../assets/icon/pesquisa_pontual_icon.png" style="height: 88px" />
+                        <p>EXPRESS YOURSELF</p>
+
+                    </div>
                 </ion-col>
             </ion-row>
             <ion-row>
-                <ion-col class="modulo-icon-container lightgrey-disabled">
-                    <img src="../../assets/icon/competencia_icon.svg" /> COMPETÊNCIA
+                <ion-col class="modulo-icon-container center-content lightgrey-disabled">
+                    <div class="center-content inline-block">
+                        <img src="../../assets/icon/competencia_icon.svg" />
+                        <p>COMPETÊNCIA</p>
+                    </div>
                 </ion-col>
-                <ion-col class="modulo-icon-container lightgrey-disabled">
-                    <img src="../../assets/icon/desemp_icon_blocked.svg" /> DESEMPENHO
+                <ion-col class="modulo-icon-container center-content lightgrey-disabled">
+                    <div class="center-content inline-block">
+                        <img src="../../assets/icon/desemp_icon_blocked.svg" />
+                        <p>DESEMPENHO</p>
+                    </div>
                 </ion-col>
             </ion-row>
             <!-- <ion-row>

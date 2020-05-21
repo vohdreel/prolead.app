@@ -5,6 +5,8 @@ import { CustomMethods } from '../../../app/GlobalMethods';
 import { URL_BASE, URL_AbrirFormularioPesquisaEmAndamento, URL_SalvarPesquisaPontual } from '../../../app/app.url';
 import { ListaDePesquisasPage } from '../lista-de-pesquisas/lista-de-pesquisas';
 import { PesquisaPontualPage } from '../pesquisa';
+import * as $ from 'jquery';
+
 
 
 
@@ -21,6 +23,7 @@ export class ResponderPesquisaPage {
   tipo: number;
   titulo: string;
   loopNumbers: any;
+  Carregado: boolean = false;
 
   PesquisaPontual: any;
   PerguntasFormulario = [];
@@ -43,6 +46,7 @@ export class ResponderPesquisaPage {
     Data: Date,
     IdFormularioResposta: 0,
     IdPesquisaColaborador: 0,
+    TipoAmbiente: 0,
     FormularioResposta: this.FormularioResposta
   };
 
@@ -53,18 +57,14 @@ export class ResponderPesquisaPage {
     public navParams: NavParams,
     private http: Http,
     private CustomMethods: CustomMethods,
-    private alertCtrl:AlertController
+    private alertCtrl: AlertController
   ) {
 
     this.tipo = navParams.get("type");
     this.titulo = this.tipo == 1 ? this.titulo = 'Em Andamento' : 'Histórico'
-    this.loopNumbers = Array(5).fill(0).map((x, i) => (i + 1));
-
-    this.PesquisaPontual = navParams.get("pesquisa");
-  
-    console.log(this.FormularioResposta.RespostaPerguntaFormulario.length)
-    console.log(this.PesquisaPontual)
-    console.log(this.loopNumbers)
+    this.loopNumbers = Array(5).fill(0).map((x, i) => (i + 1));  
+    this.PesquisaPontual = this.navParams.get("pesquisa");
+    
     this.CustomMethods.exibirLoading();
     this.CarregarFormulario();
 
@@ -74,7 +74,7 @@ export class ResponderPesquisaPage {
   CarregarFormulario() {
     this.http
       .get(
-        URL_BASE + URL_AbrirFormularioPesquisaEmAndamento 
+        URL_BASE + URL_AbrirFormularioPesquisaEmAndamento
         + "?idPesquisaColaborador=" + this.PesquisaPontual.IdPesquisaColaborador
         + "&visualizado=" + this.PesquisaPontual.Visualizado
         + "&idFormulario=" + this.PesquisaPontual.IdFormulario
@@ -84,7 +84,16 @@ export class ResponderPesquisaPage {
         resp => {
           console.log(resp.Perguntas);
           this.PerguntasFormulario = resp.Perguntas;
+          console.log(this.GroupBy(resp.Perguntas, "Categorias"));          
           this.CustomMethods.loader.dismiss();
+          this.Carregado = true;
+
+          if (!this.navParams.get("pesquisa")["MostrarInstrucoes"]) {            
+            this.mostrasInstrucoes();
+            this.PesquisaPontual["MostrarInstrucoes"] = true;
+            this.PesquisaPontual["Visualizado"] = true;
+          }
+      
         },
         err => {
           this.CustomMethods.loader.dismiss();
@@ -96,7 +105,7 @@ export class ResponderPesquisaPage {
       );
   }
 
-  Mapper(){
+  Mapper() {
     /*informacoes da RespostaPesquisaPontual:*/
     this.Aviso = false;
     this.CustomMethods.exibirLoading();
@@ -104,6 +113,17 @@ export class ResponderPesquisaPage {
     this.RespostaPesquisaPontual.Data = this.CustomMethods.dataHoje();
     this.FormularioResposta.IdFormulario = this.PesquisaPontual.IdFormulario;
     this.FormularioResposta.RespostaPerguntaFormulario = this.MapRespostas();
+
+    if(!this.RespostaPesquisaPontual.TipoAmbiente)
+      {
+        this.Aviso = true;
+        this.CustomMethods.okAlert(
+          "Por favor preencha todos os dados antes de enviar"
+        );
+
+        console.log(this.RespostaPesquisaPontual.TipoAmbiente)
+
+      }
 
     if (this.Aviso) {
       this.CustomMethods.okAlert(
@@ -116,6 +136,22 @@ export class ResponderPesquisaPage {
       this.EnviarRespostas();
     }
 
+  }
+
+  mostrasInstrucoes() {
+    this.CustomMethods.AlertWithTextCustomCSS('Legenda', `
+    6★ = Concordo totalmente <br>
+
+    5★ = Concordo <br>
+    
+    4★ = Concordo ligeiramente <br>
+    
+    3★ = Discordo ligeiramente <br>
+    
+    2★ = Discordo <br>
+    
+    1★ = Discordo totalmente <br>
+    `, 'justifyContent')
   }
 
   EnviarRespostas() {
@@ -135,7 +171,7 @@ export class ResponderPesquisaPage {
               "Não foi possivel carregar a página, verifique sua conexão com a internet e tente novamente"
             );
             this.CustomMethods.loader.dismiss();
-          } else {  
+          } else {
             this.CustomMethods.okAlert("Pesquisa respondida com sucesso!");
             this.CustomMethods.loader.dismiss();
             this.navCtrl.setRoot(PesquisaPontualPage);
@@ -155,11 +191,26 @@ export class ResponderPesquisaPage {
     console.log('Binded Value:', this.rate);
   }
 
+  mudarEstado(e: any) {
 
-  Enviar(){
+    $(".radio-group-ambiente").removeClass("selecionado");
+    let _parentDiv = $(e.target).parent().parent();
+    _parentDiv.addClass("selecionado");
 
-    //this.CustomMethods.AlertWithCallback("Deseja realmente enviar? Suas respostas não poderão ser alteradas.","Sim", "Não", this.Mapper())
 
+  }
+
+  GroupBy(array: any, prop: string): any {
+    return array.reduce((r, a) => {
+      console.log(a[prop])
+      r[a[prop]["nome"]] = r[a[prop]["nome"]] || [];
+      r[a[prop]["nome"]].push(a);
+      return r;
+    }, Object.create(null));
+  }
+
+
+  Enviar() {
     let alert = this.alertCtrl.create({
       title: 'Aviso!',
       message: `Ao responder a pesquisa, estou ciente que meus resultados serão compartilhados com 
@@ -186,14 +237,13 @@ export class ResponderPesquisaPage {
     this.navCtrl.pop();
   }
 
-  AbrirPesquisa(tipo: string){ }
+  AbrirPesquisa(tipo: string) { }
 
   MapRespostas() {
     let resposta = this.RespostaPerguntaFormulario;
     let respostas = [];
 
-    for (let i = 0; i < this.PerguntasFormulario.length; i++)
-    {
+    for (let i = 0; i < this.PerguntasFormulario.length; i++) {
       resposta = {
         AlternativaDaPerguntaFormulario: this.PerguntasFormulario[i]
           .AlternativaDaPerguntaFormulario,
@@ -207,7 +257,7 @@ export class ResponderPesquisaPage {
 
       respostas = respostas.concat(resposta);
 
-      if ((resposta.ValorInteiro == 0 ||resposta.ValorInteiro == undefined) && this.PerguntasFormulario[i].Obrigatoria) {
+      if ((resposta.ValorInteiro == 0 || resposta.ValorInteiro == undefined) && this.PerguntasFormulario[i].Obrigatoria) {
         this.Aviso = true;
       }
     }

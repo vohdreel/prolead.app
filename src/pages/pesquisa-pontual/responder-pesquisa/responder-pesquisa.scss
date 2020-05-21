@@ -1,3 +1,9 @@
+.justifyContent {
+    .alert-message {
+        text-align: inherit !important
+    }
+}
+
 page-responder-pesquisa {
     .item-md.item-block .item-inner {
         border-bottom: none;
@@ -7,22 +13,12 @@ page-responder-pesquisa {
     }
     .red-text {
         color: #FA7F4A;
-        width: 100%
+        width: 100%;
+        text-align: center;
     }
-    .fdb-header {
-        height: 65px;
-    }
-    .fdb-btn-group {
-        height: 75px;
-        flex: 0 1 80%;
-        .flex-btn {
-            flex: 1 0 calc(45% - 5px);
-            margin: 5px;
-        }
-    }
-    .fdb-lista-competencia {
-        height: 200px;
-        overflow: auto;
+    .selecionado {
+        color: white;
+        background-color: #FA7F4A;
     }
     ion-icon {
         color: rgb(179, 179, 179)
@@ -30,18 +26,10 @@ page-responder-pesquisa {
     .grey {
         background: #C9C9C9;
     }
-    .fdb-lista-filtro {
-        outline: 0;
-        border-width: 0 0 2px;
-        border-color: #e3e3e4;
-        &:focus {
-            border-color: rgb(179, 179, 179);
-        }
-    }
     .area-pergunta {
         // height: 100px;
         // margin: 5px;
-        flex: 0 1 80%;
+        flex: 0 1 100%;
         padding: 10px;
         box-shadow: 0px 3px 6px #00000029 !important;
         border-radius: 5px !important;
@@ -53,7 +41,7 @@ page-responder-pesquisa {
     .perguntas-form {
         margin-bottom: 10px
     }
-    .fdb-nota-item {
+    .radio-custom-option {
         box-shadow: 0px 3px 6px #00000029 !important;
         border-radius: 5px !important;
         flex: 1 0 calc(30% - 10px);
@@ -62,6 +50,10 @@ page-responder-pesquisa {
         margin: 4px;
         ion-icon {
             font-size: 80px;
+        }
+        label {
+            height: 100%;
+            width: 100%
         }
     }
     .pad-5 {
@@ -84,6 +76,27 @@ page-responder-pesquisa {
             vertical-align: middle;
             display: table-cell;
             font-size: 12px;
+        }
+    }
+    .round-shadow {
+        box-shadow: 0px 3px 6px #00000029 !important;
+        border-radius: 5px !important;
+        padding: 10px
+    }
+    .btn-group {
+        height: 75px;
+        flex: 0 1 80%;
+        .flex-btn {
+            flex: 1 0 calc(45% - 5px);
+            margin: 5px;
+        }
+    }
+    .legenda {
+        width: 90%;
+        color: rgb(179, 179, 179);
+        margin: 10px 0px 0px 20px;
+        ion-icon:before {
+            vertical-align: middle;
         }
     }
 }

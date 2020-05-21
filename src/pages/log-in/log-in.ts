@@ -75,7 +75,8 @@ export class LogInPage {
   }
 
   login(usuario: Usuario) {
-    this.customMethods.exibirLoading();
+    this.
+    customMethods.exibirLoading();
 
     let data = new URLSearchParams();
     data.append("username", usuario.email);

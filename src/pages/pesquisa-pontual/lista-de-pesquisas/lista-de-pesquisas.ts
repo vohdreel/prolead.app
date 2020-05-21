@@ -41,7 +41,7 @@ export class ListaDePesquisasPage {
     this.titulo = this.tipo == 1 ? 'Em Andamento' : 'Histórico'
     this.loopNumbers = Array(5).fill(0).map((x, i) => i);
 
-    console.log(this.loopNumbers)
+    //console.log(this.loopNumbers)
     this.CarregarPesquisasPontuais(this.ParametrosBusca());
 
 
@@ -49,6 +49,7 @@ export class ListaDePesquisasPage {
 
   AbrirPesquisa(pesquisa: any) {
 
+    console.log(pesquisa);
     if (this.tipo == 1) {
       this.navCtrl.push(ResponderPesquisaPage, { pesquisa: pesquisa })
     }
@@ -79,6 +80,11 @@ export class ListaDePesquisasPage {
         resp => {
           console.log(resp)
           this.PesquisasPontuais = resp.result;
+
+          this.PesquisasPontuais.forEach((pesquisa) =>{            
+            pesquisa["MostrarInstrucoes"] = pesquisa["Visualizado"];
+
+          })
           this.CustomMethods.loader.dismiss();
 
         }, err => {

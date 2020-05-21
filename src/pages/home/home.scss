@@ -15,11 +15,12 @@ page-home {
         .modulo-icon-container {
             width: 150px;
             height: 150px;
+            padding: 5px;
             //background: #FFFFFF 0% 0% no-repeat padding-box;            
             opacity: 1;
             img {
-                display: block;
-                margin-bottom: 30px;
+                height: 88px;
+                margin: 0px 0px 15px
             }
         }
         .settings-icon-container {
@@ -35,7 +36,7 @@ page-home {
             }
             img {
                 //ksdisplay: block;
-                margin-top: 10px !important
+                margin: 12px !important
             }
         }
     }
@@ -58,7 +59,6 @@ page-home {
     .logo-prolead {
         max-height: -webkit-fill-available;
     }
-    
     @media (min-width: 525px) {
         ion-card {
             max-width: 80%;
@@ -82,17 +82,13 @@ page-home {
     .name-margin-bottom {
         margin-bottom: 10px;
     }
-
     //iphone fix
-
-    .scroll-content{
+    .scroll-content {
         margin-top: 0px !important;
     }
-
-    ion-content{
+    ion-content {
         position: relative !important
     }
-
     ion-header {
         //height: 56px;
         position: relative !important

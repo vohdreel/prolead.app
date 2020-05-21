@@ -85,6 +85,10 @@ div.toolbar-title-ios {
     color: #878b92 !important
 }
 
+.ion-ios-star {
+    color: #e67647 !important;
+}
+
 #ConteudoMenu {
     button.ativo {
         border-left: 5px solid;
@@ -439,6 +443,10 @@ ion-menu .menu-inner {
     display: flex !important;
     align-content: center !important;
     text-align: center !important;
+}
+
+.flex-center {
+    justify-content: center;
 }
 
 .item-center {

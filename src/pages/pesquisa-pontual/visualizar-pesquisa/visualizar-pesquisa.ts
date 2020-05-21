@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { CustomMethods } from '../../../app/GlobalMethods';
 import { URL_BASE, URL_CarregarPesquisaPontual } from '../../../app/app.url';
+import * as $ from 'jquery';
 
 
 
@@ -35,6 +36,8 @@ export class VisualizarPesquisaPage {
 
   };
 
+  RespostaPesquisaPontual: any;
+
   Aviso = false;
 
   constructor(
@@ -51,7 +54,7 @@ export class VisualizarPesquisaPage {
     this.PesquisaPontual = navParams.get("pesquisa");
 
     this.CustomMethods.exibirLoading();
-    
+
     this.loadPesquisa();
 
   }
@@ -63,20 +66,28 @@ export class VisualizarPesquisaPage {
 
           console.log(resp)
           this.success = true;
-          this.PesquisaPontual = resp.Result;
+          this.RespostaPesquisaPontual = resp.Result;
           this.CustomMethods.loader.dismiss();
-
         }, err => {
           this.success = false;
           this.CustomMethods.loader.dismiss();
           //this.CustomMethods.okAlert("Não foi possivel carregar feedback, verifique sua conexão com a internet e tente novamente");
-          
+
         }
       );
   }
 
 
-  
+  mudarEstado(e: any) {
+
+    $(".radio-group-ambiente").removeClass("selecionado");
+    let _parentDiv = $(e.target).parent().parent();
+    _parentDiv.addClass("selecionado");
+
+
+  }
+
+
 
   onRateChange(event) {
     console.log('Your rate:', event);
@@ -88,7 +99,7 @@ export class VisualizarPesquisaPage {
     this.navCtrl.pop();
   }
 
-  AbrirPesquisa(tipo: string){ }
+  AbrirPesquisa(tipo: string) { }
 
 
 }

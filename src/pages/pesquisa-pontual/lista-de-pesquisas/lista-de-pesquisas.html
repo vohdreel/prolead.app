@@ -17,7 +17,7 @@
 
     <div class="center-content" *ngIf="PesquisasPontuais.length != 0">
         <div class="flexgrid-lista-pesquisas w-100">
-            <div class="box autorFeedback" *ngFor="let pesquisa of PesquisasPontuais" (click)="AbrirPesquisa(pesquisa); pesquisa.Visualizado = true;" [ngClass]="{'nova-pesquisa': !pesquisa.Visualizado}">
+            <div class="box autorFeedback" *ngFor="let pesquisa of PesquisasPontuais" (click)="AbrirPesquisa(pesquisa);" [ngClass]="{'nova-pesquisa': !pesquisa.Visualizado}">
                 <div class="linha-pesquisa flex w-100">
                     <div class="w-20 icon-holder">
                         <ion-icon class="grey-icon" name="custom-prolead-pesquisa-pontual-icon"></ion-icon>
@@ -30,8 +30,9 @@
             </div>
         </div>
     </div>
+    <div *ngIf="PesquisasPontuais.length == 0">
+        <span *ngIf="tipo == 1" style="color: grey; font-size: 22px"> Quando houver pesquisas para você, elas serão listadas aqui.</span>
+        <span *ngIf="tipo == 2" style="color: grey; font-size: 22px"> Exibiremos seu histórico após a sua primeira participação em uma pesquisa.</span>
 
-    <span *ngIf="PesquisasPontuais.length == 0" style="color: grey; font-size: 22px"> Nenhum resultado foi encontrado.</span>
-
-
+    </div>
 </ion-content>
