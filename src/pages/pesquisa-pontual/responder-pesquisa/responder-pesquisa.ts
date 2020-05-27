@@ -27,6 +27,7 @@ export class ResponderPesquisaPage {
 
   PesquisaPontual: any;
   PerguntasFormulario = [];
+  PerguntasFormularioAgrupada = [];
 
   RespostaPerguntaFormulario = {
     AlternativaDaPerguntaFormulario: [],
@@ -62,9 +63,9 @@ export class ResponderPesquisaPage {
 
     this.tipo = navParams.get("type");
     this.titulo = this.tipo == 1 ? this.titulo = 'Em Andamento' : 'Histórico'
-    this.loopNumbers = Array(5).fill(0).map((x, i) => (i + 1));  
+    this.loopNumbers = Array(5).fill(0).map((x, i) => (i + 1));
     this.PesquisaPontual = this.navParams.get("pesquisa");
-    
+
     this.CustomMethods.exibirLoading();
     this.CarregarFormulario();
 
@@ -84,21 +85,24 @@ export class ResponderPesquisaPage {
         resp => {
           console.log(resp.Perguntas);
           this.PerguntasFormulario = resp.Perguntas;
-          console.log(this.GroupBy(resp.Perguntas, "Categorias"));          
+          this.PerguntasFormularioAgrupada = this.GroupBy(resp.Perguntas, "Categorias");
+          console.log(this.GroupBy(resp.Perguntas, "Categorias"));
           this.CustomMethods.loader.dismiss();
           this.Carregado = true;
 
-          if (!this.navParams.get("pesquisa")["MostrarInstrucoes"]) {            
+          if (!this.navParams.get("pesquisa")["MostrarInstrucoes"]) {
             this.mostrasInstrucoes();
+            this.TermosECondicoes();
+
             this.PesquisaPontual["MostrarInstrucoes"] = true;
             this.PesquisaPontual["Visualizado"] = true;
           }
-      
+
         },
         err => {
           this.CustomMethods.loader.dismiss();
           this.CustomMethods.okAlert(
-            "Não foi possivel carregar a página, verifique sua conexão com a internet e tente novamente"
+            err + ": Não foi possivel carregar a página, verifique sua conexão com a internet e tente novamente"
           );
           this.navCtrl.pop();
         }
@@ -114,16 +118,15 @@ export class ResponderPesquisaPage {
     this.FormularioResposta.IdFormulario = this.PesquisaPontual.IdFormulario;
     this.FormularioResposta.RespostaPerguntaFormulario = this.MapRespostas();
 
-    if(!this.RespostaPesquisaPontual.TipoAmbiente)
-      {
-        this.Aviso = true;
-        this.CustomMethods.okAlert(
-          "Por favor preencha todos os dados antes de enviar"
-        );
+    if (!this.RespostaPesquisaPontual.TipoAmbiente) {
+      this.Aviso = true;
+      this.CustomMethods.okAlert(
+        "Por favor preencha todos os dados antes de enviar"
+      );
 
-        console.log(this.RespostaPesquisaPontual.TipoAmbiente)
+      console.log(this.RespostaPesquisaPontual.TipoAmbiente)
 
-      }
+    }
 
     if (this.Aviso) {
       this.CustomMethods.okAlert(
@@ -151,6 +154,12 @@ export class ResponderPesquisaPage {
     2★ = Discordo <br>
     
     1★ = Discordo totalmente <br>
+    `, 'justifyContent')
+  }
+  TermosECondicoes() {
+    this.CustomMethods.AlertWithTextCustomCSS('Termos e Condições',
+      `Ao responder a pesquisa, estou ciente que meus resultados serão compartilhados com 
+    meu gestor imediato. Da mesma forma, os meus dados podem ser utilizados de maneira individual.
     `, 'justifyContent')
   }
 
@@ -201,20 +210,37 @@ export class ResponderPesquisaPage {
   }
 
   GroupBy(array: any, prop: string): any {
-    return array.reduce((r, a) => {
-      console.log(a[prop])
-      r[a[prop]["nome"]] = r[a[prop]["nome"]] || [];
-      r[a[prop]["nome"]].push(a);
-      return r;
+    let KeyValuedArray = [];
+    KeyValuedArray = array.reduce((result, currentValue) => {
+      console.log(currentValue[prop])
+      result[currentValue[prop]["nome"]] = result[currentValue[prop]["nome"]] || [];
+      result[currentValue[prop]["nome"]].push(currentValue);
+      return result;
     }, Object.create(null));
+
+    let groupedResult = []
+    for (var obj in KeyValuedArray) {
+
+      groupedResult.push(Object.assign({},
+        {
+          Key: obj,
+          Value: KeyValuedArray[obj]
+
+        }
+
+      ))
+    }
+
+    return groupedResult;
   }
+
+
 
 
   Enviar() {
     let alert = this.alertCtrl.create({
       title: 'Aviso!',
-      message: `Ao responder a pesquisa, estou ciente que meus resultados serão compartilhados com 
-                meu gestor imediato. Da mesma forma, os meus dados podem ser utilizados de maneira individual.`,
+      message: `Deseja realmente enviar? Suas respostas não poderão ser alteradas.`,
       buttons: [{
         text: "Aceitar",
         handler: () => {
@@ -263,6 +289,33 @@ export class ResponderPesquisaPage {
     }
     return respostas;
 
+  }
+
+  MapRespostasAgrupadas() {
+    let resposta = this.RespostaPerguntaFormulario;
+    let respostas = [];
+
+    for (let h = 0; h < this.PerguntasFormularioAgrupada.length; h++) {
+      for (let i = 0; i < this.PerguntasFormulario.length; i++) {
+        resposta = {
+          AlternativaDaPerguntaFormulario: this.PerguntasFormulario[i]
+            .AlternativaDaPerguntaFormulario,
+          IdAlternativaPerguntaFormulario: +this.PerguntasFormulario[i]
+            .IdAlternativaPerguntaFormulario,
+          IdPerguntaFormulario: +this.PerguntasFormulario[i].Id,
+          ValorTexto: this.PerguntasFormulario[i].ValorTexto,
+          TipoPergunta: this.PerguntasFormulario[i].TipoPergunta,
+          ValorInteiro: this.PerguntasFormulario[i].ValorInteiro
+        };
+
+        respostas = respostas.concat(resposta);
+
+        if ((resposta.ValorInteiro == 0 || resposta.ValorInteiro == undefined) && this.PerguntasFormulario[i].Obrigatoria) {
+          this.Aviso = true;
+        }
+      }
+    }
+    return respostas;
 
   }
 

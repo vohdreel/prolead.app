@@ -50,6 +50,7 @@ export class ListaDePesquisasPage {
   AbrirPesquisa(pesquisa: any) {
 
     console.log(pesquisa);
+    //this.CustomMethods.okAlert(JSON.stringify(pesquisa))
     if (this.tipo == 1) {
       this.navCtrl.push(ResponderPesquisaPage, { pesquisa: pesquisa })
     }
@@ -81,11 +82,14 @@ export class ListaDePesquisasPage {
           console.log(resp)
           this.PesquisasPontuais = resp.result;
 
-          this.PesquisasPontuais.forEach((pesquisa) =>{            
+          this.PesquisasPontuais.forEach((pesquisa) => {
             pesquisa["MostrarInstrucoes"] = pesquisa["Visualizado"];
-
           })
+
           this.CustomMethods.loader.dismiss();
+          if (this.navParams.get('payloadPesquisa') != null) {
+            this.AbrirPesquisa(this.navParams.get('payloadPesquisa'));
+          }
 
         }, err => {
           console.log(err)

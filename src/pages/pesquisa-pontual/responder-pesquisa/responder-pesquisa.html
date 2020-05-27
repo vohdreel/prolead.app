@@ -27,7 +27,6 @@
         <div class="big-container row-wrap flex-center">
             <div class="option-group flex row-wrap w-90 round-shadow">
                 <!--Pergunta Ambiente de Trabalho-->
-
                 <h6 style="width: 100%; text-align: center;"> Selecione seu ambiente de trabalho: </h6>
                 <div class="radio-custom-option radio-group-ambiente">
                     <label>
@@ -57,7 +56,24 @@
                     </label>
                 </div>
             </div>
-            <!--Lista de perguntas do formulário-->
+
+            <!--Lista de perguntas do formulário Agrupado-->
+            <div class="w-90 perguntas-agrupadas-form " *ngFor="let agrupamento of PerguntasFormularioAgrupada; let numero = index">
+                {{agrupamento.Key}}
+                <div class="w-100 perguntas-form" *ngFor="let pergunta of agrupamento.Value; let number = index">
+                    <div class="w-100">
+                        <div class="big-container area-pergunta row-wrap space-around">
+                            <span style="flex: 0 1 100%;
+                        padding: 8px; color: #2E333B">{{number + 1}}:</span>
+                            <span style="font-size: 15px; width: 100%">{{pergunta.Descricao}}</span>
+                            <ionic3-star-rating [(ngModel)]="pergunta.ValorInteiro" activeIcon="ios-star" defaultIcon="ios-star-outline" activeColor="#488aff" defaultColor="#f4f4f4" readonly="false" maxRating="6" fontSize="32px" (ratingChanged)="onRateChange($event)">
+                            </ionic3-star-rating>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!--Lista de perguntas do formulário Não Agrupado-->
             <div class="w-90 perguntas-form" *ngFor="let pergunta of PerguntasFormulario; let numero = index">
                 <div class="w-100">
                     <div class="big-container area-pergunta row-wrap space-around">

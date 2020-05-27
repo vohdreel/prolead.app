@@ -22,6 +22,7 @@ import { Push, PushObject, PushOptions } from '@ionic-native/push/ngx';
 import { FCM } from '@ionic-native/fcm'
 import { VisualizarFeedbackPage } from "../pages/diario-de-bordo/visualizar-feedback/visualizar-feedback";
 import { PesquisaPontualPage } from "../pages/pesquisa-pontual/pesquisa";
+import { ListaDePesquisasPage } from "../pages/pesquisa-pontual/lista-de-pesquisas/lista-de-pesquisas";
 
 @Component({
   templateUrl: "app.html"
@@ -135,7 +136,7 @@ export class MyApp {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     if (page.title == "Sair") {
-            
+
       localStorage.setItem("ManterConectado", "false");
       localStorage.setItem("Senha", "");
       this.nav.setRoot(page.component);
@@ -169,50 +170,37 @@ export class MyApp {
 
     this.fcm.onNotification().subscribe(data => {
       if (data.wasTapped) {
-        console.log("Received in background");
-        this.nav.push(VisualizarFeedbackPage, { tit: 'Visualizar feedback', idFeed: data.id });
+        switch (data.Type) {
+          case "PesquisaPontual":
+            let payloadObject = Object.assign({},JSON.parse(data.pesquisa));
+            this.nav.push(ListaDePesquisasPage, { type: 1, payloadPesquisa: payloadObject});
+            break;
+          case "Feedback":
+            this.nav.push(VisualizarFeedbackPage, { tit: 'Visualizar feedback', idFeed: data.id });
+            break;
+          //adicionar mais codições aqui...
+          default:
+            break;
+        }
       } else {
         console.log("Received in foreground");
-        this.nav.push(VisualizarFeedbackPage, { tit: 'Visualizar feedback', idFeed: data.id });
+        switch (data.Type) {
+          case "PesquisaPontual":
+            let payloadObject = Object.assign({},JSON.parse(data.pesquisa));
+            this.nav.push(ListaDePesquisasPage, { type: 1, payloadPesquisa: payloadObject});
+            break;
+          case "Feedback":
+            this.nav.push(VisualizarFeedbackPage, { tit: 'Visualizar feedback', idFeed: data.id });
+            break;
+          //adicionar mais codições aqui...
+          default:
+            break;
+        }
       };
     });
   }
 
-
-  windowsAzureNotify() {
-
-    const options: PushOptions = {
-      android: {
-        senderID: "10073927576",
-        forceShow: 'true',
-        sound: 'true',
-
-      },
-      ios: {
-        alert: 'true',
-        badge: true,
-        sound: 'false'
-      },
-      windows: {},
-      browser: {
-        pushServiceURL: 'http://push.api.phonegap.com/v1/push'
-      }
-    }
-
-    const pushObject: PushObject = this.push.init(options);
-
-
-    pushObject.on('notification').subscribe((notification: any) => console.log('Received a notification', notification));
-    pushObject.on('registration').subscribe((data: any) => {
-      console.log('Registered', data)
-      localStorage.setItem('registrationId', data.registrationId)
-
-    });
-    pushObject.on('error').subscribe(error => console.error('Error with Push plugin', error));
-
-  }
-
-  resetToken(){
+  resetToken() {
     if (this.platform.is("cordova") || this.platform.is("ios")) {
       localStorage.setItem("FcmToken", "");
       this.http
