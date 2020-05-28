@@ -58,7 +58,8 @@
             </div>
 
             <!--Lista de perguntas do formulário Agrupado-->
-            <div class="w-90 perguntas-agrupadas-form " *ngFor="let agrupamento of PerguntasFormularioAgrupada; let numero = index">
+
+            <div class="w-90 perguntas-agrupadas-form round-shadow" *ngFor="let agrupamento of PerguntasFormularioAgrupada; let numero = index">
                 {{agrupamento.Key}}
                 <div class="w-100 perguntas-form" *ngFor="let pergunta of agrupamento.Value; let number = index">
                     <div class="w-100">
@@ -71,9 +72,9 @@
                         </div>
                     </div>
                 </div>
-
             </div>
             <!--Lista de perguntas do formulário Não Agrupado-->
+
             <div class="w-90 perguntas-form" *ngFor="let pergunta of PerguntasFormulario; let numero = index">
                 <div class="w-100">
                     <div class="big-container area-pergunta row-wrap space-around">

@@ -24,6 +24,7 @@ export class ResponderPesquisaPage {
   titulo: string;
   loopNumbers: any;
   Carregado: boolean = false;
+  IsAgrupado: boolean = false;
 
   PesquisaPontual: any;
   PerguntasFormulario = [];
@@ -84,10 +85,13 @@ export class ResponderPesquisaPage {
       .subscribe(
         resp => {
           console.log(resp.Perguntas);
-          this.PerguntasFormulario = resp.Perguntas;
-          this.PerguntasFormularioAgrupada = this.GroupBy(resp.Perguntas, "Categorias");
-          console.log(this.GroupBy(resp.Perguntas, "Categorias"));
-          this.CustomMethods.loader.dismiss();
+          //agrupar com configuração da própria pesquisa
+          if (this.IsAgrupado)
+            this.PerguntasFormularioAgrupada = this.GroupBy(resp.Perguntas, "Categorias");
+          else
+            this.PerguntasFormulario = resp.Perguntas;
+
+           this.CustomMethods.loader.dismiss();
           this.Carregado = true;
 
           if (!this.navParams.get("pesquisa")["MostrarInstrucoes"]) {
@@ -116,7 +120,7 @@ export class ResponderPesquisaPage {
     this.RespostaPesquisaPontual.IdPesquisaColaborador = this.PesquisaPontual.IdPesquisaColaborador;
     this.RespostaPesquisaPontual.Data = this.CustomMethods.dataHoje();
     this.FormularioResposta.IdFormulario = this.PesquisaPontual.IdFormulario;
-    this.FormularioResposta.RespostaPerguntaFormulario = this.MapRespostas();
+    this.FormularioResposta.RespostaPerguntaFormulario = this.IsAgrupado ? this.MapRespostasAgrupadas() : this.MapRespostas();
 
     if (!this.RespostaPesquisaPontual.TipoAmbiente) {
       this.Aviso = true;
