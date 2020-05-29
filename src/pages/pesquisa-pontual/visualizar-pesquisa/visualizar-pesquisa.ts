@@ -88,8 +88,9 @@ export class VisualizarPesquisaPage {
   GroupBy(array: any, prop: string): any {
     let KeyValuedArray = [];
     KeyValuedArray = array.reduce((result, currentValue) => {
-      result[currentValue[prop]["PerguntaFormulario"]["nome"]] = currentValue[prop]["PerguntaFormulario"]["nome"] || [];
-      result[currentValue[prop]["PerguntaFormulario"]["nome"]].push(currentValue);
+      console.log(result[currentValue["PerguntaFormulario"][prop]["nome"]])
+      result[currentValue["PerguntaFormulario"][prop]["nome"]] = result[currentValue["PerguntaFormulario"][prop]["nome"]]  || [];
+      result[currentValue["PerguntaFormulario"][prop]["nome"]].push(currentValue);
       return result;
     }, Object.create(null));
 
