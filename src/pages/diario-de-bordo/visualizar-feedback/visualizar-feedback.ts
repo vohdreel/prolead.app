@@ -73,11 +73,7 @@ export class VisualizarFeedbackPage {
 
 
   habilitarResposta() {
-
-
-
     if (this.feedback.IdAvaliador == this.feedback.IdAvaliado) {
-
       this.PodeResponder = false
       return;
     }
@@ -152,6 +148,7 @@ export class VisualizarFeedbackPage {
 
 
   loadFeedback() {
+    this.CustomMethods.exibirLoading();
     this.http.get(URL_BASE + URL_CarregarFeedback + "?idFeedback=" + this.idFeedback + "&idColab=" + this.Colaborador.id)
       .map(res => res.json()).subscribe(
         resp => {
@@ -160,17 +157,16 @@ export class VisualizarFeedbackPage {
           this.UtilizaTreplica = resp.UtilizaTreplica;
           this.tratatamentoComboBox();
           this.ultimaQuestao = this.feedback.FeedBack[this.feedback.FeedBack.length - 1];
-          this.CustomMethods.loader.dismiss();
-
-          console.log(this.feedback);
+          
           this.avaliacao = Object.assign({}, this.feedback.FeedBack[0]); console.log(this.avaliacao);
           this.observacao = Object.assign({}, this.feedback.FeedBack[1]); console.log(this.observacao);
 
           this.habilitarResposta();
+          this.CustomMethods.loader.dismissAll();
 
 
         }, err => {
-          this.CustomMethods.loader.dismiss();
+          this.CustomMethods.loader.dismissAll();
           this.CustomMethods.okAlert("Não foi possivel carregar feedback, verifique sua conexão com a internet e tente novamente");
         }
       );
@@ -190,7 +186,7 @@ export class VisualizarFeedbackPage {
       this.http.get(URL_BASE + URL_SalvarReplicaFeedback + "?replica=" + questao.Replica + "&id=" + questao.Id + "&idQuestao=" + id + "&idColab=" + this.Colaborador.id)
         .map(res => res.json()).subscribe(
           resp => {
-            //this.CustomMethods.loader.dismiss();
+            this.CustomMethods.loader.dismiss();
             if (resp.sucesso) {
               this.CustomMethods.okAlert("Réplica enviada com sucesso");
               this.loadFeedback();
@@ -219,7 +215,7 @@ export class VisualizarFeedbackPage {
       this.http.get(URL_BASE + URL_SalvarTreplicaFeedback + "?replica=" + questao.Treplica + "&id=" + questao.Id + "&idQuestao=" + id + "&idColab=" + this.Colaborador.id)
         .map(res => res.json()).subscribe(
           resp => {
-            //this.CustomMethods.loader.dismiss();
+            this.CustomMethods.loader.dismiss();
             if (resp.sucesso) {
               this.CustomMethods.okAlert("Tréplica enviada com sucesso");
               this.loadFeedback();

@@ -170,24 +170,25 @@ export class MyApp {
 
     this.fcm.onNotification().subscribe(data => {
       if (data.wasTapped) {
-        switch (data.Type) {
-          case "PesquisaPontual":
-            let payloadObject = Object.assign({},JSON.parse(data.pesquisa));
-            this.nav.push(ListaDePesquisasPage, { type: 1, payloadPesquisa: payloadObject});
-            break;
-          case "Feedback":
-            this.nav.push(VisualizarFeedbackPage, { tit: 'Visualizar feedback', idFeed: data.id });
-            break;
-          //adicionar mais codições aqui...
-          default:
-            break;
-        }
+        // switch (data.Type) {
+        //   case "PesquisaPontual":
+        //     let payloadObject = Object.assign({},JSON.parse(data.pesquisa));
+        //     this.nav.push(ListaDePesquisasPage, { type: 1, payloadPesquisa: payloadObject});
+        //     break;
+        //   case "Feedback":
+        //     this.nav.push(VisualizarFeedbackPage, { tit: 'Visualizar feedback', idFeed: data.id });
+        //     break;
+        //   //adicionar mais codições aqui...
+        //   default:
+        //     break;
+        // }
+        this.nav.setRoot(LogInPage, { payloadData: data})
       } else {
         console.log("Received in foreground");
         switch (data.Type) {
           case "PesquisaPontual":
-            let payloadObject = Object.assign({},JSON.parse(data.pesquisa));
-            this.nav.push(ListaDePesquisasPage, { type: 1, payloadPesquisa: payloadObject});
+            let payloadObject = Object.assign({}, JSON.parse(data.pesquisa));
+            this.nav.push(ListaDePesquisasPage, { type: 1, payloadPesquisa: payloadObject });
             break;
           case "Feedback":
             this.nav.push(VisualizarFeedbackPage, { tit: 'Visualizar feedback', idFeed: data.id });

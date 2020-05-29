@@ -60,13 +60,12 @@
             <!--Lista de perguntas do formulário Agrupado-->
 
             <div class="w-90 perguntas-agrupadas-form round-shadow" *ngFor="let agrupamento of PerguntasFormularioAgrupada; let numero = index">
-                {{agrupamento.Key}}
-                <div class="w-100 perguntas-form" *ngFor="let pergunta of agrupamento.Value; let number = index">
+                <h4>{{agrupamento.Categoria}}</h4>
+                <div class="w-100 perguntas-form" *ngFor="let pergunta of agrupamento.Perguntas; let number = index">
                     <div class="w-100">
                         <div class="big-container area-pergunta row-wrap space-around">
-                            <span style="flex: 0 1 100%;
-                        padding: 8px; color: #2E333B">{{number + 1}}:</span>
-                            <span style="font-size: 15px; width: 100%">{{pergunta.Descricao}}</span>
+
+                            <span style="font-size: 15px; width: 100%">{{number + 1}}:&nbsp;&nbsp;{{pergunta.Descricao}}</span>
                             <ionic3-star-rating [(ngModel)]="pergunta.ValorInteiro" activeIcon="ios-star" defaultIcon="ios-star-outline" activeColor="#488aff" defaultColor="#f4f4f4" readonly="false" maxRating="6" fontSize="32px" (ratingChanged)="onRateChange($event)">
                             </ionic3-star-rating>
                         </div>
@@ -75,12 +74,10 @@
             </div>
             <!--Lista de perguntas do formulário Não Agrupado-->
 
-            <div class="w-90 perguntas-form" *ngFor="let pergunta of PerguntasFormulario; let numero = index">
+            <div class="w-90 perguntas-form" *ngFor="let pergunta of PerguntasFormulario; let number = index">
                 <div class="w-100">
                     <div class="big-container area-pergunta row-wrap space-around">
-                        <span style="flex: 0 1 100%;
-                    padding: 8px; color: #2E333B">{{numero + 1}}:</span>
-                        <span style="font-size: 15px; width: 100%">{{pergunta.Descricao}}</span>
+                        <span style="font-size: 15px; width: 100%">{{number + 1}}:   {{pergunta.Descricao}}</span>
                         <ionic3-star-rating [(ngModel)]="pergunta.ValorInteiro" activeIcon="ios-star" defaultIcon="ios-star-outline" activeColor="#488aff" defaultColor="#f4f4f4" readonly="false" maxRating="6" fontSize="32px" (ratingChanged)="onRateChange($event)">
                         </ionic3-star-rating>
                     </div>

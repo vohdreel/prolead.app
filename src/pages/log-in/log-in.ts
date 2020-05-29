@@ -31,6 +31,7 @@ export class LogInPage {
   ManterConectado = false;
   show = false;
   type = "password";
+  payload: any;
 
   constructor(
     public navCtrl: NavController,
@@ -43,6 +44,10 @@ export class LogInPage {
     public events: Events
   ) {
     this.usuario.email = localStorage.getItem("Usuario");
+
+    if (this.navParams.get('payloadData') != null)
+      this.payload = this.navParams.get('payloadData');
+
     if (localStorage.getItem("ManterConectado") == "true") {
       this.ManterConectado = localStorage.getItem("ManterConectado") == "true";
       this.usuario.senha = localStorage.getItem("Senha");
@@ -75,8 +80,7 @@ export class LogInPage {
   }
 
   login(usuario: Usuario) {
-    this.
-    customMethods.exibirLoading();
+    this.customMethods.exibirLoading();
 
     let data = new URLSearchParams();
     data.append("username", usuario.email);
@@ -189,11 +193,11 @@ export class LogInPage {
       .subscribe(
         resp => {
           localStorage.setItem("foto", resp.foto);
-          this.navCtrl.setRoot(HomePage);
+          this.navCtrl.setRoot(HomePage, {payload: this.payload});
         },
         err => {
           localStorage.setItem("foto", "assets/imgs/avatar.png");
-          this.navCtrl.setRoot(HomePage);
+          this.navCtrl.setRoot(HomePage,{payload: this.payload});
         }
       );   
 

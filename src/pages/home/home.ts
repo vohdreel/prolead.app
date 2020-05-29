@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MenuController, NavController, Events } from 'ionic-angular';
+import { MenuController, NavController, Events, NavParams } from 'ionic-angular';
 import { Platform } from 'ionic-angular/platform/platform';
 
 import { CompetenciasPage } from '../competencias/competencias';
@@ -15,6 +15,8 @@ import { NotificacoesPage } from '../notificacoes/notificacoes';
 import { ConfiguracoesPage } from '../configuracoes/configuracoes';
 import { LogInPage } from '../log-in/log-in';
 import { PesquisaPontualPage } from '../pesquisa-pontual/pesquisa';
+import { VisualizarFeedbackPage } from '../diario-de-bordo/visualizar-feedback/visualizar-feedback';
+import { ListaDePesquisasPage } from '../pesquisa-pontual/lista-de-pesquisas/lista-de-pesquisas';
 
 @Component({
   selector: 'page-home',
@@ -39,12 +41,16 @@ export class HomePage {
     private firebase: Firebase,
     public events: Events,
     public platform: Platform,
-    public FCM: FCM
+    public FCM: FCM,
+    public navParams: NavParams
   ) {
-    this.CustomMethods.exibirLoading();
     this.menuCtrl.enable(true);
     this.loadPermicoes();
+
+
+
   }
+
 
   loadPermicoes() {
     this.http.get(URL_BASE + URL_Menu + "?idColab=" + this.IdColaborador)
@@ -57,64 +63,79 @@ export class HomePage {
           this.AcessaMatrizInformacao = resp.MatrizInformacao;
           this.AcessaSucessao = resp.Sucessao;
           this.AcessaPesquisaPontual = true;
-          this.CustomMethods.loader.dismiss();
           this.ColocarBarraPagina('HomePage');
-        }, err => {
-          this.CustomMethods.loader.dismiss();
-          this.CustomMethods.AlertReload("Não foi possivel carregar a página, verifique sua conexão com a internet e tente novamente");
-        });
+          if (this.navParams.get('payload') != null) {
+            let data = this.navParams.get('payload');
+              switch (data.Type) {
+                case "PesquisaPontual":
+                  let payloadObject = Object.assign({}, JSON.parse(data.pesquisa));
+                  this.navCtrl.push(ListaDePesquisasPage, { type: 1, payloadPesquisa: payloadObject });
+                  break;
+                case "Feedback":
+                  this.navCtrl.push(VisualizarFeedbackPage, { tit: 'Visualizar feedback', idFeed: data.id }).then(this.CustomMethods.loader.dismissAll());
+                  break;
+                //adicionar mais codições aqui...
+                default:
+                  break;
+              }
 
-    if (this.platform.is('cordova')) {      
-      this.http
-        .get(
-          URL_BASE +
-          URL_FcmToken +
-          "?idColaborador=" +
-          localStorage.getItem("idColaborador") +
-          "&token=" +
-          localStorage.getItem("FCMDeviceToken")
-          //localStorage.getItem('FCMTokenPhonegap')
-        )
-        .map(res => res.json())
-        .subscribe(resp => {
+  }
+}, err => {
+  this.CustomMethods.loader.dismiss();
+  this.CustomMethods.AlertReload("Não foi possivel carregar a página, verifique sua conexão com a internet e tente novamente");
+});
 
-        }, err => { });
-    }
+if (this.platform.is('cordova')) {
+  this.http
+    .get(
+      URL_BASE +
+      URL_FcmToken +
+      "?idColaborador=" +
+      localStorage.getItem("idColaborador") +
+      "&token=" +
+      localStorage.getItem("FCMDeviceToken")
+      //localStorage.getItem('FCMTokenPhonegap')
+    )
+    .map(res => res.json())
+    .subscribe(resp => {
+
+    }, err => { });
+}
   }
 
-  Competencias() {
-    this.ColocarBarraPagina('CompetenciasPage');
-    this.navCtrl.push(CompetenciasPage)
-  }
+Competencias() {
+  this.ColocarBarraPagina('CompetenciasPage');
+  this.navCtrl.push(CompetenciasPage)
+}
 
-  DiarioDeBordo() {
-    this.ColocarBarraPagina('DiarioDeBordoPage');
-    this.navCtrl.push(DiarioDeBordoPage)
-    
-  }
+DiarioDeBordo() {
+  this.ColocarBarraPagina('DiarioDeBordoPage');
+  this.navCtrl.push(DiarioDeBordoPage)
 
-  PesquisaPontual() {
-    this.ColocarBarraPagina('PesquisaPontualPage');
-    this.navCtrl.push(PesquisaPontualPage)
-    
-  }
+}
 
-  AbrirNotificacoes() {
-    this.navCtrl.push(NotificacoesPage)
-  }
+PesquisaPontual() {
+  this.ColocarBarraPagina('PesquisaPontualPage');
+  this.navCtrl.push(PesquisaPontualPage)
 
-  AbrirConfiguracao(config: string, FromHome: boolean){
-    this.navCtrl.push(ConfiguracoesPage, {type: config, isFromHome: FromHome})
-  }
+}
 
-  ColocarBarraPagina(seletor: string) {
-    this.events.publish('colocarBarra', seletor)
-  }
+AbrirNotificacoes() {
+  this.navCtrl.push(NotificacoesPage)
+}
 
-  SairSistema(){
-      localStorage.setItem("ManterConectado", "false");
-      localStorage.setItem("Senha", "");
-      this.navCtrl.setRoot(LogInPage);
-  }
+AbrirConfiguracao(config: string, FromHome: boolean) {
+  this.navCtrl.push(ConfiguracoesPage, { type: config, isFromHome: FromHome })
+}
+
+ColocarBarraPagina(seletor: string) {
+  this.events.publish('colocarBarra', seletor)
+}
+
+SairSistema() {
+  localStorage.setItem("ManterConectado", "false");
+  localStorage.setItem("Senha", "");
+  this.navCtrl.setRoot(LogInPage);
+}
 
 }

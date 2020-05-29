@@ -84,14 +84,13 @@ export class ResponderPesquisaPage {
       .map(res => res.json())
       .subscribe(
         resp => {
-          console.log(resp.Perguntas);
+          this.IsAgrupado = resp.IsAgrupado;
           //agrupar com configuração da própria pesquisa
           if (this.IsAgrupado)
             this.PerguntasFormularioAgrupada = this.GroupBy(resp.Perguntas, "Categorias");
           else
             this.PerguntasFormulario = resp.Perguntas;
 
-           this.CustomMethods.loader.dismiss();
           this.Carregado = true;
 
           if (!this.navParams.get("pesquisa")["MostrarInstrucoes"]) {
@@ -101,6 +100,11 @@ export class ResponderPesquisaPage {
             this.PesquisaPontual["MostrarInstrucoes"] = true;
             this.PesquisaPontual["Visualizado"] = true;
           }
+          /*Por conta das rápidas mudanças de telas ao carregar essa pagina via payload
+          são criadas instancias do loader que não são encerradas, .dismissAll() encerra todas
+          os loaders extras
+          */this.CustomMethods.loader.dismissAll();
+
 
         },
         err => {
@@ -216,7 +220,6 @@ export class ResponderPesquisaPage {
   GroupBy(array: any, prop: string): any {
     let KeyValuedArray = [];
     KeyValuedArray = array.reduce((result, currentValue) => {
-      console.log(currentValue[prop])
       result[currentValue[prop]["nome"]] = result[currentValue[prop]["nome"]] || [];
       result[currentValue[prop]["nome"]].push(currentValue);
       return result;
@@ -227,8 +230,8 @@ export class ResponderPesquisaPage {
 
       groupedResult.push(Object.assign({},
         {
-          Key: obj,
-          Value: KeyValuedArray[obj]
+          Categoria: obj,
+          Perguntas: KeyValuedArray[obj]
 
         }
 
@@ -298,27 +301,27 @@ export class ResponderPesquisaPage {
   MapRespostasAgrupadas() {
     let resposta = this.RespostaPerguntaFormulario;
     let respostas = [];
-
-    for (let h = 0; h < this.PerguntasFormularioAgrupada.length; h++) {
-      for (let i = 0; i < this.PerguntasFormulario.length; i++) {
+    this.PerguntasFormularioAgrupada.forEach(agrupamento => {
+      for (let i = 0; i < agrupamento.Perguntas.length; i++) {
         resposta = {
-          AlternativaDaPerguntaFormulario: this.PerguntasFormulario[i]
+          AlternativaDaPerguntaFormulario: agrupamento.Perguntas[i]
             .AlternativaDaPerguntaFormulario,
-          IdAlternativaPerguntaFormulario: +this.PerguntasFormulario[i]
+          IdAlternativaPerguntaFormulario: +agrupamento.Perguntas[i]
             .IdAlternativaPerguntaFormulario,
-          IdPerguntaFormulario: +this.PerguntasFormulario[i].Id,
-          ValorTexto: this.PerguntasFormulario[i].ValorTexto,
-          TipoPergunta: this.PerguntasFormulario[i].TipoPergunta,
-          ValorInteiro: this.PerguntasFormulario[i].ValorInteiro
+          IdPerguntaFormulario: +agrupamento.Perguntas[i].Id,
+          ValorTexto: agrupamento.Perguntas[i].ValorTexto,
+          TipoPergunta: agrupamento.Perguntas[i].TipoPergunta,
+          ValorInteiro: agrupamento.Perguntas[i].ValorInteiro
         };
 
         respostas = respostas.concat(resposta);
 
-        if ((resposta.ValorInteiro == 0 || resposta.ValorInteiro == undefined) && this.PerguntasFormulario[i].Obrigatoria) {
+        if ((resposta.ValorInteiro == 0 || resposta.ValorInteiro == undefined) && agrupamento.Perguntas[i].Obrigatoria) {
           this.Aviso = true;
         }
       }
-    }
+
+    });
     return respostas;
 
   }

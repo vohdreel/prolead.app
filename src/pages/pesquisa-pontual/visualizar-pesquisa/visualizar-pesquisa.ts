@@ -20,6 +20,7 @@ export class VisualizarPesquisaPage {
   tipo: number;
   titulo: string;
   loopNumbers: any;
+  IsAgrupado: boolean;
 
   //PesquisaPontual: any;
   PerguntasFormulario = [];
@@ -63,10 +64,17 @@ export class VisualizarPesquisaPage {
     this.http.get(URL_BASE + URL_CarregarPesquisaPontual + "?idPesquisaColaborador=" + this.PesquisaPontual.IdPesquisaColaborador)
       .map(res => res.json()).subscribe(
         resp => {
-
-          console.log(resp)
+          this.IsAgrupado = resp.IsAgrupado
           this.success = true;
           this.RespostaPesquisaPontual = resp.Result;
+          this.RespostaPesquisaPontual["Respostas"] =
+            this.IsAgrupado ? this.GroupBy(this.RespostaPesquisaPontual["Respostas"], "Categorias")
+              :this.RespostaPesquisaPontual["Respostas"];
+
+
+
+
+
           this.CustomMethods.loader.dismiss();
         }, err => {
           this.success = false;
@@ -77,6 +85,29 @@ export class VisualizarPesquisaPage {
       );
   }
 
+  GroupBy(array: any, prop: string): any {
+    let KeyValuedArray = [];
+    KeyValuedArray = array.reduce((result, currentValue) => {
+      result[currentValue[prop]["PerguntaFormulario"]["nome"]] = currentValue[prop]["PerguntaFormulario"]["nome"] || [];
+      result[currentValue[prop]["PerguntaFormulario"]["nome"]].push(currentValue);
+      return result;
+    }, Object.create(null));
+
+    let groupedResult = []
+    for (var obj in KeyValuedArray) {
+
+      groupedResult.push(Object.assign({},
+        {
+          Categoria: obj,
+          Perguntas: KeyValuedArray[obj]
+
+        }
+
+      ))
+    }
+
+    return groupedResult;
+  }
 
   mudarEstado(e: any) {
 

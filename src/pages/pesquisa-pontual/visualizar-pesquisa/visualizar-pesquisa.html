@@ -26,40 +26,59 @@
             <h6 style="width: 100%; text-align: center;"> Ambiente de trabalho:</h6>
             <div class="radio-custom-option radio-group-ambiente " [ngClass]="{'selecionado':RespostaPesquisaPontual.TipoAmbiente ==1 }">
                 <label>
-                    <input value="1" name="Avaliacao" type="radio"
-                        class="radio radio-inline radio-custom " disabled />
+                    <input value="1" name="Avaliacao" type="radio" class="radio radio-inline radio-custom " disabled />
                     <!-- <ion-icon id="respBom" name="custom-prolead-positive"></ion-icon> -->
                     <span style="margin: 0px; width: 100%">Em casa</span>
                 </label>
             </div>
             <div class="radio-custom-option radio-group-ambiente" [ngClass]="{'selecionado':RespostaPesquisaPontual.TipoAmbiente ==2 }">
                 <label>
-                    <input value="2" name="Avaliacao" type="radio"
-                        class="radio radio-inline radio-custom" disabled/>
+                    <input value="2" name="Avaliacao" type="radio" class="radio radio-inline radio-custom" disabled />
                     <!-- <ion-icon id="respMeh" name="custom-prolead-neutral"></ion-icon> -->
                     <span style="margin: 0px">Escritório</span>
                 </label>
             </div>
             <div class="radio-custom-option radio-group-ambiente" [ngClass]="{'selecionado':RespostaPesquisaPontual.TipoAmbiente ==3}">
                 <label>
-                    <input value="3" type="radio" name="Avaliacao"
-                        class="radio radio-inline radio-custom " disabled />
+                    <input value="3" type="radio" name="Avaliacao" class="radio radio-inline radio-custom " disabled />
                     <!-- <ion-icon id="respRuim" name="custom-prolead-negative"></ion-icon> -->
                     <span style="margin: 0px">Ambos</span>
                 </label>
             </div>
         </div>
-        <div class="w-90 perguntas-form" *ngFor="let pergunta of RespostaPesquisaPontual.Respostas; let numero = index">
-            <div class="w-100">
-                <div class="big-container area-pergunta row-wrap space-around">
-                    <span style="flex: 0 1 100%;
+        <div *ngIf="!IsAgrupado" class="big-container row-wrap flex-center">
+            <div class="w-90 perguntas-form" *ngFor="let pergunta of RespostaPesquisaPontual.Respostas; let numero = index">
+                <div class="w-100">
+                    <div class="big-container area-pergunta row-wrap space-around">
+                        <span style="flex: 0 1 100%;
                     padding: 8px;">{{numero + 1}}:</span>
-                    <span style="font-size: 15px">{{pergunta.QuestaoFormulario}}</span>
-                    <ionic3-star-rating [(ngModel)]="pergunta.ValorInteiro" activeIcon="ios-star" defaultIcon="ios-star-outline" activeColor="#488aff" defaultColor="#f4f4f4" readonly="true" maxRating="6" fontSize="32px" (ratingChanged)="onRateChange($event)">
-                    </ionic3-star-rating>
+                        <span style="font-size: 15px">{{pergunta.QuestaoFormulario}}</span>
+                        <ionic3-star-rating [(ngModel)]="pergunta.ValorInteiro" activeIcon="ios-star" defaultIcon="ios-star-outline" activeColor="#488aff" defaultColor="#f4f4f4" readonly="true" maxRating="6" fontSize="32px" (ratingChanged)="onRateChange($event)">
+                        </ionic3-star-rating>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <!--Lista de perguntas do formulário Agrupado-->
+        <div *ngIf="!sAgrupado" class="big-container row-wrap flex-center">
+            <div class="w-90 perguntas-form" *ngFor="let agrupamento of RespostaPesquisaPontual.Respostas; let numero = index">
+                <h4>{{agrupamento.Categoria}}</h4>
+                <div class="w-100 perguntas-form" *ngFor="let pergunta of agrupamento.Perguntas; let number = index">
+                    <div class="w-100">
+                        <div class="big-container area-pergunta row-wrap space-around">
+                            <span style="flex: 0 1 100%;
+                    padding: 8px;">{{numero + 1}}:</span>
+                            <span style="font-size: 15px">{{pergunta.QuestaoFormulario}}</span>
+                            <ionic3-star-rating [(ngModel)]="pergunta.ValorInteiro" activeIcon="ios-star" defaultIcon="ios-star-outline" activeColor="#488aff" defaultColor="#f4f4f4" readonly="true" maxRating="6" fontSize="32px" (ratingChanged)="onRateChange($event)">
+                            </ionic3-star-rating>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
     </div>
     <h6 *ngIf="success == false" style="color: grey; font-size: 22px">Não foi possível carregar as respostas. Por favor tente novamente mais tarde.</h6>
 </ion-content>
