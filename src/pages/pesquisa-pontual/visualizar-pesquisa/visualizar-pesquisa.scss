@@ -134,4 +134,55 @@ page-visualizar-pesquisa {
             margin: 5px;
         }
     }
+    //card media por categoria
+    .graficos {
+        .titulo-media-geral {
+            text-align: center;
+        }
+        .resultados-categorias {
+            overflow: hidden;
+        }
+        .card-categoria {
+            margin-bottom: 10px;
+            height: 13vh;
+            .header {
+                flex: 0 1 75%;
+                display: table;
+                /*acts like a table*/
+            }
+            h6 {
+                margin: 0;
+                padding: 0;
+                vertical-align: middle;
+                display: table-cell;
+                color: #5e5e5e
+            }
+            .icon-holder {
+                flex: 0 1 15%;
+                text-align: center;
+                display: table;
+                .ion-ios-stats:before {
+                    font-size: 24px;
+                    vertical-align: middle;
+                }
+            }
+            .categoria-progess-bar {
+                //border: 1px solid;
+                flex: 0 1 100%;
+                border-radius: 15px;
+                background-color: #f1f1f1 !important;
+                border: 0px;
+                height: 5px;
+                .progress-value {
+                    width: 15%;
+                    height: 100%;
+                    background-color: #2196F3;
+                    border-radius: 15px;
+                }
+            }
+            .percentage {
+                flex: 0 1 100%;
+            }
+        }
+    }
 }

@@ -40,6 +40,7 @@
         "angular-once": "^0.1.9",
         "base64url": "^3.0.1",
         "bootstrap": "^4.3.1",
+        "chart.js": "^2.9.3",
         "com-badrit-base64": "^0.2.0",
         "compass": "^0.1.1",
         "cordova": "^8.1.2",

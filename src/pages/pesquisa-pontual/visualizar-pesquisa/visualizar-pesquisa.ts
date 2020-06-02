@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, OnInit, ElementRef, AfterViewInit, AfterViewChecked, ViewChildren, AfterContentInit } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { CustomMethods } from '../../../app/GlobalMethods';
 import { URL_BASE, URL_CarregarPesquisaPontual } from '../../../app/app.url';
 import * as $ from 'jquery';
+import { Chart } from 'chart.js';
+
 
 
 
@@ -14,13 +16,30 @@ import * as $ from 'jquery';
   templateUrl: 'visualizar-pesquisa.html',
 })
 
-export class VisualizarPesquisaPage {
 
+export class VisualizarPesquisaPage {
+  @ViewChild('doughnutCanvas') doughnutCanvas: ElementRef;
+
+  private donutsContent
+  @ViewChild('donuts') set content(content: ElementRef) {
+    if (content) { // initially setter gets called with undefined
+      //inicializa as configurações do grafico
+      this.donutsContent = content;
+      this.ConfigureRoundedDoughnut();
+      this.ConfigureUniqueValueDoughtnut();
+      this.dChartMethod();
+    }
+  }
+
+  doughnutChart: any
+
+  ResultadoCategorias : any;
   rate: number = 0;
   tipo: number;
   titulo: string;
   loopNumbers: any;
   IsAgrupado: boolean;
+  ResultadoPorGrafico: boolean = true;
 
   //PesquisaPontual: any;
   PerguntasFormulario = [];
@@ -53,27 +72,30 @@ export class VisualizarPesquisaPage {
     this.loopNumbers = Array(5).fill(0).map((x, i) => (i + 1));
 
     this.PesquisaPontual = navParams.get("pesquisa");
-
     this.CustomMethods.exibirLoading();
-
     this.loadPesquisa();
 
   }
+
+
+
+
 
   loadPesquisa() {
     this.http.get(URL_BASE + URL_CarregarPesquisaPontual + "?idPesquisaColaborador=" + this.PesquisaPontual.IdPesquisaColaborador)
       .map(res => res.json()).subscribe(
         resp => {
-          this.IsAgrupado = resp.IsAgrupado
+          //console.log(this.doughnutCanvas);
+
           this.success = true;
+          this.IsAgrupado = resp.IsAgrupado;
           this.RespostaPesquisaPontual = resp.Result;
           this.RespostaPesquisaPontual["Respostas"] =
             this.IsAgrupado ? this.GroupBy(this.RespostaPesquisaPontual["Respostas"], "Categorias")
-              :this.RespostaPesquisaPontual["Respostas"];
+              : this.RespostaPesquisaPontual["Respostas"];
 
-
-
-
+              console.log(resp.DataResult)
+              this.ResultadoCategorias = resp.DataResult
 
           this.CustomMethods.loader.dismiss();
         }, err => {
@@ -89,7 +111,7 @@ export class VisualizarPesquisaPage {
     let KeyValuedArray = [];
     KeyValuedArray = array.reduce((result, currentValue) => {
       console.log(result[currentValue["PerguntaFormulario"][prop]["nome"]])
-      result[currentValue["PerguntaFormulario"][prop]["nome"]] = result[currentValue["PerguntaFormulario"][prop]["nome"]]  || [];
+      result[currentValue["PerguntaFormulario"][prop]["nome"]] = result[currentValue["PerguntaFormulario"][prop]["nome"]] || [];
       result[currentValue["PerguntaFormulario"][prop]["nome"]].push(currentValue);
       return result;
     }, Object.create(null));
@@ -101,22 +123,16 @@ export class VisualizarPesquisaPage {
         {
           Categoria: obj,
           Perguntas: KeyValuedArray[obj]
-
         }
-
-      ))
+      ));
     }
-
     return groupedResult;
   }
 
   mudarEstado(e: any) {
-
     $(".radio-group-ambiente").removeClass("selecionado");
     let _parentDiv = $(e.target).parent().parent();
     _parentDiv.addClass("selecionado");
-
-
   }
 
 
@@ -126,12 +142,110 @@ export class VisualizarPesquisaPage {
     console.log('Binded Value:', this.rate);
   }
 
+  dChartMethod() {
+    var deliveredData = {
+      labels: [
+        "Value"
+      ],
+      datasets: [
+        {
+          data: [85, 15],
+          backgroundColor: [
+            "#3ec556",
+            "rgba(0,0,0,0)"
+          ],
+          hoverBackgroundColor: [
+            "#3ec556",
+            "rgba(0,0,0,0)"
+          ],
+          borderWidth: [
+            0, 0
+          ]
+        }]
+    };
 
-  Cancelar() {
-    this.navCtrl.pop();
+    var deliveredOpt = {
+      cutoutPercentage: 88,
+      animation: {
+        animationRotate: true,
+        duration: 2000
+      },
+      legend: {
+        display: false
+      },
+      tooltips: {
+        enabled: false
+      }
+    };
+
+    this.doughnutChart = new Chart(this.donutsContent.nativeElement, {
+      type: 'RoundedDoughnut',
+      data: deliveredData,
+      options: deliveredOpt
+    });
+  }
+  ConfigureRoundedDoughnut() {
+    Chart.defaults.RoundedDoughnut = Chart.helpers.clone(Chart.defaults.doughnut);
+    Chart.controllers.RoundedDoughnut = Chart.controllers.doughnut.extend({
+      draw: function (ease) {
+        var ctx = this.chart.ctx;
+        var easingDecimal = ease || 1;
+        var arcs = this.getMeta().data;
+        Chart.helpers.each(arcs, function (arc, i) {
+          arc.transition(easingDecimal).draw();
+
+          var pArc = arcs[i === 0 ? arcs.length - 1 : i - 1];
+          var pColor = pArc._view.backgroundColor;
+
+          var vm = arc._view;
+          var radius = (vm.outerRadius + vm.innerRadius) / 2;
+          var thickness = (vm.outerRadius - vm.innerRadius) / 2;
+          var startAngle = Math.PI - vm.startAngle - Math.PI / 2;
+          var angle = Math.PI - vm.endAngle - Math.PI / 2;
+
+          ctx.save();
+          ctx.translate(vm.x, vm.y);
+
+          ctx.fillStyle = i === 0 ? vm.backgroundColor : pColor;
+          ctx.beginPath();
+          ctx.arc(radius * Math.sin(startAngle), radius * Math.cos(startAngle), thickness, 0, 2 * Math.PI);
+          ctx.fill();
+
+          ctx.fillStyle = vm.backgroundColor;
+          ctx.beginPath();
+          ctx.arc(radius * Math.sin(angle), radius * Math.cos(angle), thickness, 0, 2 * Math.PI);
+          ctx.fill();
+
+          ctx.restore();
+        });
+      }
+    });
+
   }
 
-  AbrirPesquisa(tipo: string) { }
+  ConfigureUniqueValueDoughtnut() {
+    Chart.pluginService.register({
+      beforeDraw: function (chart) {
+        var width = chart.chart.width,
+          height = chart.chart.height,
+          ctx = chart.chart.ctx;
+
+        ctx.restore();
+        var fontSize = (height / 57).toFixed(2);
+        ctx.font = fontSize + "em sans-serif";
+        ctx.textBaseline = "middle";
+
+        var text = "75%",
+          textX = Math.round((width - ctx.measureText(text).width) / 2),
+          textY = height / 2;
+
+        ctx.fillText(text, textX, textY);
+        ctx.save();
+      }
+    });
+  }
+
+
 
 
 }

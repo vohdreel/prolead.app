@@ -15,14 +15,11 @@
 
 
 <ion-content padding>
-
-
     <div class="big-container row-wrap flex-center" *ngIf="success">
         <h4 class="red-text">{{RespostaPesquisaPontual.NomePesquisa}} </h4>
         <span class="grey-text">Respondida em: {{RespostaPesquisaPontual.Data}} </span>
         <div class="option-group flex row-wrap w-90 round-shadow">
             <!--Pergunta Ambiente de Trabalho-->
-
             <h6 style="width: 100%; text-align: center;"> Ambiente de trabalho:</h6>
             <div class="radio-custom-option radio-group-ambiente " [ngClass]="{'selecionado':RespostaPesquisaPontual.TipoAmbiente ==1 }">
                 <label>
@@ -46,7 +43,39 @@
                 </label>
             </div>
         </div>
-        <div *ngIf="!IsAgrupado" class="big-container row-wrap flex-center">
+        <!-- região de graficos-->
+        <div class="big-container row-wrap flex-center graficos" style="position: relative; height:40vh; width:80vw">
+            <h5 class="red-text titulo-media-geral">Média Geral</h5>
+            <canvas #donuts>
+            </canvas>
+
+
+            <div class="big-container row-wrap flex-center round-shadow">
+                <div class="row-wrap w-90 resultados-categorias" *ngFor="let categoria of ResultadoCategorias.Dados">
+                    <span>{{categoria.Nome.toUpperCase()}}</span>
+                    <div class="w-100 perguntas-form flex row-wrap space-between round-shadow card-categoria">
+                        <div class="header">
+                            <h6>{{categoria.Media}}</h6>
+                        </div>
+
+                        <div class="icon-holder">
+                            <ion-icon name="ios-stats"></ion-icon>
+                        </div>
+
+                        <div class="categoria-progess-bar">
+                            <div class="progress-value" [ngStyle]="{ 'background-color': categoria.Cor, 'width': categoria.PercentualMedia + '%'}"></div>
+                        </div>
+                        <div class="percentage">
+                            <h6>{{categoria.PercentualMedia}}</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- região de perguntas não agrupadas-->
+
+        <div *ngIf="!IsAgrupado && !ResultadoPorGrafico" class="big-container row-wrap flex-center">
             <div class="w-90 perguntas-form" *ngFor="let pergunta of RespostaPesquisaPontual.Respostas; let numero = index">
                 <div class="w-100">
                     <div class="big-container area-pergunta row-wrap space-around">
@@ -61,7 +90,7 @@
         </div>
 
         <!--Lista de perguntas do formulário Agrupado-->
-        <div *ngIf="IsAgrupado" class="big-container row-wrap flex-center ">
+        <div *ngIf="IsAgrupado && !ResultadoPorGrafico" class="big-container row-wrap flex-center ">
             <div class="w-90 perguntas-form-agrupada round-shadow" *ngFor="let agrupamento of RespostaPesquisaPontual.Respostas; let numero = index">
                 <h4>{{agrupamento.Categoria}}</h4>
                 <div class="w-100 perguntas-form" *ngFor="let pergunta of agrupamento.Perguntas; let number = index">
