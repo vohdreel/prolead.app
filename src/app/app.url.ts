@@ -80,3 +80,4 @@ export const URL_ListarPesquisasPontuais: string = "PerfilProlead/ListarPesquisa
 export const URL_AbrirFormularioPesquisaEmAndamento: string = "PerfilProlead/AbrirPesquisaEmAndamento"
 export const URL_SalvarPesquisaPontual: string = "PerfilProlead/SalvarPesquisaPontual"
 export const URL_CarregarPesquisaPontual: string = "PerfilProlead/CarregarPesquisaPontual"
+export const URL_CarregarGraficoPesquisaPontual: string = "PerfilProlead/CarregarDadosGraficoPesquisaPontual"

@@ -5,7 +5,7 @@ page-visualizar-pesquisa {
         width: 100%
     }
     .red-text {
-        color: #FA7F4A;
+        color: #FA7F4A !important;
         width: 100%
     }
     .item-md.item-block .item-inner {
@@ -136,6 +136,12 @@ page-visualizar-pesquisa {
     }
     //card media por categoria
     .graficos {
+        h5,
+        h6 {
+            margin-top: 5px;
+            margin: 0px;
+            color: #5e5e5e
+        }
         .titulo-media-geral {
             text-align: center;
         }
@@ -150,7 +156,7 @@ page-visualizar-pesquisa {
                 display: table;
                 /*acts like a table*/
             }
-            h6 {
+            span {
                 margin: 0;
                 padding: 0;
                 vertical-align: middle;
@@ -162,7 +168,7 @@ page-visualizar-pesquisa {
                 text-align: center;
                 display: table;
                 .ion-ios-stats:before {
-                    font-size: 24px;
+                    font-size: 21px;
                     vertical-align: middle;
                 }
             }
