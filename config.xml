@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.Prolead.app" version="1.5.80" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.Prolead.app" version="1.6.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>ProLead</name>
     <description>Aplicativo do sistema de RH Prolead, aqui você pode utilizar as funções de Feedbacks (enviar e receber feedbacks) e também as funções da avaliação de competencia(Responder e visualizar)
     Prolead é um sistema de RH que visa melhorar a qualidade de vida / ambiente da empresa para seus colaboradores, com o aplicativo e com o sistema web</description>
