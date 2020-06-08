@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { CustomMethods } from '../../../app/GlobalMethods';
 import { URL_BASE, URL_AbrirFormularioPesquisaEmAndamento, URL_SalvarPesquisaPontual } from '../../../app/app.url';
 import { ListaDePesquisasPage } from '../lista-de-pesquisas/lista-de-pesquisas';
 import { PesquisaPontualPage } from '../pesquisa';
+import { Slides } from 'ionic-angular';
 import * as $ from 'jquery';
 
 
@@ -17,7 +18,9 @@ import * as $ from 'jquery';
   templateUrl: 'responder-pesquisa.html',
 })
 
+
 export class ResponderPesquisaPage {
+
 
   rate: number = 0;
   tipo: number;
@@ -25,6 +28,7 @@ export class ResponderPesquisaPage {
   loopNumbers: any;
   Carregado: boolean = false;
   IsAgrupado: boolean = false;
+  ShowTermos: boolean = false;
 
   PesquisaPontual: any;
   PerguntasFormulario = [];
@@ -73,6 +77,10 @@ export class ResponderPesquisaPage {
   }
 
 
+
+
+
+
   CarregarFormulario() {
     this.http
       .get(
@@ -92,18 +100,22 @@ export class ResponderPesquisaPage {
             this.PerguntasFormulario = resp.Perguntas;
 
           this.Carregado = true;
-
+          this.PesquisaPontual["Termos"] = resp.TermoAceite
           if (!this.navParams.get("pesquisa")["MostrarInstrucoes"]) {
-            this.mostrasInstrucoes();
-            this.TermosECondicoes();
-
-            this.PesquisaPontual["MostrarInstrucoes"] = true;
-            this.PesquisaPontual["Visualizado"] = true;
+            //this.mostrasInstrucoes();
+            //this.TermosECondicoes();
+            //console.log(resp.TermoAceite)
+            this.ShowTermos = true;           
+          
           }
           /*Por conta das rápidas mudanças de telas ao carregar essa pagina via payload
           são criadas instancias do loader que não são encerradas, .dismissAll() encerra todas
           os loaders extras
           */this.CustomMethods.loader.dismissAll();
+
+
+
+          //let currentIndex = this.slides.getActiveIndex();
 
 
         },
@@ -116,6 +128,8 @@ export class ResponderPesquisaPage {
         }
       );
   }
+
+
 
   Mapper() {
     /*informacoes da RespostaPesquisaPontual:*/
@@ -169,6 +183,27 @@ export class ResponderPesquisaPage {
       `Ao responder a pesquisa, estou ciente que meus resultados serão compartilhados com 
     meu gestor imediato. Da mesma forma, os meus dados podem ser utilizados de maneira individual.
     `, 'justifyContent')
+  }
+
+  MostrarTermosEInstrucoes() {
+    this.ShowTermos = true;
+
+  }
+
+  FecharTermos() {
+
+    this.ShowTermos = false;
+
+    if (!this.navParams.get("pesquisa")["MostrarInstrucoes"]) {
+
+      this.PesquisaPontual["MostrarInstrucoes"] = true;
+      this.PesquisaPontual["Visualizado"] = true;
+      this.mostrasInstrucoes();
+
+    }
+
+
+
   }
 
   EnviarRespostas() {

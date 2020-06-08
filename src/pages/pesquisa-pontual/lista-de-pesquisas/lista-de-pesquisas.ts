@@ -38,7 +38,7 @@ export class ListaDePesquisasPage {
   ) {
 
     this.tipo = this.navParams.get('type');
-    this.titulo = this.tipo == 1 ? 'Em Andamento' : 'Histórico'
+    this.titulo = this.tipo == 1 ? 'Em Andamento' : 'Resultados'
     this.loopNumbers = Array(5).fill(0).map((x, i) => i);
 
     //console.log(this.loopNumbers)

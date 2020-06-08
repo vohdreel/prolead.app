@@ -31,8 +31,10 @@
         </div>
     </div>
     <div *ngIf="PesquisasPontuais.length == 0">
-        <span *ngIf="tipo == 1" style="color: grey; font-size: 22px"> Quando houver pesquisas para você, elas serão listadas aqui.</span>
-        <span *ngIf="tipo == 2" style="color: grey; font-size: 22px"> Exibiremos seu histórico após a sua primeira participação em uma pesquisa.</span>
+        <img *ngIf="tipo == 1" src="../assets/icon/mensageria1.png">
+        <img *ngIf="tipo == 2" src="../assets/icon/mensageria2.png">
+        <!-- <span  style="color: grey; font-size: 22px"> Quando houver pesquisas para você, elas serão listadas aqui.</span>
+        <span *ngIf="tipo == 2" style="color: grey; font-size: 22px"> Exibiremos seu histórico após a sua primeira participação em uma pesquisa.</span> -->
 
     </div>
 </ion-content>

@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-    <ion-navbar color="dark">
+    <ion-navbar hideBackButton="{{ShowTermos}}" color="dark">
         <ion-title>Responder Pesquisa</ion-title>
     </ion-navbar>
 
@@ -15,12 +15,18 @@
 
 
 <ion-content padding>
-    <div *ngIf="Carregado">
+    <div *ngIf="Carregado && !ShowTermos">
         <h4 class="red-text">{{PesquisaPontual.Nome}} </h4>
         <div class="flex row-wrap legenda">
             <div (click)="mostrasInstrucoes()">
                 <ion-icon name="ios-information-circle-outline"></ion-icon>
                 <span>Legenda</span>
+            </div>
+        </div>
+        <div class="flex row-wrap legenda">
+            <div (click)="MostrarTermosEInstrucoes()">
+                <ion-icon name="ios-information-circle-outline"></ion-icon>
+                <span>Termos e Condições</span>
             </div>
         </div>
 
@@ -77,7 +83,7 @@
             <div class="w-90 perguntas-form" *ngFor="let pergunta of PerguntasFormulario; let number = index">
                 <div class="w-100">
                     <div class="big-container area-pergunta row-wrap space-around">
-                        <span style="font-size: 15px; width: 100%">{{number + 1}}:   {{pergunta.Descricao}}</span>
+                        <span style="font-size: 15px; width: 100%">{{number + 1}}: {{pergunta.Descricao}}</span>
                         <ionic3-star-rating [(ngModel)]="pergunta.ValorInteiro" activeIcon="ios-star" defaultIcon="ios-star-outline" activeColor="#488aff" defaultColor="#f4f4f4" readonly="false" maxRating="6" fontSize="32px" (ratingChanged)="onRateChange($event)">
                         </ionic3-star-rating>
                     </div>
@@ -97,6 +103,16 @@
 
         </div>
     </div>
+    <div *ngIf="Carregado && ShowTermos">
+        <h4>Termos e Condições</h4>
+
+        {{PesquisaPontual.Termos}}
+        <div class="flex-btn center-content">
+            <button type="submit" class="r-50 w-80  orange-grad" (click)="FecharTermos()" ion-button full>Aceitar</button>
+        </div>
+    </div>
+
+
 
 
 

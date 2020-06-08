@@ -70,11 +70,11 @@ export class VisualizarPesquisaPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private http: Http,
-    private CustomMethods: CustomMethods
+    private CustomMethods: CustomMethods,
   ) {
 
     this.tipo = navParams.get("type");
-    this.titulo = this.tipo == 1 ? this.titulo = 'Em Andamento' : 'Histórico'
+    this.titulo = this.tipo == 1 ? this.titulo = 'Em Andamento' : 'Resultados'
     this.loopNumbers = Array(5).fill(0).map((x, i) => (i + 1));
 
     this.PesquisaPontual = navParams.get("pesquisa");
@@ -88,7 +88,9 @@ export class VisualizarPesquisaPage {
 
 
   loadPesquisa() {
-    this.http.get(URL_BASE + URL_CarregarGraficoPesquisaPontual + "?idPesquisaColaborador=" + this.PesquisaPontual.IdPesquisaColaborador)
+
+    
+    this.http.get(URL_BASE + URL_CarregarGraficoPesquisaPontual + "?idPesquisaColaborador=" + this.PesquisaPontual.IdPesquisaColaborador,)
       .map(res => res.json()).subscribe(
         resp => {
 
@@ -108,6 +110,7 @@ export class VisualizarPesquisaPage {
 
           this.CustomMethods.loader.dismiss();
         }, err => {
+          this.CustomMethods.okAlert(err)
           this.success = false;
           this.CustomMethods.loader.dismiss();
           //this.CustomMethods.okAlert("Não foi possivel carregar feedback, verifique sua conexão com a internet e tente novamente");

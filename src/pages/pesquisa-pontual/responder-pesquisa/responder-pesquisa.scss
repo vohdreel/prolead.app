@@ -5,6 +5,12 @@
 }
 
 page-responder-pesquisa {
+    .swiper-slide,
+    .slide-zoom {
+        text-align: unset;
+        font-size: unset;
+        font-size: unset;
+    }
     .item-md.item-block .item-inner {
         border-bottom: none;
     }
