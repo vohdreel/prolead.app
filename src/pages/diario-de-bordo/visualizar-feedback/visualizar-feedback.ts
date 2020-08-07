@@ -157,7 +157,7 @@ export class VisualizarFeedbackPage {
           this.UtilizaTreplica = resp.UtilizaTreplica;
           this.tratatamentoComboBox();
           this.ultimaQuestao = this.feedback.FeedBack[this.feedback.FeedBack.length - 1];
-          
+
           this.avaliacao = Object.assign({}, this.feedback.FeedBack[0]); console.log(this.avaliacao);
           this.observacao = Object.assign({}, this.feedback.FeedBack[1]); console.log(this.observacao);
 
@@ -174,7 +174,7 @@ export class VisualizarFeedbackPage {
 
 
   mostrarCompetencia() {
-    this.CustomMethods.AlertWithText('Competência:',this.feedback.CompetenciaAvaliada);
+    this.CustomMethods.AlertWithText('Competência:', this.feedback.CompetenciaAvaliada);
   }
 
 
@@ -183,7 +183,7 @@ export class VisualizarFeedbackPage {
 
     if (questao.Replica != null) {
 
-      this.http.get(URL_BASE + URL_SalvarReplicaFeedback + "?replica=" + questao.Replica + "&id=" + questao.Id + "&idQuestao=" + id + "&idColab=" + this.Colaborador.id)
+      this.http.get(URL_BASE + URL_SalvarReplicaFeedback + "?replica=" + questao.Replica + "&id=" + id + "&idQuestao=" + questao.Id + "&idColab=" + this.Colaborador.id)
         .map(res => res.json()).subscribe(
           resp => {
             this.CustomMethods.loader.dismiss();
@@ -212,7 +212,7 @@ export class VisualizarFeedbackPage {
 
     if (questao.Replica != null) {
 
-      this.http.get(URL_BASE + URL_SalvarTreplicaFeedback + "?replica=" + questao.Treplica + "&id=" + questao.Id + "&idQuestao=" + id + "&idColab=" + this.Colaborador.id)
+      this.http.get(URL_BASE + URL_SalvarTreplicaFeedback + "?replica=" + questao.Treplica + "&id=" + id + "&idQuestao=" + questao.Id + "&idColab=" + this.Colaborador.id)
         .map(res => res.json()).subscribe(
           resp => {
             this.CustomMethods.loader.dismiss();
