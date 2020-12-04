@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Platform } from "ionic-angular/platform/platform";
 import { URL_BASE, URL_SalvarConfiguracoes, URL_Configuracoes, URL_SalvarFoto, URL_Foto, URL_AlterarSenha } from '../../app/app.url';
 import { Http, RequestOptions, Headers } from '@angular/http';
 import { CustomMethods } from '../../app/GlobalMethods';
@@ -78,7 +79,7 @@ export class ConfiguracoesPage {
   Carregar() {
     let cameraOptions = {
       sourceType: this.Camera.PictureSourceType.PHOTOLIBRARY,
-      destinationType: this.this.Camera.DestinationType.DATA_URL,
+      destinationType: this.platform.is('ios') ? this.Camera.DestinationType.DATA_URL : this.Camera.DestinationType.FILE_URI,
       quality: 100,
       targetWidth: 500,
       targetHeight: 500,
@@ -87,20 +88,26 @@ export class ConfiguracoesPage {
       allowEdit: true,
     }
 
-    this.CustomMethods.exibirLoading();
-    this.Camera.getPicture(cameraOptions)
-      .then(async file_uri => {
-        // this.TratarFoto(file_uri);
-        // this.CustomMethods.loader.dismiss();
+    if (this.platform.is('ios')) {
+      this.CustomMethods.exibirLoading();
+      this.Camera.getPicture(cameraOptions)
+        .then(async file_uri => {
 
-        this.imageSrc = file_uri;
-        this.fotoColab = "data:image/jpeg;base64," + file_uri;
-        this.fotoColab = this.domSanitizer.bypassSecurityTrustUrl(this.fotoColab);
-        this.CustomMethods.loader.dismiss();
+          this.imageSrc = file_uri;
+          this.fotoColab = "data:image/jpeg;base64," + file_uri;
+          this.fotoColab = this.domSanitizer.bypassSecurityTrustUrl(this.fotoColab);
+          this.CustomMethods.loader.dismiss();
 
-      },
-        err => console.log(err))
-
+        },
+          err => console.log(err))
+    } else {
+      this.Camera.getPicture(cameraOptions)
+        .then(file_uri => {
+          this.TratarFoto(file_uri);
+          this.CustomMethods.loader.dismiss();
+        },
+          err => console.log(err))
+    }
   }
 
   async TratarFoto(file_uri) {

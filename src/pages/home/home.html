@@ -1,102 +1,105 @@
 <ion-header>
-    <ion-navbar class="text-center">
-        <button ion-button menuToggle>
-            <ion-icon name="menu" style="color: #FAFAFA;"></ion-icon>
-        </button>
-        <ion-title>
-            <img src="/assets/imgs/prolead_logo_white.svg" class="logo-prolead" style="padding: 1px !important" />
-        </ion-title>
-        <ion-buttons end> <button class="bg-none" (click)="AbrirNotificacoes();">
-                <ion-icon name="ios-notifications" class="cinza-logo font-30px" style="color: #FAFAFA;"></ion-icon>
-            </button> </ion-buttons>
-    </ion-navbar>
+  <ion-navbar class="text-center">
+    <button ion-button menuToggle>
+      <ion-icon name="menu" style="color: #FAFAFA;"></ion-icon>
+    </button>
+    <ion-title>
+      <img src="/assets/imgs/prolead_logo_white.svg" class="logo-prolead" style="padding: 1px !important" />
+    </ion-title>
+    <ion-buttons end> <button class="bg-none" (click)="AbrirNotificacoes();">
+        <ion-icon name="ios-notifications" class="cinza-logo font-30px" style="color: #FAFAFA;"></ion-icon>
+      </button> </ion-buttons>
+  </ion-navbar>
 </ion-header>
 
 <ion-content padding>
 
-    <ion-list>
-        <!-- User Header -->
+  <ion-list>
+    <!-- User Header -->
 
-        <ion-grid>
-            <ion-row>
-                <ion-col class="center-content flex">
-                    <img class="user-icon round" src="{{Colaborador.foto}}" />
-                </ion-col>
-            </ion-row>
-            <ion-row>
-                <ion-col class="center-content flex row-wrap name-margin-bottom">
-                    <div style="flex: 0 1 100%">
+    <ion-grid>
+      <ion-row>
+        <ion-col class="center-content flex">
+          <div>
+            <img class="user-icon" src="{{Colaborador.foto}}" />
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="center-content flex row-wrap name-margin-bottom">
+          <div style="flex: 0 1 100%">
 
-                        <h3 class="inherit"> {{Colaborador.nome}}</h3>
-                    </div>
-                    <br>
-                    <div style="flex: 0 1 100%">
-                        <h6 class="font-color-lightgrey inherit">{{Colaborador.cargo}}</h6>
-                    </div>
-                </ion-col>
-            </ion-row>
-        </ion-grid>
-        <!-- Menu Grid -->
-        <ion-grid class="content-grid">
-            <ion-row>
-                <ion-col class="modulo-icon-container center-content" (click)="AcessaAvaliacaoDiaria? DiarioDeBordo():''">
-                    <div class="center-content inline-block"><img src="../../assets/icon/diario_feedback_icon.svg" />
-                        <p> DIÁRIO DE FEEDBACK</p>
-                    </div>
-                </ion-col>
-                <ion-col class="modulo-icon-container center-content" [ngClass]="{'lightgrey-disabled': !AcessaPesquisaPontual}" (click)="AcessaPesquisaPontual? PesquisaPontual():''">
-                    <div class="center-content inline-block">
-                        <img *ngIf="!AcessaPesquisaPontual" src="../../assets/icon/clima_icon_blocked.svg" style="height: 88px" />
-                        <img *ngIf="AcessaPesquisaPontual" src="../../assets/icon/pesquisa_pontual_icon.png" style="height: 88px" />
-                        <p>EXPRESS YOURSELF</p>
+            <h3 class="inherit"> {{Colaborador.nome}}</h3>
+          </div>
+          <br>
+          <div style="flex: 0 1 100%">
+            <h6 class="font-color-lightgrey inherit">{{Colaborador.cargo}}</h6>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <!-- Menu Grid -->
+    <ion-grid class="content-grid">
+      <ion-row>
+        <ion-col class="modulo-icon-container center-content" (click)="AcessaAvaliacaoDiaria? DiarioDeBordo():''">
+          <div class="center-content inline-block"><img src="../../assets/icon/diario_feedback_icon.svg" />
+            <p> DIÁRIO DE FEEDBACK</p>
+          </div>
+        </ion-col>
+        <ion-col class="modulo-icon-container center-content" [ngClass]="{'lightgrey-disabled': !AcessaPesquisaPontual}"
+          (click)="AcessaPesquisaPontual? PesquisaPontual():''">
+          <div class="center-content inline-block">
+            <img *ngIf="!AcessaPesquisaPontual" src="../../assets/icon/clima_icon_blocked.svg" style="height: 88px" />
+            <img *ngIf="AcessaPesquisaPontual" src="../../assets/icon/pesquisa_pontual_icon.png" style="height: 88px" />
+            <p>EXPRESS YOURSELF</p>
 
-                    </div>
-                </ion-col>
-            </ion-row>
-            <ion-row>
-                <ion-col class="modulo-icon-container center-content lightgrey-disabled">
-                    <div class="center-content inline-block">
-                        <img src="../../assets/icon/competencia_icon.svg" />
-                        <p>COMPETÊNCIA</p>
-                    </div>
-                </ion-col>
-                <ion-col class="modulo-icon-container center-content lightgrey-disabled">
-                    <div class="center-content inline-block">
-                        <img src="../../assets/icon/desemp_icon_blocked.svg" />
-                        <p>DESEMPENHO</p>
-                    </div>
-                </ion-col>
-            </ion-row>
-            <!-- <ion-row>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="modulo-icon-container center-content lightgrey-disabled">
+          <div class="center-content inline-block">
+            <img src="../../assets/icon/competencia_icon.svg" />
+            <p>COMPETÊNCIA</p>
+          </div>
+        </ion-col>
+        <ion-col class="modulo-icon-container center-content lightgrey-disabled">
+          <div class="center-content inline-block">
+            <img src="../../assets/icon/desemp_icon_blocked.svg" />
+            <p>DESEMPENHO</p>
+          </div>
+        </ion-col>
+      </ion-row>
+      <!-- <ion-row>
                 <ion-col class="modulo-icon-container" style="flex: 0 1 calc(48% - 1px)" (click)="PesquisaPontual? PesquisaPontual():''">
                     <img src="../../assets/icon/desemp_icon_blocked.svg" /> PESQUISA PONTUAL
                 </ion-col>
             </ion-row> -->
 
-            <!-- Settings -->
-            <ion-row>
-                <ion-col class="center-content" (click)="AbrirConfiguracao('foto', true)">
-                    <div class="center-content inline-block settings-icon-container padding-top">
-                        <img src="../../assets/icon/change_picture_icon.svg" />
-                        <p class="font-10"> ALTERAR FOTO DE PERFIL</p>
-                    </div>
-                </ion-col>
-                <ion-col class="center-content" (click)="AbrirConfiguracao('senha', true)">
-                    <div class="center-content inline-block settings-icon-container padding-top">
-                        <img src="../../assets/icon/change_password_lock.svg" />
-                        <p class="font-10">ALTERAR SENHA</p>
-                    </div>
-                </ion-col>
-                <ion-col class="center-content" (click)="SairSistema()">
-                    <div class="center-content inline-block settings-icon-container padding-top">
-                        <img src="../../assets/icon/logout_icon.svg" />
-                        <p class="font-10 "> SAIR</p>
-                    </div>
-                </ion-col>
-            </ion-row>
+      <!-- Settings -->
+      <ion-row>
+        <ion-col class="center-content" (click)="AbrirConfiguracao('foto', true)">
+          <div class="center-content inline-block settings-icon-container padding-top">
+            <img src="../../assets/icon/change_picture_icon.svg" />
+            <p class="font-10"> ALTERAR FOTO DE PERFIL</p>
+          </div>
+        </ion-col>
+        <ion-col class="center-content" (click)="AbrirConfiguracao('senha', true)">
+          <div class="center-content inline-block settings-icon-container padding-top">
+            <img src="../../assets/icon/change_password_lock.svg" />
+            <p class="font-10">ALTERAR SENHA</p>
+          </div>
+        </ion-col>
+        <ion-col class="center-content" (click)="SairSistema()">
+          <div class="center-content inline-block settings-icon-container padding-top">
+            <img src="../../assets/icon/logout_icon.svg" />
+            <p class="font-10 "> SAIR</p>
+          </div>
+        </ion-col>
+      </ion-row>
 
-        </ion-grid>
+    </ion-grid>
 
 
-    </ion-list>
+  </ion-list>
 </ion-content>
