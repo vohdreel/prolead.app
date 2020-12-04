@@ -143,7 +143,15 @@ export class MyApp {
       return;
 
     }
+    
     this.changeColor(page.seletor);
+
+    if (page.title == "Início") {
+      this.nav.setRoot(page.component);
+      return;
+
+    }
+
     if (page.title == 'Configurações')
       this.nav.push(page.component, { type: 'gerais', isFromHome: false })
     else
