@@ -91,6 +91,8 @@ export class ConfiguracoesPage {
         // this.TratarFoto(file_uri);
         // this.CustomMethods.loader.dismiss();
 
+        this.imageSrc = file_uri;
+
         this.fotoColab = "data:image/jpeg;base64," + file_uri;
         this.fotoColab = this.domSanitizer.bypassSecurityTrustUrl(this.fotoColab);
 

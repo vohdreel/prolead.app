@@ -51,6 +51,11 @@ export class HomePage {
 
   }
 
+  ionViewDidEnter(){
+
+    this.Colaborador = new Colaborador();
+  }
+
 
   loadPermicoes() {
     this.http.get(URL_BASE + URL_Menu + "?idColab=" + this.IdColaborador)
