@@ -20,4 +20,13 @@ page-configuracoes {
     .list-ios>.item-block:last-child {
         border-bottom: 0px !important;
     }
+
+
+    .user-icon {
+        height: 300px;
+        width: 300px;
+        overflow: hidden;
+        border-radius: 50%;
+    
+      }
 }

@@ -45,7 +45,6 @@
         "com-badrit-base64": "^0.2.0",
         "compass": "^0.1.1",
         "cordova": "^8.1.2",
-        "cordova-android": "^8.1.0",
         "cordova-android-support-gradle-release": "^3.0.1",
         "cordova-ios": "^5.1.1",
         "cordova-plugin-advanced-http": "^2.2.0",
@@ -73,7 +72,7 @@
         "ionic4-rating": "^1.0.9",
         "ionicons": "3.0.0",
         "jquery": "^3.5.1",
-        "npm": "^6.11.3",
+        "npm": "^6.14.8",
         "popper.js": "^1.14.3",
         "rxjs": "5.5.11",
         "sw-toolbox": "3.6.0",
@@ -81,6 +80,7 @@
     },
     "devDependencies": {
         "@ionic/app-scripts": "^3.2.4",
+        "cordova-android": "^9.0.0",
         "typescript": "~2.6.2"
     },
     "description": "An Ionic project",
@@ -108,7 +108,9 @@
                 "GRADLE_TOOLS_VERSION": "3.5.0",
                 "GOOGLE_SERVICES_VERSION": "4.2.0"
             },
-            "cordova-plugin-ionic-webview": {},
+            "cordova-plugin-ionic-webview": {
+                "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
+            },
             "cordova-plugin-ionic-keyboard": {},
             "cordova-plugin-camera": {
                 "CAMERA_USAGE_DESCRIPTION": "Upload profile picture",
