@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 import { URL_BASE, URL_SalvarConfiguracoes, URL_Configuracoes, URL_SalvarFoto, URL_Foto, URL_AlterarSenha } from '../../app/app.url';
 import { Http, RequestOptions, Headers } from '@angular/http';
 import { CustomMethods } from '../../app/GlobalMethods';
@@ -9,6 +9,8 @@ import { Base64 } from '@ionic-native/base64';
 import { Crop } from '@ionic-native/crop';
 import { DomSanitizer } from '@angular/platform-browser';
 import { HomePage } from '../home/home';
+import { data, parseHTML } from 'jquery';
+import { File } from '@ionic-native/file/ngx';
 
 @IonicPage()
 @Component({
@@ -33,7 +35,9 @@ export class ConfiguracoesPage {
     private Camera: Camera,
     private base64: Base64,
     private crop: Crop,
-    private domSanitizer: DomSanitizer
+    private domSanitizer: DomSanitizer,
+    private platform: Platform,
+    private file: File
   ) {
     this.CarregarConfiguracoes();
     this.fotoColab = this.Colaborador.foto;
@@ -74,24 +78,32 @@ export class ConfiguracoesPage {
   Carregar() {
     let cameraOptions = {
       sourceType: this.Camera.PictureSourceType.PHOTOLIBRARY,
-      destinationType: this.Camera.DestinationType.FILE_URI,
+      destinationType: this.this.Camera.DestinationType.DATA_URL,
       quality: 100,
+      targetWidth: 500,
+      targetHeight: 500,
       encodingType: this.Camera.EncodingType.JPEG,
       correctOrientation: true,
       allowEdit: true,
     }
 
+    this.CustomMethods.exibirLoading();
     this.Camera.getPicture(cameraOptions)
-      .then(file_uri => {
-        this.TratarFoto(file_uri);
+      .then(async file_uri => {
+        // this.TratarFoto(file_uri);
+        // this.CustomMethods.loader.dismiss();
+
+        this.imageSrc = file_uri;
+        this.fotoColab = "data:image/jpeg;base64," + file_uri;
+        this.fotoColab = this.domSanitizer.bypassSecurityTrustUrl(this.fotoColab);
         this.CustomMethods.loader.dismiss();
+
       },
         err => console.log(err))
 
   }
 
   async TratarFoto(file_uri) {
-    this.CustomMethods.exibirLoading();
     this.imageSrc = await this.crop.crop(file_uri);
 
 

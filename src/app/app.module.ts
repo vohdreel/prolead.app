@@ -42,6 +42,7 @@ import { Push, PushObject, PushOptions } from '@ionic-native/push/ngx';
 import { NotificacoesPage } from "../pages/notificacoes/notificacoes";
 import { PreWorkPage } from "../pages/competencias/responder/pre-work/pre-work";
 import { FCM } from '@ionic-native/fcm'
+import { File } from "@ionic-native/file/ngx";
 
 
 @NgModule({
@@ -114,6 +115,7 @@ import { FCM } from '@ionic-native/fcm'
     Base64,
     Camera,
     Crop,
+    File,
     Firebase,
     Push,
     FCM,
