@@ -9,6 +9,8 @@ import { Base64 } from '@ionic-native/base64';
 import { Crop } from '@ionic-native/crop';
 import { DomSanitizer } from '@angular/platform-browser';
 import { HomePage } from '../home/home';
+import { data, parseHTML } from 'jquery';
+import { File } from '@ionic-native/file/ngx';
 
 @IonicPage()
 @Component({
@@ -33,7 +35,8 @@ export class ConfiguracoesPage {
     private Camera: Camera,
     private base64: Base64,
     private crop: Crop,
-    private domSanitizer: DomSanitizer
+    private domSanitizer: DomSanitizer,
+    private file: File
   ) {
     this.CarregarConfiguracoes();
     this.fotoColab = this.Colaborador.foto;
@@ -74,17 +77,48 @@ export class ConfiguracoesPage {
   Carregar() {
     let cameraOptions = {
       sourceType: this.Camera.PictureSourceType.PHOTOLIBRARY,
-      destinationType: this.Camera.DestinationType.FILE_URI,
+      destinationType: this.Camera.DestinationType.DATA_URL,
       quality: 100,
+      targetWidth: 500,
+      targetHeight: 500,
       encodingType: this.Camera.EncodingType.JPEG,
       correctOrientation: true,
       allowEdit: true,
     }
 
     this.Camera.getPicture(cameraOptions)
-      .then(file_uri => {
-        this.TratarFoto(file_uri);
-        this.CustomMethods.loader.dismiss();
+      .then(async file_uri => {
+        // this.TratarFoto(file_uri);
+        // this.CustomMethods.loader.dismiss();
+
+        this.fotoColab = "data:image/jpeg;base64," + file_uri;
+        this.fotoColab = this.domSanitizer.bypassSecurityTrustUrl(this.fotoColab);
+
+
+        //file_uri = 'data:image/jpeg;base64,' + file_uri;
+
+        /*this.crop.crop(file_uri, { quality: 100 }).then(
+          async newImage => {
+            console.log('imagem: ' + newImage);
+            let fileName = newImage.substring(newImage.lastIndexOf('/') + 1);
+
+            console.log(fileName);
+            let path = newImage.substring(0, newImage.lastIndexOf('/') + 1);
+            console.log('path: ' + path)
+
+            this.file.readAsDataURL(path, fileName)
+              .then(base64File => {
+                console.log("here is encoded image ", base64File)
+              })
+              .catch(() => {
+                console.log('Error reading file');
+              })
+            this.fotoColab = "data:image/jpeg;base64," + file_uri;
+            this.fotoColab = this.domSanitizer.bypassSecurityTrustUrl(this.fotoColab);
+          },
+          error => console.error('Error cropping image', error.message)
+        );*/
+
       },
         err => console.log(err))
 
