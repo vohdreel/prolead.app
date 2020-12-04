@@ -93,45 +93,10 @@ export class ConfiguracoesPage {
       this.Camera.getPicture(cameraOptions)
         .then(async file_uri => {
 
-<<<<<<< HEAD
-        this.imageSrc = file_uri;
-
-        this.fotoColab = "data:image/jpeg;base64," + file_uri;
-        this.fotoColab = this.domSanitizer.bypassSecurityTrustUrl(this.fotoColab);
-
-
-        //file_uri = 'data:image/jpeg;base64,' + file_uri;
-
-        /*this.crop.crop(file_uri, { quality: 100 }).then(
-          async newImage => {
-            console.log('imagem: ' + newImage);
-            let fileName = newImage.substring(newImage.lastIndexOf('/') + 1);
-
-            console.log(fileName);
-            let path = newImage.substring(0, newImage.lastIndexOf('/') + 1);
-            console.log('path: ' + path)
-
-            this.file.readAsDataURL(path, fileName)
-              .then(base64File => {
-                console.log("here is encoded image ", base64File)
-              })
-              .catch(() => {
-                console.log('Error reading file');
-              })
-            this.fotoColab = "data:image/jpeg;base64," + file_uri;
-            this.fotoColab = this.domSanitizer.bypassSecurityTrustUrl(this.fotoColab);
-          },
-          error => console.error('Error cropping image', error.message)
-        );*/
-
-      },
-        err => console.log(err))
-=======
           this.imageSrc = file_uri;
           this.fotoColab = "data:image/jpeg;base64," + file_uri;
           this.fotoColab = this.domSanitizer.bypassSecurityTrustUrl(this.fotoColab);
           this.CustomMethods.loader.dismiss();
->>>>>>> 5597be9ae6f4cc82720026fca345aed161f08c9e
 
         },
           err => console.log(err))
