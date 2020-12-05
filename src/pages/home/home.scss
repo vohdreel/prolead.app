@@ -73,6 +73,8 @@ page-home {
 
   .logo-prolead {
     max-height: -webkit-fill-available;
+    height: 100% !important;
+  
   }
 
   @media (min-width: 525px) {
